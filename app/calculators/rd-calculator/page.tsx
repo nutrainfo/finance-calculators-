@@ -9,68 +9,127 @@ function RDCalculator() {
   const [rate, setRate] = useState(6.5);
   const [years, setYears] = useState(3);
   const result = calculateRD(monthly, rate, years);
+  const principalPct = Math.round((result.totalInvested / result.maturityValue) * 100);
+  const interestPct = 100 - principalPct;
 
   return (
-    <div className="grid lg:grid-cols-5 gap-8">
-      <div className="lg:col-span-2">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">RD Details</h2>
-          {[
-            { label: "Monthly Deposit", value: monthly, set: setMonthly, min: 100, max: 100000, step: 100, isAmt: true },
-            { label: "Interest Rate (% p.a.)", value: rate, set: setRate, min: 4, max: 10, step: 0.1, suffix: "%" },
-            { label: "Duration (Years)", value: years, set: setYears, min: 1, max: 10, step: 1, suffix: " Yr" },
-          ].map((inp) => (
-            <div key={inp.label} className="mb-6">
-              <div className="flex justify-between mb-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{inp.label}</label>
-                <span className="text-sm font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
-                  {inp.isAmt ? formatCurrency(inp.value) : `${inp.value}${inp.suffix || ""}`}
-                </span>
-              </div>
-              <input type="range" min={inp.min} max={inp.max} step={inp.step} value={inp.value}
-                onChange={(e) => inp.set(Number(e.target.value))} className="w-full" />
-              {inp.isAmt && (
-                <input type="number" value={inp.value} onChange={(e) => inp.set(Number(e.target.value))}
-                  className="mt-2 w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              )}
+    <div className="grid lg:grid-cols-2 gap-10">
+
+      {/* Inputs */}
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">RD Details</h2>
+
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Monthly Deposit</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+                {formatCurrency(monthly)}
+              </span>
             </div>
-          ))}
+            <input type="range" min={100} max={100000} step={100} value={monthly}
+              onChange={(e) => setMonthly(Number(e.target.value))} className="w-full mb-3" />
+            <input type="number" value={monthly} onChange={(e) => setMonthly(Number(e.target.value))}
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+            </div>
+            <input type="range" min={4} max={10} step={0.1} value={rate}
+              onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
+            <div className="flex justify-between text-xs text-slate-400 mt-2">
+              <span>4%</span><span>10%</span>
+            </div>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Duration</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+            </div>
+            <input type="range" min={1} max={10} step={1} value={years}
+              onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
+            <div className="flex justify-between text-xs text-slate-400 mt-2">
+              <span>1 Year</span><span>10 Years</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Info note */}
+        <div className="bg-blue-50 dark:bg-blue-950/20 rounded-3xl p-6 border border-blue-200 dark:border-blue-800/40">
+          <h3 className="font-bold text-blue-900 dark:text-blue-400 text-sm mb-2">RD vs SIP</h3>
+          <p className="text-xs text-blue-800 dark:text-blue-300 leading-relaxed">
+            RD is bank-guaranteed (up to ₹5L DICGC insurance) with fixed returns. SIP in mutual funds carries market risk but can deliver 10–15% returns long-term vs RD&apos;s 6–7%. Choose RD for short-term goals and SIP for long-term wealth creation.
+          </p>
         </div>
       </div>
-      <div className="lg:col-span-3 space-y-6">
-        <div className="grid grid-cols-3 gap-4">
-          {[
-            { label: "Total Deposited", value: formatCurrency(result.totalInvested) },
-            { label: "Interest Earned", value: formatCurrency(result.totalInterest), em: "emerald" },
-            { label: "Maturity Amount", value: formatCurrency(result.maturityValue), em: "amber" },
-          ].map((c) => (
-            <div key={c.label} className={`p-5 rounded-2xl border ${c.em === "amber" ? "bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800" : c.em === "emerald" ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800" : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700"}`}>
-              <div className={`text-2xl font-extrabold mb-1 ${c.em === "amber" ? "text-amber-700 dark:text-amber-400" : c.em === "emerald" ? "text-emerald-700 dark:text-emerald-400" : "text-slate-900 dark:text-white"}`}>{c.value}</div>
-              <div className="text-xs text-slate-500">{c.label}</div>
+
+      {/* Results */}
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
+
+          <div className="space-y-4 mb-6">
+            {[
+              { label: "Total Deposited", value: formatCurrency(result.totalInvested) },
+              { label: "Interest Earned", value: formatCurrency(result.totalInterest), accent: true },
+            ].map((r) => (
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+                <span className="text-sm text-slate-500 dark:text-slate-400">{r.label}</span>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-white"}`}>
+                  {r.value}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+            <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Maturity Amount</p>
+            <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.maturityValue)}</p>
+          </div>
+        </div>
+
+        {/* Breakdown */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Deposited vs Interest</h3>
+          <div className="space-y-5">
+            <div>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-slate-500 dark:text-slate-400">Total Deposited</span>
+                <span className="font-semibold text-slate-900 dark:text-white">
+                  {formatCurrency(result.totalInvested)} <span className="text-slate-400 font-normal">({principalPct}%)</span>
+                </span>
+              </div>
+              <div className="h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full rounded-full transition-all duration-500"
+                  style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-slate-600 dark:text-slate-400">Return on Investment</span>
-            <span className="text-2xl font-bold text-emerald-600">
-              {((result.totalInterest / result.totalInvested) * 100).toFixed(2)}%
-            </span>
+            <div>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-slate-500 dark:text-slate-400">Interest Earned</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
+                </span>
+              </div>
+              <div className="h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full rounded-full transition-all duration-500"
+                  style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }} />
+              </div>
+            </div>
           </div>
-          <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-blue-600 to-emerald-500 rounded-full"
-              style={{ width: `${(result.totalInvested / result.maturityValue) * 100}%` }} />
+
+          <div className="mt-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-slate-500 dark:text-slate-400">Return on Investment</span>
+              <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                {((result.totalInterest / result.totalInvested) * 100).toFixed(2)}%
+              </span>
+            </div>
           </div>
-          <div className="flex justify-between text-xs text-slate-400 mt-1">
-            <span>Principal: {((result.totalInvested / result.maturityValue) * 100).toFixed(1)}%</span>
-            <span>Interest: {((result.totalInterest / result.maturityValue) * 100).toFixed(1)}%</span>
-          </div>
-        </div>
-        <div className="bg-blue-50 dark:bg-blue-950/20 rounded-2xl p-5 border border-blue-200 dark:border-blue-800">
-          <h3 className="font-semibold text-blue-900 dark:text-blue-400 mb-2">💡 RD vs SIP</h3>
-          <p className="text-sm text-blue-800 dark:text-blue-300">
-            RD is bank-guaranteed (up to ₹5L DICGC insurance) with fixed returns. SIP in mutual funds carries market risk but can give 10-15% returns long-term vs RD&apos;s 6-7%. Choose RD for short-term goals and SIP for long-term wealth creation.
-          </p>
         </div>
       </div>
     </div>
@@ -80,10 +139,23 @@ function RDCalculator() {
 export default function RDCalculatorPage() {
   return (
     <CalculatorLayout
-      title="RD Calculator — Recurring Deposit Returns Calculator"
+      title="RD Calculator"
       description="Calculate Recurring Deposit maturity amount and interest earned. See how your monthly deposits grow with compound interest over time."
-      breadcrumb={[{ label: "Home", href: "/" }, { label: "Calculators", href: "/calculators" }, { label: "RD Calculator", href: "/calculators/rd-calculator" }]}
-      faqs={[{ q: "How is RD interest calculated?", a: "RD interest is compounded quarterly in India. Each monthly installment is treated as a separate deposit earning compound interest for its remaining tenure. Our calculator uses this standard bank formula." }]}
+      breadcrumb={[
+        { label: "Home", href: "/" },
+        { label: "Calculators", href: "/calculators" },
+        { label: "RD Calculator", href: "/calculators/rd-calculator" },
+      ]}
+      faqs={[
+        {
+          q: "How is RD interest calculated?",
+          a: "RD interest is compounded quarterly in India. Each monthly installment is treated as a separate deposit earning compound interest for its remaining tenure. Our calculator uses this standard bank formula.",
+        },
+        {
+          q: "Is RD interest taxable?",
+          a: "Yes, RD interest is fully taxable as per your income slab. TDS at 10% is deducted if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). Submit Form 15G/15H to avoid TDS if your income is below the taxable threshold.",
+        },
+      ]}
     >
       <RDCalculator />
     </CalculatorLayout>

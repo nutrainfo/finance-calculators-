@@ -60,7 +60,7 @@ export default function FAQSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-medium mb-4">
-            ❓ Frequently Asked
+            Frequently Asked
           </div>
           <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
             Common Questions

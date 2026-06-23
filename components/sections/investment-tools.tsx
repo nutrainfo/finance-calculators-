@@ -5,7 +5,7 @@ import Link from "next/link";
 const toolCategories = [
   {
     title: "Investment Calculators",
-    emoji: "📈",
+    emoji: "",
     color: "blue",
     tools: [
       { name: "SIP Calculator", href: "/calculators/sip-calculator" },
@@ -21,7 +21,7 @@ const toolCategories = [
   },
   {
     title: "Deposit Calculators",
-    emoji: "🏦",
+    emoji: "",
     color: "emerald",
     tools: [
       { name: "Fixed Deposit (FD)", href: "/calculators/fd-calculator" },
@@ -34,7 +34,7 @@ const toolCategories = [
   },
   {
     title: "Loan Calculators",
-    emoji: "🏠",
+    emoji: "",
     color: "violet",
     tools: [
       { name: "Home Loan EMI", href: "/calculators/home-loan-emi-calculator" },
@@ -47,7 +47,7 @@ const toolCategories = [
   },
   {
     title: "Tax Calculators",
-    emoji: "📋",
+    emoji: "",
     color: "amber",
     tools: [
       { name: "Income Tax Calculator", href: "/calculators/income-tax-calculator" },
@@ -72,7 +72,7 @@ export default function InvestmentTools() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800 text-violet-700 dark:text-violet-400 text-sm font-medium mb-4">
-            🛠️ All Tools
+            All Tools
           </div>
           <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
             Complete Calculator Library
@@ -91,7 +91,6 @@ export default function InvestmentTools() {
                 className={`p-6 rounded-2xl border ${colors[1]} ${colors[2]} ${colors[3]} ${colors[4]}`}
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-3xl">{cat.emoji}</span>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                     {cat.title}
                   </h3>

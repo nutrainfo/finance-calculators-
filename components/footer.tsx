@@ -41,6 +41,7 @@ const footerLinks = {
     { label: "Income Tax Calculator", href: "/calculators/income-tax-calculator" },
     { label: "New vs Old Regime", href: "/calculators/new-vs-old-regime-calculator" },
     { label: "Capital Gains Tax", href: "/calculators/capital-gains-calculator" },
+    { label: "Mutual Funds", href: "/mutual-funds" },
     { label: "Live Interest Rates", href: "/interest-rates" },
     { label: "All Calculators", href: "/calculators" },
   ],
@@ -100,7 +101,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-500">
-            © 2025 Calculate Future. All rights reserved. Made with ❤️ in India.
+            © 2025 Calculate Future. All rights reserved. Made in India.
           </p>
           <div className="flex gap-6 text-sm text-slate-500">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
@@ -109,9 +110,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-4 text-xs text-slate-600 text-center">
-          Disclaimer: All calculations are for informational purposes only. Please consult a qualified financial advisor before making investment decisions. Past performance does not guarantee future results.
-        </p>
+        {/* Legal Disclaimer */}
+        <div className="mt-8 border-t border-slate-800 pt-6 space-y-3 text-xs text-slate-600 leading-relaxed">
+          <p>
+            <strong className="text-slate-500">Regulatory Notice:</strong> Calculate Future is not a registered investment adviser, broker-dealer, or financial planner under SEBI (Investment Advisers) Regulations, 2013. We do not provide personalised investment advice. All information on this platform is for general educational and informational purposes only and does not constitute financial, tax, legal, or investment advice.
+          </p>
+          <p>
+            <strong className="text-slate-500">Mutual Fund Disclaimer:</strong> Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. The fund data displayed is sourced from publicly available information; Calculate Future does not guarantee its accuracy or completeness. We are not affiliated with AMFI, Groww, Zerodha, or any asset management company.
+          </p>
+          <p>
+            <strong className="text-slate-500">Calculator Accuracy:</strong> All calculators use standard industry formulas (SEBI-prescribed SIP formula, RBI reducing-balance EMI method, Income Tax Act FY 2024-25 slabs). Results are illustrative and may differ from actual outcomes due to market fluctuations, bank policy changes, and other factors. Always verify computations with the respective financial institution before transacting.
+          </p>
+          <p>
+            <strong className="text-slate-500">Bank Rate Data:</strong> Interest rates shown are indicative based on publicly available data as of June 2025 and may change without notice. Verify current rates from official bank websites before opening any deposit account.
+          </p>
+        </div>
       </div>
     </footer>
   );

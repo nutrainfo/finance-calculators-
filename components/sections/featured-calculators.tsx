@@ -73,7 +73,7 @@ export default function FeaturedCalculators() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-400 text-sm font-medium mb-4">
-            ⭐ Most Used Tools
+            Most Used Tools
           </div>
           <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
             Featured Calculators

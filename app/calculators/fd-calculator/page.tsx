@@ -19,57 +19,71 @@ function FDCalculator() {
     { label: "Annually", value: 1 },
   ];
 
+  const principalPct = Math.round((result.principal / result.maturityValue) * 100);
+  const interestPct = 100 - principalPct;
+
   return (
-    <div className="grid lg:grid-cols-5 gap-8">
-      <div className="lg:col-span-2 space-y-6">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">FD Details</h2>
+    <div className="grid lg:grid-cols-2 gap-10">
+
+      {/* Inputs */}
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">FD Details</h2>
 
           {/* Principal */}
-          <div className="mb-6">
-            <div className="flex justify-between mb-2">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Principal Amount</label>
-              <span className="text-sm font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Principal Amount</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
                 {formatCurrency(principal)}
               </span>
             </div>
             <input type="range" min={1000} max={10000000} step={1000} value={principal}
-              onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full" />
+              onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="mt-2 w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Rate */}
-          <div className="mb-6">
-            <div className="flex justify-between mb-2">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={1} max={15} step={0.1} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
+            <div className="flex justify-between text-xs text-slate-400 mt-2">
+              <span>1%</span><span>15%</span>
+            </div>
           </div>
 
           {/* Duration */}
-          <div className="mb-6">
-            <div className="flex justify-between mb-2">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Duration</label>
-              <span className="text-sm font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-3">
+              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Duration</label>
+              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
             </div>
             <input type="range" min={1} max={10} step={1} value={years}
               onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
+            <div className="flex justify-between text-xs text-slate-400 mt-2">
+              <span>1 Year</span><span>10 Years</span>
+            </div>
           </div>
 
           {/* Compounding */}
           <div>
-            <label className="text-sm font-medium text-slate-700 dark:text-slate-300 block mb-3">Compounding Frequency</label>
+            <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 block mb-4">
+              Compounding Frequency
+            </label>
             <div className="grid grid-cols-2 gap-2">
               {compoundingOptions.map((opt) => (
-                <button key={opt.value}
+                <button
+                  key={opt.value}
                   onClick={() => setCompounding(opt.value)}
-                  className={`py-2 px-3 rounded-xl text-sm font-medium transition-all ${
+                  className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
                     compounding === opt.value
-                      ? "bg-blue-800 text-white"
-                      : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                      ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}
                 >
                   {opt.label}
@@ -78,73 +92,99 @@ function FDCalculator() {
             </div>
           </div>
         </div>
+
+        {/* Tax note */}
+        <div className="bg-amber-50 dark:bg-amber-950/20 rounded-3xl p-6 border border-amber-200 dark:border-amber-800/40">
+          <h3 className="font-bold text-amber-900 dark:text-amber-400 text-sm mb-2">Tax on FD Interest</h3>
+          <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
+            FD interest is taxable as per your income slab. TDS of 10% is deducted if annual interest exceeds
+            ₹40,000 (₹50,000 for senior citizens). Submit Form 15G/15H to avoid TDS if your income is below the
+            taxable threshold.
+          </p>
+        </div>
       </div>
 
       {/* Results */}
-      <div className="lg:col-span-3 space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { label: "Principal Amount", value: formatCurrency(result.principal) },
-            { label: "Total Interest Earned", value: formatCurrency(result.totalInterest), highlight: true },
-            { label: "Maturity Value", value: formatCurrency(result.maturityValue), big: true },
-            { label: "Effective Rate", value: `${result.effectiveRate}% p.a.` },
-          ].map((card) => (
-            <div key={card.label}
-              className={`p-5 rounded-2xl border ${
-                card.big ? "col-span-2 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/20 border-emerald-200 dark:border-emerald-800"
-                  : card.highlight ? "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800"
-                  : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700"
-              }`}
-            >
-              <div className={`text-2xl font-extrabold mb-1 ${
-                card.big ? "text-emerald-700 dark:text-emerald-400 text-3xl"
-                  : card.highlight ? "text-blue-700 dark:text-blue-400"
-                  : "text-slate-900 dark:text-white"
-              }`}>
-                {card.value}
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
+
+          <div className="space-y-4 mb-6">
+            {[
+              { label: "Principal Amount", value: formatCurrency(result.principal) },
+              { label: "Total Interest Earned", value: formatCurrency(result.totalInterest), accent: true },
+              { label: "Effective Annual Rate", value: `${result.effectiveRate}% p.a.` },
+            ].map((r) => (
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+                <span className="text-sm text-slate-500 dark:text-slate-400">{r.label}</span>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-white"}`}>
+                  {r.value}
+                </span>
               </div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">{card.label}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Maturity value hero */}
+          <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+            <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Maturity Value</p>
+            <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.maturityValue)}</p>
+          </div>
         </div>
 
-        {/* Visual bar */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Principal vs Interest Breakdown</h3>
-          <div className="space-y-4">
+        {/* Breakdown bars */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Principal vs Interest</h3>
+
+          <div className="space-y-5">
             <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-slate-600 dark:text-slate-400">Principal</span>
-                <span className="font-semibold text-slate-900 dark:text-white">{formatCurrency(result.principal)}</span>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-slate-500 dark:text-slate-400">Principal</span>
+                <span className="font-semibold text-slate-900 dark:text-white">
+                  {formatCurrency(result.principal)} <span className="text-slate-400 font-normal">({principalPct}%)</span>
+                </span>
               </div>
-              <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div className="h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-800 to-blue-500 rounded-full"
-                  style={{ width: `${(result.principal / result.maturityValue) * 100}%` }}
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }}
                 />
               </div>
             </div>
             <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-slate-600 dark:text-slate-400">Interest Earned</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{formatCurrency(result.totalInterest)}</span>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-slate-500 dark:text-slate-400">Interest Earned</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
+                </span>
               </div>
-              <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div className="h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full"
-                  style={{ width: `${(result.totalInterest / result.maturityValue) * 100}%` }}
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }}
                 />
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Info */}
-        <div className="bg-amber-50 dark:bg-amber-950/20 rounded-2xl p-5 border border-amber-200 dark:border-amber-800">
-          <h3 className="font-semibold text-amber-900 dark:text-amber-400 mb-2">💡 Tax on FD Interest</h3>
-          <p className="text-sm text-amber-800 dark:text-amber-300">
-            FD interest is taxable as per your income tax slab. TDS of 10% is deducted if interest exceeds ₹40,000/year (₹50,000 for senior citizens). Submit Form 15G/15H to avoid TDS if your total income is below taxable limit.
-          </p>
+          {/* Combined stacked bar */}
+          <div className="mt-6 h-3 rounded-full overflow-hidden flex">
+            <div
+              className="h-full transition-all duration-500"
+              style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }}
+            />
+            <div
+              className="h-full transition-all duration-500"
+              style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }}
+            />
+          </div>
+          <div className="flex items-center gap-6 mt-3 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block" /> Principal
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" /> Interest
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -154,23 +194,23 @@ function FDCalculator() {
 const faqs = [
   {
     q: "Which bank offers the highest FD interest rate?",
-    a: "Small finance banks and private banks like IDFC FIRST, IndusInd, Yes Bank typically offer higher FD rates (7-7.5%) compared to PSU banks (6.5-7%). Check our Live Rates page for updated rates.",
+    a: "Small Finance Banks (SFBs) like Suryoday, Jana, and Ujjivan typically offer 8–8.6% p.a. compared to private banks at 7–7.5% and PSU banks at 6.5–7%. Check our Live Rates page for current rates.",
   },
   {
     q: "Is FD interest taxable?",
-    a: "Yes, FD interest is fully taxable as per your income tax slab. TDS at 10% is deducted at source if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). You can submit Form 15G/H to avoid TDS.",
+    a: "Yes, FD interest is taxable as per your income tax slab rate. TDS at 10% is deducted at source if total interest from a bank exceeds ₹40,000/year (₹50,000 for senior citizens). Submit Form 15G (below 60 years) or Form 15H (60+) to avoid TDS if income is below the taxable threshold.",
   },
   {
     q: "What is the difference between monthly and quarterly compounding?",
-    a: "With more frequent compounding, you earn slightly higher returns. Quarterly compounding (4 times/year) is standard for most bank FDs. Monthly compounding gives the highest effective yield.",
+    a: "More frequent compounding produces a slightly higher effective yield. Quarterly compounding (4×/year) is the RBI standard for most bank FDs. Monthly compounding (12×/year) produces the highest effective annual rate. Our calculator applies the exact formula: M = P × (1 + r/n)^(n×t).",
   },
 ];
 
 export default function FDCalculatorPage() {
   return (
     <CalculatorLayout
-      title="FD Calculator — Fixed Deposit Returns Calculator"
-      description="Calculate Fixed Deposit maturity amount and interest earned with our accurate FD calculator. Compare quarterly, monthly and annual compounding."
+      title="FD Calculator"
+      description="Calculate Fixed Deposit maturity amount and total interest earned. Compare monthly, quarterly, and annual compounding across different tenures."
       breadcrumb={[
         { label: "Home", href: "/" },
         { label: "Calculators", href: "/calculators" },

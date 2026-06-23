@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Download, Wifi, Smartphone, Zap, Shield, Bell } from "lucide-react";
+import { Download, Wifi, Zap, Shield, Smartphone, CheckCircle } from "lucide-react";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -9,17 +9,16 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const features = [
-  { icon: Wifi, title: "Works Offline", desc: "Use calculators without internet" },
-  { icon: Zap, title: "Lightning Fast", desc: "Native app-like performance" },
-  { icon: Shield, title: "100% Private", desc: "All calculations stay on device" },
-  { icon: Bell, title: "Instant Access", desc: "Open from home screen in 1 tap" },
+  { icon: Wifi, title: "Works Offline", desc: "All calculators work without internet" },
+  { icon: Zap, title: "Instant Load", desc: "Native app-like speed, zero lag" },
+  { icon: Shield, title: "100% Private", desc: "Calculations stay on your device" },
+  { icon: Smartphone, title: "Home Screen", desc: "One tap access from home screen" },
 ];
 
 const platforms = [
-  { name: "Android", icon: "🤖", instructions: "Tap menu (⋮) → Add to Home Screen" },
-  { name: "iPhone", icon: "🍎", instructions: "Tap Share (⬆️) → Add to Home Screen" },
-  { name: "Windows", icon: "🪟", instructions: "Click install icon in address bar" },
-  { name: "Mac", icon: "💻", instructions: "Click install icon in Chrome/Edge" },
+  { name: "Android (Chrome)", instructions: "Tap menu in top-right corner, then Add to Home Screen" },
+  { name: "iPhone (Safari)", instructions: "Tap the Share icon at the bottom, then Add to Home Screen" },
+  { name: "Windows / Mac", instructions: "Click the install icon in the browser address bar" },
 ];
 
 export default function PWAInstallSection() {
@@ -55,72 +54,93 @@ export default function PWAInstallSection() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full" style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, rgba(59,130,246,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(5,150,105,0.4) 0%, transparent 50%)"
-        }} />
-      </div>
+    <section className="py-28 relative overflow-hidden" style={{ background: "#030712" }}>
+      {/* Background glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(5,150,105,0.1) 0%, transparent 60%)",
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+
+          {/* Left — content */}
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-medium mb-6">
-              📱 Install App
-            </div>
-            <h2 className="text-4xl font-extrabold text-white mb-4">
-              Install Calculate Future App
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400/70 mb-6">
+              Available on All Platforms
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-6">
+              Install the App.<br />
+              <span style={{ color: "#60a5fa" }}>Calculate Anywhere.</span>
             </h2>
-            <p className="text-lg text-slate-300 mb-8">
-              Get instant access to all financial calculators directly from your home screen. Works offline, loads instantly, feels native.
+            <p className="text-lg text-slate-400 mb-12 leading-relaxed">
+              Get instant access to all 30+ financial calculators from your home screen.
+              Works fully offline — no internet required after first load.
             </p>
 
-            {/* Features */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            {/* Features grid */}
+            <div className="grid grid-cols-2 gap-6 mb-12">
               {features.map((f) => {
                 const Icon = f.icon;
                 return (
-                  <div key={f.title} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div key={f.title} className="flex items-start gap-4">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.2)" }}
+                    >
                       <Icon className="w-4 h-4 text-blue-400" />
                     </div>
                     <div>
-                      <div className="text-white font-semibold text-sm">{f.title}</div>
-                      <div className="text-slate-400 text-xs">{f.desc}</div>
+                      <p className="text-white font-semibold text-sm mb-0.5">{f.title}</p>
+                      <p className="text-slate-500 text-xs leading-relaxed">{f.desc}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Install button */}
+            {/* CTA */}
             {isInstalled || installSuccess ? (
-              <div className="flex items-center gap-3 px-6 py-4 bg-emerald-500/20 border border-emerald-500/30 rounded-2xl text-emerald-400">
-                <span className="text-2xl">✅</span>
+              <div
+                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl"
+                style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}
+              >
+                <CheckCircle className="w-5 h-5 text-emerald-400" />
                 <div>
-                  <div className="font-bold">App Installed!</div>
-                  <div className="text-sm text-emerald-300">Open from your home screen</div>
+                  <p className="text-emerald-400 font-bold text-sm">App Installed</p>
+                  <p className="text-emerald-500/70 text-xs">Open from your home screen</p>
                 </div>
               </div>
             ) : deferredPrompt ? (
               <button
                 onClick={handleInstall}
-                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold text-lg rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all hover:-translate-y-1"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold text-base transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  background: "linear-gradient(135deg, #1d4ed8, #2563eb)",
+                  boxShadow: "0 0 40px rgba(37,99,235,0.4)",
+                }}
               >
-                <Download className="w-6 h-6" />
-                Install App — Free
+                <Download className="w-5 h-5" />
+                Install Free App
               </button>
             ) : (
               <div className="space-y-3">
-                <p className="text-slate-400 text-sm font-medium">Manual installation:</p>
+                <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">
+                  Manual Installation
+                </p>
                 {platforms.map((p) => (
-                  <div key={p.name} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
-                    <span className="text-xl">{p.icon}</span>
+                  <div
+                    key={p.name}
+                    className="flex items-start gap-4 p-4 rounded-xl"
+                    style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-blue-400 mt-1.5 flex-shrink-0" />
                     <div>
-                      <span className="text-white text-sm font-semibold">{p.name}:</span>
-                      <span className="text-slate-400 text-sm ml-2">{p.instructions}</span>
+                      <p className="text-white text-sm font-semibold">{p.name}</p>
+                      <p className="text-slate-500 text-xs mt-0.5">{p.instructions}</p>
                     </div>
                   </div>
                 ))}
@@ -128,54 +148,90 @@ export default function PWAInstallSection() {
             )}
           </div>
 
-          {/* Right - App mockup */}
+          {/* Right — phone mockup */}
           <div className="flex justify-center">
             <div className="relative">
-              {/* Phone frame */}
-              <div className="w-64 h-[500px] bg-slate-800 rounded-[3rem] border-4 border-slate-700 shadow-2xl shadow-blue-500/20 overflow-hidden relative">
+              {/* Phone shell */}
+              <div
+                className="w-64 h-[500px] rounded-[3rem] overflow-hidden relative"
+                style={{
+                  background: "#0f172a",
+                  border: "1.5px solid rgba(255,255,255,0.1)",
+                  boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05) inset",
+                }}
+              >
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-b-2xl z-10" />
+
                 {/* Status bar */}
-                <div className="bg-slate-900 px-6 py-3 flex justify-between items-center">
-                  <span className="text-white text-xs">9:41</span>
-                  <div className="flex gap-1">
-                    <div className="w-4 h-2 bg-white/60 rounded-sm" />
+                <div className="px-6 pt-8 pb-3 flex justify-between items-center">
+                  <span className="text-white/70 text-[10px] font-medium">9:41</span>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-1.5 bg-white/40 rounded-sm" />
                     <div className="w-1 h-2 bg-emerald-400 rounded-sm" />
                   </div>
                 </div>
-                {/* App content preview */}
-                <div className="p-4 bg-gradient-to-b from-blue-950 to-slate-900 h-full">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl" />
-                    <span className="text-white text-sm font-bold">Calculate Future</span>
+
+                {/* App content */}
+                <div className="px-4 pb-4">
+                  <div className="flex items-center gap-2 mb-5">
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center"
+                      style={{ background: "linear-gradient(135deg, #2563eb, #059669)" }}
+                    >
+                      <span className="text-white text-[10px] font-black">CF</span>
+                    </div>
+                    <span className="text-white text-xs font-bold">Calculate Future</span>
                   </div>
-                  <div className="space-y-3">
-                    {["SIP Calculator", "FD Calculator", "EMI Calculator", "Income Tax"].map((item, i) => (
+
+                  <p className="text-slate-500 text-[10px] font-semibold uppercase tracking-wider mb-3">Quick Access</p>
+
+                  <div className="space-y-2">
+                    {[
+                      { label: "SIP Calculator", color: "#3b82f6" },
+                      { label: "FD Calculator", color: "#10b981" },
+                      { label: "EMI Calculator", color: "#8b5cf6" },
+                      { label: "Income Tax", color: "#f59e0b" },
+                    ].map((item) => (
                       <div
-                        key={item}
-                        className="bg-white/10 rounded-xl p-3 flex items-center gap-3"
-                        style={{ animationDelay: `${i * 0.1}s` }}
+                        key={item.label}
+                        className="flex items-center gap-3 p-3 rounded-xl"
+                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                       >
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg opacity-80" />
-                        <div>
-                          <div className="text-white text-xs font-semibold">{item}</div>
-                          <div className="text-slate-400 text-xs">Tap to calculate</div>
-                        </div>
+                        <div
+                          className="w-6 h-6 rounded-lg flex-shrink-0"
+                          style={{ background: `${item.color}22`, border: `1px solid ${item.color}33` }}
+                        />
+                        <span className="text-white text-xs font-medium">{item.label}</span>
+                        <div className="ml-auto w-1 h-3 bg-white/20 rounded-full" />
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 p-3 bg-emerald-500/20 rounded-xl border border-emerald-500/30">
-                    <div className="text-emerald-400 text-xs font-semibold mb-1">✅ Works Offline</div>
-                    <div className="text-slate-400 text-xs">All calculators available without internet</div>
+
+                  <div
+                    className="mt-4 p-3 rounded-xl"
+                    style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.15)" }}
+                  >
+                    <p className="text-emerald-400 text-[10px] font-bold mb-0.5">Offline Mode Active</p>
+                    <p className="text-slate-500 text-[9px]">All calculators available without internet</p>
                   </div>
                 </div>
               </div>
-              {/* Floating badges */}
-              <div className="absolute -right-8 top-16 bg-white dark:bg-slate-800 rounded-2xl p-3 shadow-xl border border-slate-200 dark:border-slate-700">
-                <div className="text-emerald-600 font-bold text-sm">+₹2.4 Cr</div>
-                <div className="text-slate-500 text-xs">in 20 years</div>
+
+              {/* Floating stat cards */}
+              <div
+                className="absolute -right-10 top-20 rounded-2xl p-3.5"
+                style={{ background: "rgba(15,23,42,0.9)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(12px)" }}
+              >
+                <p className="text-emerald-400 font-black text-sm">+₹2.4 Cr</p>
+                <p className="text-slate-500 text-xs">SIP in 20 yrs</p>
               </div>
-              <div className="absolute -left-8 bottom-24 bg-white dark:bg-slate-800 rounded-2xl p-3 shadow-xl border border-slate-200 dark:border-slate-700">
-                <div className="text-blue-600 font-bold text-sm">₹15,000 EMI</div>
-                <div className="text-slate-500 text-xs">Home Loan</div>
+              <div
+                className="absolute -left-10 bottom-28 rounded-2xl p-3.5"
+                style={{ background: "rgba(15,23,42,0.9)", border: "1px solid rgba(255,255,255,0.1)", backdropFilter: "blur(12px)" }}
+              >
+                <p className="text-blue-400 font-black text-sm">₹0 Tax</p>
+                <p className="text-slate-500 text-xs">under ₹12L income</p>
               </div>
             </div>
           </div>

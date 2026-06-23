@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BankRate {
+  id              String   @id @default(cuid())
+  bankName        String
+  bankShortName   String
+  tenure          String
+  fdRate          Float
+  rdRate          Float?
+  savingsRate     Float?
+  seniorFdRate    Float?
+  sourceUrl       String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  isActive        Boolean  @default(true)
+
+  @@unique([bankName, tenure])
+  @@index([bankName])
+  @@index([createdAt])
+  @@map("bank_rates")
+}
+
+model RateHistory {
+  id            String   @id @default(cuid())
+  bankName      String
+  tenure        String
+  rate          Float
+  rateType      String   // "fd", "rd", "savings"
+  recordedAt    DateTime @default(now())
+
+  @@index([bankName, tenure])
+  @@index([recordedAt])
+  @@map("rate_history")
+}
+
+model SavedCalculation {
+  id              String   @id @default(cuid())
+  calculatorType  String   // "sip", "fd", "emi", "tax", etc.
+  inputs          Json
+  result          Json
+  name            String?
+  userId          String?
+  shareToken      String?  @unique
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+  @@index([shareToken])
+  @@map("saved_calculations")
+}
+
+model PageView {
+  id          String   @id @default(cuid())
+  path        String
+  referrer    String?
+  userAgent   String?
+  deviceType  String?
+  createdAt   DateTime @default(now())
+
+  @@index([path])
+  @@index([createdAt])
+  @@map("page_views")
+}
+
+model PWAInstall {
+  id          String   @id @default(cuid())
+  deviceType  String?
+  browser     String?
+  outcome     String   // "accepted", "dismissed"
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("pwa_installs")
+}

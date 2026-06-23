@@ -56,22 +56,22 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
         </nav>
 
         {/* Page header */}
-        <div className="flex items-start justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
+        <div className="mb-10 sm:mb-12">
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
               {title}
             </h1>
-            <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
-              {description}
-            </p>
+            <button
+              onClick={handleShare}
+              className="flex-shrink-0 flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-sm hover:border-blue-300 hover:text-blue-600 transition-all"
+            >
+              <Share2 className="w-4 h-4" />
+              <span className="hidden sm:inline">Share</span>
+            </button>
           </div>
-          <button
-            onClick={handleShare}
-            className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-sm hover:border-blue-300 hover:text-blue-600 transition-all"
-          >
-            <Share2 className="w-4 h-4" />
-            Share
-          </button>
+          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
+            {description}
+          </p>
         </div>
 
         {/* Calculator content */}

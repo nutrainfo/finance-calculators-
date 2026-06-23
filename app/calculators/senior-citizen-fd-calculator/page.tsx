@@ -38,8 +38,8 @@ function SeniorCitizenFDCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">FD Details</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-8">FD Details</h2>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
@@ -49,7 +49,7 @@ function SeniorCitizenFDCalculator() {
             <input type="range" min={10000} max={10000000} step={10000} value={principal}
               onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
@@ -81,7 +81,7 @@ function SeniorCitizenFDCalculator() {
                   className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
                     compounding === opt.value
                       ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
-                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      : "bg-[#252b33] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}>
                   {opt.label}
                 </button>
@@ -100,8 +100,8 @@ function SeniorCitizenFDCalculator() {
       </div>
 
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Results</h2>
           <div className="space-y-4 mb-6">
             {[
               { label: "Principal Amount", value: formatCurrency(result.principal) },
@@ -109,8 +109,8 @@ function SeniorCitizenFDCalculator() {
               { label: "Effective Annual Rate", value: `${result.effectiveRate}% p.a.` },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-slate-500 dark:text-slate-400">{r.label}</span>
-                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-white"}`}>{r.value}</span>
+                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
           </div>
@@ -121,9 +121,9 @@ function SeniorCitizenFDCalculator() {
         </div>
 
         {/* Bank rates comparison */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl border border-[#2a303a] overflow-hidden">
           <div className="px-6 sm:px-8 py-5 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Senior Citizen FD Rates — June 2025</h3>
+            <h3 className="text-base font-bold text-white">Senior Citizen FD Rates — June 2025</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -137,7 +137,7 @@ function SeniorCitizenFDCalculator() {
               <tbody>
                 {seniorRates.map((b) => (
                   <tr key={b.bank} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                    <td className="px-6 py-3 font-medium text-slate-700 dark:text-slate-300">{b.bank}</td>
+                    <td className="px-6 py-3 font-medium text-[#b7bdc6]">{b.bank}</td>
                     <td className="px-4 py-3 text-right text-slate-500">{b.regular}%</td>
                     <td className="px-6 py-3 text-right font-bold text-emerald-600 dark:text-emerald-400">{b.senior}%</td>
                   </tr>

@@ -53,7 +53,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "#03060f" }}
+      style={{ background: "#0b0e11" }}
     >
       {/* 3D Canvas */}
       <div className="absolute inset-0 z-0">
@@ -214,14 +214,10 @@ export default function HeroSection() {
         <ChevronDown className="w-4 h-4 animate-bounce" />
       </button>
 
-      {/* Bottom fade to white */}
+      {/* Bottom fade to canvas */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none dark:hidden"
-        style={{ background: "linear-gradient(to top, #ffffff 0%, transparent 100%)" }}
-      />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none hidden dark:block"
-        style={{ background: "linear-gradient(to top, #0f172a 0%, transparent 100%)" }}
+        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to top, #0b0e11 0%, transparent 100%)" }}
       />
     </section>
   );

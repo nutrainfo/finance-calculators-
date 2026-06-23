@@ -23,8 +23,8 @@ function CapitalGainsCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Asset Details</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-8">Asset Details</h2>
 
           {/* Asset type */}
           <div className="mb-8">
@@ -37,7 +37,7 @@ function CapitalGainsCalculator() {
                       ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20"
                       : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600"
                   }`}>
-                  <div className="font-semibold text-slate-900 dark:text-white">{opt.label}</div>
+                  <div className="font-semibold text-white">{opt.label}</div>
                   <div className="text-xs text-slate-400 mt-0.5">LTCG if held &gt; {opt.longTermMin}</div>
                 </button>
               ))}
@@ -55,7 +55,7 @@ function CapitalGainsCalculator() {
             <input type="range" min={1000} max={100000000} step={1000} value={purchasePrice}
               onChange={(e) => setPurchasePrice(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={purchasePrice} onChange={(e) => setPurchasePrice(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Sale price */}
@@ -69,7 +69,7 @@ function CapitalGainsCalculator() {
             <input type="range" min={1000} max={100000000} step={1000} value={salePrice}
               onChange={(e) => setSalePrice(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={salePrice} onChange={(e) => setSalePrice(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Holding period */}
@@ -102,12 +102,12 @@ function CapitalGainsCalculator() {
             : "text-rose-700 dark:text-rose-400"}`}>
             {result.gain >= 0 ? "+" : ""}{formatCurrency(result.gain)}
           </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Total Capital Gain</p>
+          <p className="text-sm text-[#707a8a] mt-2">Total Capital Gain</p>
         </div>
 
         {/* Tax summary */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Tax Summary</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4 mb-6">
             {[
@@ -121,8 +121,8 @@ function CapitalGainsCalculator() {
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-slate-500 dark:text-slate-400">{r.label}</span>
-                <span className="text-sm font-semibold text-slate-900 dark:text-white">{r.value}</span>
+                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm font-semibold text-white">{r.value}</span>
               </div>
             ))}
           </div>
@@ -140,9 +140,9 @@ function CapitalGainsCalculator() {
         </div>
 
         {/* Rates reference */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-5">Capital Gains Tax Rates — Budget 2024</h3>
-          <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h3 className="text-base font-bold text-white mb-5">Capital Gains Tax Rates — Budget 2024</h3>
+          <div className="space-y-3 text-sm text-[#707a8a]">
             {[
               { label: "Equity STCG (< 12 months)", rate: "20%" },
               { label: "Equity LTCG (> 12 months, above ₹1L)", rate: "12.5%" },
@@ -151,7 +151,7 @@ function CapitalGainsCalculator() {
             ].map((item) => (
               <div key={item.label} className="flex justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
                 <span>{item.label}</span>
-                <span className="font-semibold text-slate-900 dark:text-white">{item.rate}</span>
+                <span className="font-semibold text-white">{item.rate}</span>
               </div>
             ))}
           </div>

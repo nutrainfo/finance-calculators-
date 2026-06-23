@@ -62,41 +62,41 @@ const FUNDS: Fund[] = [
 const CATEGORIES = ["All", "Large Cap", "Flexi Cap", "Mid Cap", "Small Cap", "ELSS", "Hybrid", "Index Fund", "Debt"];
 
 const RISK_CONFIG: Record<string, { pill: string; dot: string }> = {
-  "Low":       { pill: "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60", dot: "bg-emerald-500" },
-  "Moderate":  { pill: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-800/60", dot: "bg-blue-500" },
-  "High":      { pill: "bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800/60", dot: "bg-amber-500" },
-  "Very High": { pill: "bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800/60", dot: "bg-rose-500" },
+  "Low":       { pill: "bg-emerald-600/15 text-emerald-400 border border-emerald-600/30", dot: "bg-emerald-500" },
+  "Moderate":  { pill: "bg-blue-600/15 text-blue-400 border border-blue-600/30", dot: "bg-blue-500" },
+  "High":      { pill: "bg-amber-600/15 text-amber-400 border border-amber-600/30", dot: "bg-amber-500" },
+  "Very High": { pill: "bg-rose-600/15 text-rose-400 border border-rose-600/30", dot: "bg-rose-500" },
 };
 
 function FundCard({ fund }: { fund: Fund }) {
   const risk = RISK_CONFIG[fund.riskLevel];
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg hover:shadow-slate-100 dark:hover:shadow-slate-900/50 transition-all duration-200">
+    <div className="bg-[#1a1e24] rounded-xl border border-[#2a303a] p-4 hover:border-[#3a4150] hover:shadow-lg hover:shadow-black/30 transition-all duration-200">
       {/* Top row: name + risk */}
-      <div className="flex items-start justify-between gap-3 mb-4">
+      <div className="flex items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
-          <p className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-0.5">{fund.name}</p>
-          <p className="text-xs text-slate-500 dark:text-slate-400">{fund.amc} · {fund.category}</p>
+          <p className="font-bold text-white text-sm leading-snug mb-0.5">{fund.name}</p>
+          <p className="text-xs text-[#707a8a]">{fund.amc} · {fund.category}</p>
         </div>
-        <span className={`flex-shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${risk.pill}`}>
+        <span className={`flex-shrink-0 inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold ${risk.pill}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${risk.dot}`} />
           {fund.riskLevel}
         </span>
       </div>
 
       {/* Metrics row */}
-      <div className="grid grid-cols-3 gap-3 mb-4 py-3 border-y border-slate-100 dark:border-slate-800">
+      <div className="grid grid-cols-3 gap-2 mb-3 py-2.5 border-y border-[#2a303a]">
         <div>
-          <p className="text-xs text-slate-400 mb-0.5">AUM</p>
-          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.aum ?? "—"}</p>
+          <p className="text-xs text-[#707a8a] mb-0.5">AUM</p>
+          <p className="text-xs font-semibold text-[#b7bdc6]">{fund.aum ?? "—"}</p>
         </div>
         <div>
-          <p className="text-xs text-slate-400 mb-0.5">Exp. Ratio</p>
-          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.expenseRatio ?? "—"}</p>
+          <p className="text-xs text-[#707a8a] mb-0.5">Exp. Ratio</p>
+          <p className="text-xs font-semibold text-[#b7bdc6]">{fund.expenseRatio ?? "—"}</p>
         </div>
         <div>
-          <p className="text-xs text-slate-400 mb-0.5">Min SIP</p>
-          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">₹{fund.minSIP}/mo</p>
+          <p className="text-xs text-[#707a8a] mb-0.5">Min SIP</p>
+          <p className="text-xs font-semibold text-[#b7bdc6]">₹{fund.minSIP}/mo</p>
         </div>
       </div>
 
@@ -106,18 +106,16 @@ function FundCard({ fund }: { fund: Fund }) {
           href={`https://groww.in/mutual-funds/${fund.growwSlug}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all hover:-translate-y-0.5"
-          style={{ background: "rgba(0,208,156,0.08)", color: "#00a07a", border: "1px solid rgba(0,208,156,0.2)" }}
+          className="flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold bg-[#0ecb81]/10 text-[#0ecb81] border border-[#0ecb81]/25 hover:bg-[#0ecb81]/20 transition-all"
         >
           Groww
           <ExternalLink className="w-3 h-3" />
         </a>
         <a
-          href={`https://coin.zerodha.com/search?q=${fund.zerodhaQuery}`}
+          href={`https://coin.zerodha.com/search?q=${encodeURIComponent(fund.zerodhaQuery.replace(/\+/g, " "))}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all hover:-translate-y-0.5"
-          style={{ background: "rgba(56,126,209,0.08)", color: "#387ed1", border: "1px solid rgba(56,126,209,0.2)" }}
+          className="flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold bg-blue-600/10 text-blue-400 border border-blue-600/25 hover:bg-blue-600/20 transition-all"
         >
           Zerodha
           <ExternalLink className="w-3 h-3" />
@@ -145,48 +143,48 @@ export default function MutualFundsSection() {
   });
 
   return (
-    <section className="min-h-screen bg-slate-50 dark:bg-slate-950 py-16 sm:py-24">
+    <section className="min-h-screen bg-[#0b0e11] py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Page header */}
-        <div className="mb-10 sm:mb-14">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400 mb-4">
+        <div className="mb-8">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400 mb-3">
             Direct Plans · Zero Commission
           </p>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
-            Top Mutual Funds<br className="hidden sm:block" /> in India
+          <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight mb-3">
+            Top Mutual Funds in India
           </h1>
-          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
+          <p className="text-[#707a8a] max-w-xl">
             30+ curated funds across equity, hybrid, and debt. Invest directly via Groww or Zerodha with zero commission.
           </p>
         </div>
 
         {/* Stats strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10 sm:mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {[
-            { icon: TrendingUp, label: "Equity Funds", value: "20+", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/30" },
-            { icon: Shield, label: "Debt & Hybrid", value: "10+", color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-            { icon: TrendingUp, label: "Fund Categories", value: "8", color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30" },
-            { icon: Shield, label: "Commission", value: "Zero", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/30" },
+            { label: "Equity Funds", value: "20+", color: "text-blue-400" },
+            { label: "Debt & Hybrid", value: "10+", color: "text-[#0ecb81]" },
+            { label: "Fund Categories", value: "8", color: "text-violet-400" },
+            { label: "Commission", value: "Zero", color: "text-amber-400" },
           ].map((s) => (
-            <div key={s.label} className={`${s.bg} rounded-2xl p-4 border border-slate-200/60 dark:border-slate-800`}>
+            <div key={s.label} className="bg-[#1a1e24] rounded-xl p-4 border border-[#2a303a]">
               <p className={`text-2xl font-black ${s.color} mb-0.5`}>{s.value}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{s.label}</p>
+              <p className="text-xs text-[#707a8a] font-medium">{s.label}</p>
             </div>
           ))}
         </div>
 
         {/* Search + Filter */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-6 space-y-3">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#707a8a]" />
             <input
               type="text"
               placeholder="Search by fund name or AMC..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full sm:w-96 pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-slate-400"
+              className="w-full sm:w-96 pl-10 pr-4 py-2.5 rounded-xl border border-[#2a303a] bg-[#1a1e24] text-white text-sm focus:outline-none focus:border-blue-500 placeholder-[#707a8a]"
             />
           </div>
 
@@ -196,10 +194,10 @@ export default function MutualFundsSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
                   activeCategory === cat
-                    ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm"
-                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700"
+                    ? "bg-blue-600 text-white"
+                    : "bg-[#1a1e24] border border-[#2a303a] text-[#707a8a] hover:text-white hover:border-[#3a4150]"
                 }`}
               >
                 {cat}
@@ -209,7 +207,7 @@ export default function MutualFundsSection() {
         </div>
 
         {/* Result count */}
-        <p className="text-xs text-slate-400 mb-5 font-medium">
+        <p className="text-xs text-[#707a8a] mb-4 font-medium">
           {filtered.length} fund{filtered.length !== 1 ? "s" : ""} {activeCategory !== "All" ? `in ${activeCategory}` : ""}
           {searchQuery ? ` matching "${searchQuery}"` : ""}
         </p>
@@ -217,9 +215,9 @@ export default function MutualFundsSection() {
         {/* Card grid — mobile & tablet */}
         <div className="lg:hidden">
           {filtered.length === 0 ? (
-            <div className="text-center py-20 text-slate-400">No funds match your search.</div>
+            <div className="text-center py-20 text-[#707a8a]">No funds match your search.</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {filtered.map((fund) => (
                 <FundCard key={fund.name} fund={fund} />
               ))}
@@ -228,65 +226,63 @@ export default function MutualFundsSection() {
         </div>
 
         {/* Table — desktop only */}
-        <div className="hidden lg:block bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+        <div className="hidden lg:block bg-[#1a1e24] rounded-2xl border border-[#2a303a] overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider w-[35%]">Fund</th>
-                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Category</th>
-                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">AUM</th>
-                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Exp. Ratio</th>
-                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Risk</th>
-                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Min SIP</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Invest</th>
+              <tr className="border-b border-[#2a303a] bg-[#252b33]">
+                <th className="text-left px-5 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider w-[35%]">Fund</th>
+                <th className="text-left px-4 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">Category</th>
+                <th className="text-left px-4 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">AUM</th>
+                <th className="text-left px-4 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">Exp. Ratio</th>
+                <th className="text-left px-4 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">Risk</th>
+                <th className="text-left px-4 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">Min SIP</th>
+                <th className="text-right px-5 py-3.5 text-xs font-semibold text-[#707a8a] uppercase tracking-wider">Invest</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-20 text-center text-slate-400">
+                  <td colSpan={7} className="px-5 py-20 text-center text-[#707a8a]">
                     No funds match your search.
                   </td>
                 </tr>
               ) : filtered.map((fund) => {
                 const risk = RISK_CONFIG[fund.riskLevel];
                 return (
-                  <tr key={fund.name} className="border-b border-slate-50 dark:border-slate-800/70 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
-                    <td className="px-6 py-4">
-                      <p className="font-semibold text-slate-900 dark:text-white text-sm leading-tight">{fund.name}</p>
-                      <p className="text-xs text-slate-400 mt-0.5">{fund.amc} · Direct Growth</p>
+                  <tr key={fund.name} className="border-b border-[#2a303a] hover:bg-[#252b33] transition-colors">
+                    <td className="px-5 py-3.5">
+                      <p className="font-semibold text-white text-sm leading-tight">{fund.name}</p>
+                      <p className="text-xs text-[#707a8a] mt-0.5">{fund.amc} · Direct Growth</p>
                     </td>
-                    <td className="px-4 py-4">
-                      <span className="text-xs font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">
+                    <td className="px-4 py-3.5">
+                      <span className="text-xs font-medium text-[#707a8a] bg-[#252b33] px-2.5 py-1 rounded-md">
                         {fund.category}
                       </span>
                     </td>
-                    <td className="px-4 py-4 text-xs text-slate-600 dark:text-slate-400 font-medium">{fund.aum ?? "—"}</td>
-                    <td className="px-4 py-4 text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.expenseRatio ?? "—"}</td>
-                    <td className="px-4 py-4">
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${risk.pill}`}>
+                    <td className="px-4 py-3.5 text-xs text-[#b7bdc6] font-medium">{fund.aum ?? "—"}</td>
+                    <td className="px-4 py-3.5 text-xs font-semibold text-[#b7bdc6]">{fund.expenseRatio ?? "—"}</td>
+                    <td className="px-4 py-3.5">
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-semibold ${risk.pill}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${risk.dot}`} />
                         {fund.riskLevel}
                       </span>
                     </td>
-                    <td className="px-4 py-4 text-xs font-medium text-slate-600 dark:text-slate-400">₹{fund.minSIP}/mo</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3.5 text-xs font-medium text-[#b7bdc6]">₹{fund.minSIP}/mo</td>
+                    <td className="px-5 py-3.5">
                       <div className="flex items-center justify-end gap-2">
                         <a
                           href={`https://groww.in/mutual-funds/${fund.growwSlug}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:-translate-y-0.5"
-                          style={{ background: "rgba(0,208,156,0.08)", color: "#00a07a", border: "1px solid rgba(0,208,156,0.2)" }}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0ecb81]/10 text-[#0ecb81] border border-[#0ecb81]/25 hover:bg-[#0ecb81]/20 transition-all"
                         >
                           Groww <ExternalLink className="w-3 h-3" />
                         </a>
                         <a
-                          href={`https://coin.zerodha.com/search?q=${fund.zerodhaQuery}`}
+                          href={`https://coin.zerodha.com/search?q=${encodeURIComponent(fund.zerodhaQuery.replace(/\+/g, " "))}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:-translate-y-0.5"
-                          style={{ background: "rgba(56,126,209,0.08)", color: "#387ed1", border: "1px solid rgba(56,126,209,0.2)" }}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600/10 text-blue-400 border border-blue-600/25 hover:bg-blue-600/20 transition-all"
                         >
                           Zerodha <ExternalLink className="w-3 h-3" />
                         </a>
@@ -300,27 +296,27 @@ export default function MutualFundsSection() {
         </div>
 
         {/* SIP CTA */}
-        <div className="mt-8 grid sm:grid-cols-2 gap-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div className="mt-6 grid sm:grid-cols-2 gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 bg-[#1a1e24] rounded-xl border border-[#2a303a]">
             <div>
-              <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">Calculate SIP Returns</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Project how a monthly SIP could grow over time.</p>
+              <p className="font-bold text-white text-sm mb-1">Calculate SIP Returns</p>
+              <p className="text-xs text-[#707a8a]">Project how a monthly SIP could grow over time.</p>
             </div>
             <Link
               href="/calculators/sip-calculator"
-              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all"
             >
               SIP Calculator <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 bg-[#1a1e24] rounded-xl border border-[#2a303a]">
             <div>
-              <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">New vs Old Tax Regime</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">ELSS funds help you save tax under Section 80C.</p>
+              <p className="font-bold text-white text-sm mb-1">New vs Old Tax Regime</p>
+              <p className="text-xs text-[#707a8a]">ELSS funds help you save tax under Section 80C.</p>
             </div>
             <Link
               href="/calculators/new-vs-old-regime-calculator"
-              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-[#252b33] hover:bg-[#2e3540] text-white text-xs font-bold rounded-lg border border-[#2a303a] transition-all"
             >
               Tax Calculator <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -328,7 +324,7 @@ export default function MutualFundsSection() {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-8 text-xs text-slate-400 dark:text-slate-500 leading-relaxed max-w-3xl">
+        <p className="mt-6 text-xs text-[#4a5568] leading-relaxed max-w-3xl">
           Mutual fund investments are subject to market risks. Past performance is not indicative of future returns. Calculate Future is not a SEBI-registered investment adviser. Read all scheme documents carefully before investing.
         </p>
       </div>

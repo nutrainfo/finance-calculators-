@@ -1,22 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #1e3a8a;
-  --primary-light: #3b82f6;
-  --secondary: #059669;
-  --accent-gold: #f59e0b;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --background: #0b0e11;
+  --foreground: #e2e8f0;
+  --canvas: #0b0e11;
+  --card: #1a1e24;
+  --elevated: #252b33;
+  --hairline: #2a303a;
+  --muted: #707a8a;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --up: #0ecb81;
+  --down: #f6465d;
+  --glass-bg: rgba(26, 30, 36, 0.8);
+  --glass-border: rgba(42, 48, 58, 0.6);
 }
 
 [data-theme="dark"],
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --background: #0b0e11;
+  --foreground: #e2e8f0;
+  --glass-bg: rgba(26, 30, 36, 0.8);
+  --glass-border: rgba(42, 48, 58, 0.6);
 }
 
 * {
@@ -119,14 +124,14 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #1a1e24 25%, #252b33 50%, #1a1e24 75%);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
   border-radius: 8px;
 }
 
 .dark .skeleton {
-  background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+  background: linear-gradient(90deg, #1a1e24 25%, #252b33 50%, #1a1e24 75%);
   background-size: 1000px 100%;
 }
 

@@ -63,44 +63,39 @@ const categories = [
 ];
 
 const accentConfig: Record<string, {
-  sectionBorder: string;
-  iconBg: string;
   iconColor: string;
   cardHoverBorder: string;
   linkColor: string;
   badge: string;
+  borderColor: string;
 }> = {
   blue: {
-    sectionBorder: "border-blue-200 dark:border-blue-800/50",
-    iconBg: "bg-blue-50 dark:bg-blue-950/40",
-    iconColor: "text-blue-600 dark:text-blue-400",
-    cardHoverBorder: "hover:border-blue-300 dark:hover:border-blue-600",
-    linkColor: "text-blue-600 dark:text-blue-400",
-    badge: "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800",
+    iconColor: "text-blue-400",
+    cardHoverBorder: "hover:border-blue-500/40",
+    linkColor: "text-blue-400",
+    badge: "bg-blue-600/15 text-blue-400 border-blue-500/30",
+    borderColor: "border-blue-500/20",
   },
   emerald: {
-    sectionBorder: "border-emerald-200 dark:border-emerald-800/50",
-    iconBg: "bg-emerald-50 dark:bg-emerald-950/40",
-    iconColor: "text-emerald-600 dark:text-emerald-400",
-    cardHoverBorder: "hover:border-emerald-300 dark:hover:border-emerald-600",
-    linkColor: "text-emerald-600 dark:text-emerald-400",
-    badge: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800",
+    iconColor: "text-emerald-400",
+    cardHoverBorder: "hover:border-emerald-500/40",
+    linkColor: "text-emerald-400",
+    badge: "bg-emerald-600/15 text-emerald-400 border-emerald-500/30",
+    borderColor: "border-emerald-500/20",
   },
   violet: {
-    sectionBorder: "border-violet-200 dark:border-violet-800/50",
-    iconBg: "bg-violet-50 dark:bg-violet-950/40",
-    iconColor: "text-violet-600 dark:text-violet-400",
-    cardHoverBorder: "hover:border-violet-300 dark:hover:border-violet-600",
-    linkColor: "text-violet-600 dark:text-violet-400",
-    badge: "bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 border-violet-200 dark:border-violet-800",
+    iconColor: "text-violet-400",
+    cardHoverBorder: "hover:border-violet-500/40",
+    linkColor: "text-violet-400",
+    badge: "bg-violet-600/15 text-violet-400 border-violet-500/30",
+    borderColor: "border-violet-500/20",
   },
   amber: {
-    sectionBorder: "border-amber-200 dark:border-amber-800/50",
-    iconBg: "bg-amber-50 dark:bg-amber-950/40",
-    iconColor: "text-amber-600 dark:text-amber-400",
-    cardHoverBorder: "hover:border-amber-300 dark:hover:border-amber-600",
-    linkColor: "text-amber-600 dark:text-amber-400",
-    badge: "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800",
+    iconColor: "text-amber-400",
+    cardHoverBorder: "hover:border-amber-500/40",
+    linkColor: "text-amber-400",
+    badge: "bg-amber-600/15 text-amber-400 border-amber-500/30",
+    borderColor: "border-amber-500/20",
   },
 };
 
@@ -108,23 +103,23 @@ export default function CalculatorsPage() {
   const totalTools = categories.reduce((s, c) => s + c.tools.length, 0);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-16 sm:pt-20">
+    <div className="min-h-screen bg-[#0b0e11] pt-14">
       {/* Page header */}
-      <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-          <nav className="flex items-center gap-1.5 text-xs text-slate-400 mb-6">
-            <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+      <div className="bg-[#1a1e24] border-b border-[#2a303a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <nav className="flex items-center gap-1.5 text-xs text-[#707a8a] mb-5">
+            <Link href="/" className="hover:text-blue-400 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-slate-600 dark:text-slate-300 font-medium">All Calculators</span>
+            <span className="text-[#b7bdc6]">All Calculators</span>
           </nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-2">
             All Financial Calculators
           </h1>
-          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl">
+          <p className="text-[#707a8a] mb-6">
             {totalTools}+ free, accurate calculators built on verified financial formulas.
           </p>
           {/* Stat strip */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {categories.map((cat) => {
               const cfg = accentConfig[cat.accent];
               return (
@@ -139,35 +134,33 @@ export default function CalculatorsPage() {
       </div>
 
       {/* Calculator categories */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 space-y-10">
         {categories.map((cat) => {
           const cfg = accentConfig[cat.accent];
           const Icon = cat.icon;
           return (
             <div key={cat.title}>
               {/* Category header */}
-              <div className={`flex items-center gap-4 mb-6 pb-5 border-b ${cfg.sectionBorder}`}>
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${cfg.iconBg}`}>
-                  <Icon className={`w-5 h-5 ${cfg.iconColor}`} />
-                </div>
+              <div className={`flex items-center gap-3 mb-5 pb-4 border-b ${cfg.borderColor}`}>
+                <Icon className={`w-5 h-5 ${cfg.iconColor}`} />
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{cat.title}</h2>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{cat.description}</p>
+                  <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">{cat.title}</h2>
+                  <p className="text-xs text-[#707a8a]">{cat.description}</p>
                 </div>
               </div>
 
               {/* Tool cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
                 {cat.tools.map((tool) => (
                   <Link
                     key={tool.href}
                     href={tool.href}
-                    className={`group flex flex-col p-4 sm:p-5 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 ${cfg.cardHoverBorder} hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}
+                    className={`group flex flex-col p-4 bg-[#1a1e24] rounded-xl border border-[#2a303a] ${cfg.cardHoverBorder} hover:shadow-lg hover:shadow-black/30 hover:-translate-y-0.5 transition-all duration-200`}
                   >
-                    <div className="font-semibold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug group-hover:text-inherit transition-colors">
+                    <div className="font-semibold text-white text-sm mb-1 leading-snug">
                       {tool.name}
                     </div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed flex-1">
+                    <div className="text-xs text-[#707a8a] leading-relaxed flex-1">
                       {tool.desc}
                     </div>
                     <div className={`flex items-center gap-1 mt-3 text-xs font-semibold ${cfg.linkColor}`}>

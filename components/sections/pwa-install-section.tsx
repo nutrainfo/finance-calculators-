@@ -54,7 +54,7 @@ export default function PWAInstallSection() {
   };
 
   return (
-    <section className="py-28 relative overflow-hidden" style={{ background: "#030712" }}>
+    <section className="py-20 relative overflow-hidden" style={{ background: "#0b0e11" }}>
       {/* Background glow */}
       <div
         className="absolute inset-0 pointer-events-none"

@@ -58,45 +58,45 @@ const glossaryTerms = [
 
 export default function FinancialEducation() {
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950/20">
+    <section className="py-20 bg-[#0b0e11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Articles */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-sm font-medium mb-4">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-amber-400 text-xs font-semibold mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             Learn Finance
           </div>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">
             Financial Education Center
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400">
+          <p className="text-[#707a8a]">
             Master personal finance with our expert guides and articles
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
           {articles.map((article) => {
             const Icon = article.Icon;
             return (
               <article
                 key={article.title}
-                className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover cursor-pointer group"
+                className="bg-[#1a1e24] rounded-2xl p-5 border border-[#2a303a] hover:border-[#3a4150] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30 transition-all duration-200 cursor-pointer group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-50 dark:bg-blue-950/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 bg-blue-600/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-4 h-4 text-blue-400" />
                   </div>
                   <div>
-                    <span className="inline-block px-2 py-0.5 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 text-xs font-semibold rounded-full mb-2">
+                    <span className="inline-block px-2 py-0.5 bg-blue-600/15 text-blue-400 text-xs font-semibold rounded-md mb-2">
                       {article.category}
                     </span>
-                    <h3 className="font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-bold text-white text-sm mb-1.5 leading-snug group-hover:text-blue-400 transition-colors">
                       {article.title}
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                    <p className="text-xs text-[#707a8a] leading-relaxed mb-3">
                       {article.description}
                     </p>
-                    <span className="text-xs text-slate-400">{article.readTime}</span>
+                    <span className="text-xs text-[#4a5568]">{article.readTime}</span>
                   </div>
                 </div>
               </article>
@@ -106,19 +106,19 @@ export default function FinancialEducation() {
 
         {/* Glossary */}
         <div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+          <h3 className="text-xl font-bold text-white mb-6 text-center tracking-tight">
             Financial Glossary
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {glossaryTerms.map((item) => (
               <div
                 key={item.term}
-                className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700"
+                className="bg-[#1a1e24] rounded-xl p-4 border border-[#2a303a]"
               >
-                <div className="font-bold text-blue-700 dark:text-blue-400 text-sm mb-1">
+                <div className="font-bold text-blue-400 text-sm mb-1">
                   {item.term}
                 </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <div className="text-xs text-[#707a8a] leading-relaxed">
                   {item.definition}
                 </div>
               </div>

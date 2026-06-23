@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 
 export default function InterestRatesPage() {
   return (
-    <div className="pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-        <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+    <div className="bg-[#0b0e11] min-h-screen pt-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+        <h1 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">
           Live Bank Interest Rates
         </h1>
-        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="text-[#707a8a] max-w-2xl mx-auto">
           Compare FD, RD and savings account interest rates from India&apos;s top banks. Sourced directly from official bank websites.
         </p>
       </div>

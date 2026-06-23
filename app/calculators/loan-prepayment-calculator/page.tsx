@@ -73,8 +73,8 @@ function LoanPrepaymentCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Loan Details</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-8">Loan Details</h2>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
@@ -84,7 +84,7 @@ function LoanPrepaymentCalculator() {
             <input type="range" min={100000} max={20000000} step={100000} value={principal}
               onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
@@ -106,8 +106,8 @@ function LoanPrepaymentCalculator() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Prepayment Details</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-8">Prepayment Details</h2>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
@@ -129,7 +129,7 @@ function LoanPrepaymentCalculator() {
             <input type="range" min={10000} max={principal * 0.5} step={10000} value={prepayAmount}
               onChange={(e) => setPrepayAmount(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={prepayAmount} onChange={(e) => setPrepayAmount(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
         </div>
       </div>
@@ -144,8 +144,8 @@ function LoanPrepaymentCalculator() {
           </p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Before vs After Prepayment</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Before vs After Prepayment</h2>
           <div className="space-y-4">
             {[
               { label: "Monthly EMI", before: formatCurrency(result.emi), after: formatCurrency(result.emi) },
@@ -157,7 +157,7 @@ function LoanPrepaymentCalculator() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
                     <p className="text-xs text-slate-400 mb-1">Without Prepayment</p>
-                    <p className="font-bold text-slate-900 dark:text-white text-sm">{r.before}</p>
+                    <p className="font-bold text-white text-sm">{r.before}</p>
                   </div>
                   <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl">
                     <p className="text-xs text-emerald-500 mb-1">With Prepayment</p>

@@ -59,26 +59,24 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-lg shadow-slate-200/20 dark:shadow-slate-900/40"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-[#0b0e11] border-b border-[#2a303a] ${
+        scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-800 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/30 transition-shadow">
-              <TrendingUp className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-lg bg-gradient-to-r from-blue-800 to-emerald-600 bg-clip-text text-transparent">
+            <span className="font-bold text-base text-white">
               Calculate Future
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {calculatorGroups.map((group) => (
               <div
                 key={group.label}
@@ -86,17 +84,17 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveGroup(group.label)}
                 onMouseLeave={() => setActiveGroup(null)}
               >
-                <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all">
+                <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all">
                   {group.label}
-                  <ChevronDown className={`w-4 h-4 transition-transform ${activeGroup === group.label ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeGroup === group.label ? "rotate-180" : ""}`} />
                 </button>
                 {activeGroup === group.label && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#1a1e24] rounded-xl shadow-2xl shadow-black/50 border border-[#2a303a] py-1.5 z-50">
                     {group.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="block px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                        className="block px-4 py-2 text-sm text-[#b7bdc6] hover:text-white hover:bg-[#252b33] transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -107,35 +105,35 @@ export default function Navbar() {
             ))}
             <Link
               href="/mutual-funds"
-              className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+              className="px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all"
             >
               Mutual Funds
             </Link>
             <Link
               href="/interest-rates"
-              className="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+              className="px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all"
             >
               Live Rates
             </Link>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-lg text-[#707a8a] hover:text-white hover:bg-[#1a1e24] transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
             <Link
               href="/calculators"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-800 to-blue-600 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-0.5"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors"
             >
               All Calculators
             </Link>
             <button
-              className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="lg:hidden p-2 rounded-lg text-[#707a8a] hover:text-white hover:bg-[#1a1e24] transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -146,11 +144,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden bg-[#0b0e11] border-t border-[#2a303a] max-h-[80vh] overflow-y-auto">
           <div className="px-4 py-5 space-y-5">
             {calculatorGroups.map((group) => (
               <div key={group.label}>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">
+                <p className="text-xs font-bold text-[#707a8a] uppercase tracking-widest mb-2 px-1">
                   {group.label}
                 </p>
                 <div className="grid grid-cols-1 gap-0.5">
@@ -159,7 +157,7 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors"
+                      className="flex items-center px-3 py-2.5 text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] rounded-lg transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -170,14 +168,14 @@ export default function Navbar() {
             <Link
               href="/mutual-funds"
               onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-semibold text-blue-700 dark:text-blue-400"
+              className="block px-3 py-2 text-sm font-semibold text-blue-400 hover:text-blue-300"
             >
               Mutual Funds
             </Link>
             <Link
               href="/interest-rates"
               onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-semibold text-blue-700 dark:text-blue-400"
+              className="block px-3 py-2 text-sm font-semibold text-blue-400 hover:text-blue-300"
             >
               Live Interest Rates
             </Link>

@@ -32,7 +32,7 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24">
+    <div className="min-h-screen bg-[#0b0e11] pt-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -40,14 +40,14 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500 mb-8">
+        <nav className="flex items-center gap-1.5 text-xs text-[#707a8a] mb-6 pt-6">
           {breadcrumb.map((item, i) => (
             <span key={item.href} className="flex items-center gap-1.5">
-              {i > 0 && <ChevronRight className="w-3.5 h-3.5" />}
+              {i > 0 && <ChevronRight className="w-3 h-3" />}
               {i === breadcrumb.length - 1 ? (
-                <span className="text-slate-600 dark:text-slate-300 font-medium">{item.label}</span>
+                <span className="text-[#b7bdc6]">{item.label}</span>
               ) : (
-                <Link href={item.href} className="hover:text-blue-600 transition-colors">
+                <Link href={item.href} className="hover:text-blue-400 transition-colors">
                   {item.label}
                 </Link>
               )}
@@ -56,20 +56,20 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
         </nav>
 
         {/* Page header */}
-        <div className="mb-10 sm:mb-12">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
+        <div className="mb-8">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
               {title}
             </h1>
             <button
               onClick={handleShare}
-              className="flex-shrink-0 flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-sm hover:border-blue-300 hover:text-blue-600 transition-all"
+              className="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-[#707a8a] text-sm hover:border-blue-500/50 hover:text-blue-400 transition-all"
             >
               <Share2 className="w-4 h-4" />
               <span className="hidden sm:inline">Share</span>
             </button>
           </div>
-          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
+          <p className="text-sm text-[#707a8a] leading-relaxed max-w-2xl">
             {description}
           </p>
         </div>
@@ -82,14 +82,14 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
         {/* FAQs */}
         {faqs && faqs.length > 0 && (
           <div className="pb-20 max-w-3xl">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            <h2 className="text-xl font-bold text-white mb-6 tracking-tight">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-3">{faq.q}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{faq.a}</p>
+                <div key={i} className="bg-[#1a1e24] rounded-xl p-5 border border-[#2a303a]">
+                  <h3 className="font-semibold text-white mb-2 text-sm">{faq.q}</h3>
+                  <p className="text-xs text-[#707a8a] leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>

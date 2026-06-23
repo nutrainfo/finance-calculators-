@@ -17,7 +17,7 @@ const calculators = [
     title: "FD Calculator",
     description: "Fixed Deposit maturity value with quarterly compounding across all major banks.",
     href: "/calculators/fd-calculator",
-    accent: "#10b981",
+    accent: "#0ecb81",
     popular: true,
   },
   {
@@ -56,49 +56,49 @@ const calculators = [
 
 export default function FeaturedCalculators() {
   return (
-    <section id="featured" className="py-28 bg-white dark:bg-slate-950">
+    <section id="featured" className="py-20 bg-[#0b0e11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-2xl mb-16">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400 mb-4">
+        <div className="max-w-2xl mb-12">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400 mb-3">
             Most Used Tools
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-5 leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight tracking-tight">
             Featured Calculators
           </h2>
-          <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+          <p className="text-[#707a8a] leading-relaxed">
             Accurate, fast, and built on verified financial formulas used by AMFI, RBI, and the Income Tax department.
           </p>
         </div>
 
         {/* Calculator grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {calculators.map((calc) => {
             const Icon = calc.icon;
             return (
               <Link
                 key={calc.href}
                 href={calc.href}
-                className="group relative p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50"
+                className="group relative p-5 rounded-2xl bg-[#1a1e24] border border-[#2a303a] hover:border-[#3a4150] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40"
               >
                 {calc.popular && (
-                  <span className="absolute top-4 right-4 px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full border border-blue-200 dark:border-blue-800">
+                  <span className="absolute top-4 right-4 px-2 py-0.5 bg-blue-600/20 text-blue-400 text-xs font-bold rounded-md border border-blue-600/30">
                     Popular
                   </span>
                 )}
 
                 {/* Icon */}
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                  style={{ background: `${calc.accent}14` }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-110"
+                  style={{ background: `${calc.accent}18` }}
                 >
                   <Icon className="w-5 h-5" style={{ color: calc.accent }} />
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
+                <h3 className="text-base font-bold text-white mb-1.5 tracking-tight">
                   {calc.title}
                 </h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">
+                <p className="text-[#707a8a] text-sm leading-relaxed mb-4">
                   {calc.description}
                 </p>
 
@@ -112,7 +112,7 @@ export default function FeaturedCalculators() {
 
                 {/* Hover accent line */}
                 <div
-                  className="absolute bottom-0 left-6 right-6 h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute bottom-0 left-5 right-5 h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(90deg, ${calc.accent}, transparent)` }}
                 />
               </Link>
@@ -121,10 +121,10 @@ export default function FeaturedCalculators() {
         </div>
 
         {/* View all */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-10 flex justify-center">
           <Link
             href="/calculators"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:-translate-y-0.5 transition-all duration-200 hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/30"
           >
             View All 30+ Calculators
             <ArrowUpRight className="w-4 h-4" />

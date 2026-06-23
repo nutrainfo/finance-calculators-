@@ -21,8 +21,8 @@ function IncomeTaxCalculator() {
 
       {/* Left — Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Income Details (FY 2024-25)</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Income Details (FY 2024-25)</h2>
 
           {/* Regime toggle */}
           <div className="flex rounded-2xl border border-slate-200 dark:border-slate-700 p-1 mb-8 bg-slate-50 dark:bg-slate-800">
@@ -32,7 +32,7 @@ function IncomeTaxCalculator() {
                 onClick={() => setRegime(r)}
                 className={`flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all capitalize ${
                   regime === r
-                    ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm"
+                    ? "bg-white dark:bg-slate-900 text-white shadow-sm"
                     : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
                 }`}
               >
@@ -44,7 +44,7 @@ function IncomeTaxCalculator() {
           {/* Gross income slider */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+              <label className="text-sm font-semibold text-[#b7bdc6]">
                 Annual Gross Income
               </label>
               <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
@@ -64,7 +64,7 @@ function IncomeTaxCalculator() {
               type="number"
               value={income}
               onChange={(e) => setIncome(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter annual income"
             />
           </div>
@@ -75,7 +75,7 @@ function IncomeTaxCalculator() {
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Deductions (Old Regime)</p>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 block mb-2">
+                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
                   Section 80C <span className="font-normal text-slate-400">(Max ₹1.5L)</span>
                 </label>
                 <input
@@ -83,31 +83,31 @@ function IncomeTaxCalculator() {
                   value={sec80c}
                   max={150000}
                   onChange={(e) => setSec80c(Math.min(150000, Number(e.target.value)))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 block mb-2">
+                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
                   HRA Exemption
                 </label>
                 <input
                   type="number"
                   value={hra}
                   onChange={(e) => setHra(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 block mb-2">
+                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
                   Other Deductions
                 </label>
                 <input
                   type="number"
                   value={other}
                   onChange={(e) => setOther(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -119,8 +119,8 @@ function IncomeTaxCalculator() {
       <div className="space-y-6">
 
         {/* Key metrics */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Tax Summary</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4">
             {[
@@ -130,8 +130,8 @@ function IncomeTaxCalculator() {
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess), dim: true },
             ].map((row) => (
               <div key={row.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-slate-500 dark:text-slate-400">{row.label}</span>
-                <span className="text-sm font-semibold text-slate-900 dark:text-white">{row.value}</span>
+                <span className="text-sm text-[#707a8a]">{row.label}</span>
+                <span className="text-sm font-semibold text-white">{row.value}</span>
               </div>
             ))}
           </div>
@@ -159,10 +159,10 @@ function IncomeTaxCalculator() {
           {/* Effective rate bar */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-slate-500 dark:text-slate-400">Effective Tax Rate</span>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">{result.effectiveRate}%</span>
+              <span className="text-sm text-[#707a8a]">Effective Tax Rate</span>
+              <span className="text-lg font-bold text-white">{result.effectiveRate}%</span>
             </div>
-            <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+            <div className="h-2 bg-[#252b33] rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-amber-400 to-rose-500 rounded-full transition-all duration-500"
                 style={{ width: `${Math.min(result.effectiveRate * 3, 100)}%` }}
@@ -172,8 +172,8 @@ function IncomeTaxCalculator() {
         </div>
 
         {/* Regime comparison */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-5">New vs Old Regime</h3>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h3 className="text-base font-bold text-white mb-5">New vs Old Regime</h3>
 
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className={`p-5 rounded-2xl border-2 transition-colors ${
@@ -182,7 +182,7 @@ function IncomeTaxCalculator() {
                 : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
             }`}>
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">New Regime</p>
-              <p className="text-2xl font-black text-slate-900 dark:text-white">{formatCurrency(newResult.totalTax)}</p>
+              <p className="text-2xl font-black text-white">{formatCurrency(newResult.totalTax)}</p>
               <p className="text-xs text-slate-400 mt-1">Effective: {newResult.effectiveRate}%</p>
             </div>
             <div className={`p-5 rounded-2xl border-2 transition-colors ${
@@ -191,7 +191,7 @@ function IncomeTaxCalculator() {
                 : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
             }`}>
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Old Regime</p>
-              <p className="text-2xl font-black text-slate-900 dark:text-white">{formatCurrency(oldResult.totalTax)}</p>
+              <p className="text-2xl font-black text-white">{formatCurrency(oldResult.totalTax)}</p>
               <p className="text-xs text-slate-400 mt-1">Effective: {oldResult.effectiveRate}%</p>
             </div>
           </div>
@@ -209,9 +209,9 @@ function IncomeTaxCalculator() {
 
         {/* Tax slab breakdown */}
         {result.slabs.length > 0 && (
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <div className="bg-[#1a1e24] rounded-3xl border border-[#2a303a] overflow-hidden">
             <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">Tax Slab Breakdown</h3>
+              <h3 className="text-base font-bold text-white">Tax Slab Breakdown</h3>
             </div>
             <table className="w-full text-sm">
               <thead>
@@ -224,7 +224,7 @@ function IncomeTaxCalculator() {
               <tbody>
                 {result.slabs.map((slab, i) => (
                   <tr key={i} className="border-t border-slate-100 dark:border-slate-800">
-                    <td className="px-8 py-4 text-slate-700 dark:text-slate-300 font-medium">{slab.range}</td>
+                    <td className="px-8 py-4 text-[#b7bdc6] font-medium">{slab.range}</td>
                     <td className="px-6 py-4 text-right text-slate-500">{slab.rate}</td>
                     <td className="px-8 py-4 text-right font-bold text-amber-600 dark:text-amber-400">{formatCurrency(slab.tax)}</td>
                   </tr>

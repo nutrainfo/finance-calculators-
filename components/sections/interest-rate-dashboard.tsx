@@ -368,34 +368,34 @@ export default function InterestRateDashboard() {
   const sorted = getFilteredAndSorted();
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950/20">
+    <section className="py-20 bg-[#0b0e11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-sm font-medium mb-4">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-[#0ecb81] text-xs font-semibold mb-4">
             <Landmark className="w-3.5 h-3.5" />
             20+ Banks Covered
           </div>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">
             Bank Interest Rate Comparison
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-[#707a8a] max-w-2xl mx-auto">
             Compare FD rates across public sector banks, private banks, and small finance banks. Rates updated June 2025.
           </p>
         </div>
 
         {/* Controls */}
-        <div className="space-y-3 mb-8">
-          {/* Bank type filter — horizontal scroll on mobile */}
+        <div className="space-y-3 mb-6">
+          {/* Bank type filter */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             {(["all", "public", "private", "sfb"] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setSelectedType(t)}
-                className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                   selectedType === t
-                    ? "bg-emerald-700 text-white shadow-sm"
-                    : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-300"
+                    ? "bg-[#0ecb81] text-[#0b0e11]"
+                    : "bg-[#1a1e24] text-[#707a8a] border border-[#2a303a] hover:text-white hover:border-[#3a4150]"
                 }`}
               >
                 {t === "all" ? "All Banks" : TYPE_LABELS[t]}
@@ -403,17 +403,17 @@ export default function InterestRateDashboard() {
             ))}
           </div>
 
-          {/* Tenure + refresh row — horizontal scroll on mobile */}
+          {/* Tenure + refresh row */}
           <div className="flex items-center justify-between gap-3">
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               {tenures.map((t) => (
                 <button
                   key={t}
                   onClick={() => setSelectedTenure(t)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+                  className={`flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                     selectedTenure === t
-                      ? "bg-blue-800 text-white shadow-sm"
-                      : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300"
+                      ? "bg-blue-600 text-white"
+                      : "bg-[#1a1e24] text-[#707a8a] border border-[#2a303a] hover:text-white hover:border-[#3a4150]"
                   }`}
                 >
                   {t}
@@ -423,31 +423,31 @@ export default function InterestRateDashboard() {
             <button
               onClick={fetchRates}
               disabled={loading}
-              className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm hover:border-blue-300 transition-all"
+              className="flex-shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-[#707a8a] text-xs hover:text-white hover:border-[#3a4150] transition-all"
             >
-              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
           </div>
           {lastFetched && (
-            <p className="text-xs text-slate-400 text-right">
+            <p className="text-xs text-[#707a8a] text-right">
               Updated: {lastFetched.toLocaleTimeString("en-IN")}
             </p>
           )}
         </div>
 
         {/* Rate Table */}
-        <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-xl">
+        <div className="bg-[#1a1e24] rounded-2xl border border-[#2a303a] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-gradient-to-r from-blue-800 to-blue-700 text-white">
-                  <th className="text-left px-6 py-4 font-semibold text-sm">Bank</th>
-                  <th className="text-center px-4 py-4 font-semibold text-sm">Type</th>
-                  <th className="text-center px-4 py-4 font-semibold text-sm">FD Rate ({selectedTenure})</th>
-                  <th className="text-center px-4 py-4 font-semibold text-sm hidden sm:table-cell">RD Rate</th>
-                  <th className="text-center px-4 py-4 font-semibold text-sm hidden md:table-cell">Savings Rate</th>
-                  <th className="text-center px-4 py-4 font-semibold text-sm">Source</th>
+                <tr className="bg-[#252b33] border-b border-[#2a303a]">
+                  <th className="text-left px-5 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider">Bank</th>
+                  <th className="text-center px-4 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider">Type</th>
+                  <th className="text-center px-4 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider">FD ({selectedTenure})</th>
+                  <th className="text-center px-4 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider hidden sm:table-cell">RD Rate</th>
+                  <th className="text-center px-4 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider hidden md:table-cell">Savings</th>
+                  <th className="text-center px-4 py-3.5 font-semibold text-xs text-[#707a8a] uppercase tracking-wider">Source</th>
                 </tr>
               </thead>
               <tbody>
@@ -457,57 +457,57 @@ export default function InterestRateDashboard() {
                   return (
                     <tr
                       key={bank.shortName}
-                      className={`border-t border-slate-100 dark:border-slate-700 transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/50 ${
-                        isTop ? "bg-emerald-50/50 dark:bg-emerald-950/20" : ""
+                      className={`border-t border-[#2a303a] transition-colors hover:bg-[#252b33] ${
+                        isTop ? "bg-[#0ecb81]/5" : ""
                       }`}
                     >
-                      <td className="px-6 py-4">
+                      <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-xl flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+                          <div className="w-9 h-9 bg-blue-600/20 rounded-lg flex items-center justify-center text-blue-400 font-bold text-xs flex-shrink-0">
                             {bank.shortName.slice(0, 3)}
                           </div>
                           <div>
-                            <div className="font-semibold text-slate-900 dark:text-white text-sm">
+                            <div className="font-semibold text-white text-sm leading-tight">
                               {bank.bank}
                             </div>
-                            <div className="text-xs text-slate-500">Updated: {bank.lastUpdated}</div>
+                            <div className="text-xs text-[#707a8a]">Updated: {bank.lastUpdated}</div>
                           </div>
                           {isTop && (
-                            <span className="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400 text-xs font-bold rounded-full">
+                            <span className="px-2 py-0.5 bg-[#0ecb81]/15 text-[#0ecb81] text-xs font-bold rounded-md">
                               Best
                             </span>
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-center">
-                        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                      <td className="px-4 py-3.5 text-center">
+                        <span className={`text-xs font-medium px-2 py-0.5 rounded-md ${
                           bank.type === "sfb"
-                            ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                            ? "bg-amber-600/15 text-amber-400"
                             : bank.type === "private"
-                            ? "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
-                            : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400"
+                            ? "bg-blue-600/15 text-blue-400"
+                            : "bg-[#252b33] text-[#707a8a]"
                         }`}>
                           {bank.type === "sfb" ? "SFB" : bank.type === "private" ? "Private" : "Public"}
                         </span>
                       </td>
-                      <td className="px-4 py-4 text-center">
-                        <span className={`text-lg font-bold ${isTop ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-white"}`}>
+                      <td className="px-4 py-3.5 text-center">
+                        <span className={`text-base font-bold ${isTop ? "text-[#0ecb81]" : "text-white"}`}>
                           {tenureRate?.rate.toFixed(2)}%
                         </span>
-                        <span className="text-xs text-slate-500 block">p.a.</span>
+                        <span className="text-xs text-[#707a8a] block">p.a.</span>
                       </td>
-                      <td className="px-4 py-4 text-center hidden sm:table-cell">
-                        <span className="font-semibold text-slate-900 dark:text-white">{bank.rdRate.toFixed(2)}%</span>
+                      <td className="px-4 py-3.5 text-center hidden sm:table-cell">
+                        <span className="font-semibold text-white text-sm">{bank.rdRate.toFixed(2)}%</span>
                       </td>
-                      <td className="px-4 py-4 text-center hidden md:table-cell">
-                        <span className="font-semibold text-slate-900 dark:text-white">{bank.savingsRate.toFixed(2)}%</span>
+                      <td className="px-4 py-3.5 text-center hidden md:table-cell">
+                        <span className="font-semibold text-white text-sm">{bank.savingsRate.toFixed(2)}%</span>
                       </td>
-                      <td className="px-4 py-4 text-center">
+                      <td className="px-4 py-3.5 text-center">
                         <a
                           href={bank.source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 text-xs hover:underline"
+                          className="inline-flex items-center gap-1 text-blue-400 text-xs hover:text-blue-300 transition-colors"
                         >
                           Official
                           <ExternalLink className="w-3 h-3" />
@@ -521,7 +521,7 @@ export default function InterestRateDashboard() {
           </div>
         </div>
 
-        <p className="mt-4 text-center text-xs text-slate-500 max-w-3xl mx-auto">
+        <p className="mt-4 text-center text-xs text-[#707a8a] max-w-3xl mx-auto">
           Rates shown are for general public (non-senior citizens). Senior citizens typically receive an additional 0.25%–0.75% p.a. Small Finance Banks (SFBs) are regulated by RBI and deposits are insured up to ₹5 lakh under DICGC. Always verify rates directly from the official bank website before investing.
         </p>
       </div>

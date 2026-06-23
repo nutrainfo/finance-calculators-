@@ -51,8 +51,8 @@ function SIPCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Investment Parameters</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-8">Investment Parameters</h2>
 
           <Slider
             label="Monthly SIP Amount"
@@ -68,7 +68,7 @@ function SIPCalculator() {
               type="number"
               value={monthly}
               onChange={(e) => setMonthly(Math.max(500, Math.min(200000, Number(e.target.value))))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter monthly amount"
             />
           </div>
@@ -95,8 +95,8 @@ function SIPCalculator() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Invested vs Returns</h3>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h3 className="text-base font-bold text-white mb-6">Invested vs Returns</h3>
           <InvestmentPieChart invested={result.totalInvested} returns={result.totalReturns} />
         </div>
       </div>
@@ -105,8 +105,8 @@ function SIPCalculator() {
       <div className="space-y-6">
 
         {/* Key metrics */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
             {[
@@ -115,10 +115,10 @@ function SIPCalculator() {
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 dark:text-slate-400">{r.label}</p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{r.sub}</p>
+                  <p className="text-sm font-medium text-[#707a8a]">{r.label}</p>
+                  <p className="text-xs text-[#707a8a] mt-0.5">{r.sub}</p>
                 </div>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">{r.value}</p>
+                <p className="text-lg font-bold text-white">{r.value}</p>
               </div>
             ))}
           </div>
@@ -142,15 +142,15 @@ function SIPCalculator() {
         </div>
 
         {/* Growth chart */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Year-wise Growth</h3>
+        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+          <h3 className="text-base font-bold text-white mb-6">Year-wise Growth</h3>
           <GrowthAreaChart data={result.yearlyBreakdown} dataKey="value" investedKey="invested" />
         </div>
 
         {/* Year-wise table */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+        <div className="bg-[#1a1e24] rounded-3xl border border-[#2a303a] overflow-hidden">
           <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Year-wise Breakdown</h3>
+            <h3 className="text-base font-bold text-white">Year-wise Breakdown</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -165,7 +165,7 @@ function SIPCalculator() {
               <tbody>
                 {result.yearlyBreakdown.map((row) => (
                   <tr key={row.year} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
-                    <td className="px-8 py-4 font-semibold text-slate-700 dark:text-slate-300">Year {row.year}</td>
+                    <td className="px-8 py-4 font-semibold text-[#b7bdc6]">Year {row.year}</td>
                     <td className="px-6 py-4 text-right text-slate-500">{formatCurrency(row.invested)}</td>
                     <td className="px-6 py-4 text-right text-emerald-600 dark:text-emerald-400 font-medium">{formatCurrency(row.returns)}</td>
                     <td className="px-8 py-4 text-right font-bold text-blue-600 dark:text-blue-400">{formatCurrency(row.value)}</td>

@@ -23,21 +23,21 @@ function PPFCalculator() {
           {/* Rate display */}
           <div className="p-5 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50 mb-8">
             <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-1">Current PPF Rate</p>
-            <p className="text-3xl font-black text-emerald-700 dark:text-emerald-400">7.1% p.a.</p>
-            <p className="text-xs text-emerald-600 dark:text-emerald-500 mt-1">Tax-free returns — EEE category</p>
+            <p className="text-3xl font-black text-emerald-700 text-emerald-400">7.1% p.a.</p>
+            <p className="text-xs text-emerald-600 text-emerald-400 mt-1">Tax-free returns — EEE category</p>
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Yearly Investment</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <label className="text-sm font-semibold text-slate-300">Yearly Investment</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(yearly)}
               </span>
             </div>
             <input type="range" min={500} max={150000} step={500} value={yearly}
               onChange={(e) => setYearly(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={yearly} onChange={(e) => setYearly(Math.min(150000, Number(e.target.value)))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <div className="flex justify-between text-xs text-slate-400 mt-2">
               <span>₹500 (min)</span><span>₹1.5L (max)</span>
             </div>
@@ -45,8 +45,8 @@ function PPFCalculator() {
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Investment Period</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Investment Period</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{years} Years</span>
             </div>
             <input type="range" min={15} max={50} step={5} value={years}
               onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
@@ -58,8 +58,8 @@ function PPFCalculator() {
 
         {/* Tax note */}
         <div className="bg-amber-50 dark:bg-amber-950/20 rounded-3xl p-6 border border-amber-200 dark:border-amber-800/40">
-          <h3 className="font-bold text-amber-900 dark:text-amber-400 text-sm mb-2">PPF Tax Benefits</h3>
-          <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
+          <h3 className="font-bold text-amber-900 text-amber-400 text-sm mb-2">PPF Tax Benefits</h3>
+          <p className="text-xs text-amber-800 text-amber-400 leading-relaxed">
             PPF has a lock-in of 15 years. Extensions in blocks of 5 years. Section 80C deduction up to ₹1.5 lakh per year. Interest earned and maturity proceeds are completely tax-free under EEE status.
           </p>
         </div>
@@ -75,9 +75,9 @@ function PPFCalculator() {
               { label: "Total Invested", value: formatCurrency(result.totalInvested) },
               { label: "Interest Earned (Tax-Free)", value: formatCurrency(result.totalInterest), accent: true },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
-                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-400" : "text-white"}`}>
                   {r.value}
                 </span>
               </div>
@@ -86,7 +86,7 @@ function PPFCalculator() {
 
           <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
             <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Maturity Value</p>
-            <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.maturityValue)}</p>
+            <p className="text-4xl font-black text-emerald-700 text-emerald-400">{formatCurrency(result.maturityValue)}</p>
           </div>
 
           {/* Breakdown bars */}
@@ -104,7 +104,7 @@ function PPFCalculator() {
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-slate-500">Tax-Free Interest</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">({interestPct}%)</span>
+                <span className="font-semibold text-emerald-400">({interestPct}%)</span>
               </div>
               <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
@@ -122,12 +122,12 @@ function PPFCalculator() {
 
         {/* Year-wise table */}
         <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
-          <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
+          <div className="px-8 py-5 border-b border-[#1e2d4a]">
             <h3 className="text-base font-bold text-white">Year-wise Balance</h3>
           </div>
           <div className="overflow-x-auto max-h-64">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-800/60 sticky top-0">
+              <thead className="bg-[#162038]/60 sticky top-0">
                 <tr>
                   <th className="px-8 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Year</th>
                   <th className="px-6 py-4 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">Interest</th>
@@ -136,10 +136,10 @@ function PPFCalculator() {
               </thead>
               <tbody>
                 {result.yearlyBreakdown.map((row) => (
-                  <tr key={row.year} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                  <tr key={row.year} className="border-t border-[#1e2d4a] hover:bg-[#162038] transition-colors">
                     <td className="px-8 py-4 font-semibold text-[slate-300]">Year {row.year}</td>
-                    <td className="px-6 py-4 text-right text-emerald-600 dark:text-emerald-400">{formatCurrency(row.interest)}</td>
-                    <td className="px-8 py-4 text-right font-bold text-blue-600 dark:text-blue-400">{formatCurrency(row.balance)}</td>
+                    <td className="px-6 py-4 text-right text-emerald-400">{formatCurrency(row.interest)}</td>
+                    <td className="px-8 py-4 text-right font-bold text-blue-400">{formatCurrency(row.balance)}</td>
                   </tr>
                 ))}
               </tbody>

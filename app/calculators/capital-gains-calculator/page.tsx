@@ -28,14 +28,14 @@ function CapitalGainsCalculator() {
 
           {/* Asset type */}
           <div className="mb-8">
-            <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 block mb-4">Asset Type</label>
+            <label className="text-sm font-semibold text-slate-300 block mb-4">Asset Type</label>
             <div className="space-y-2">
               {assetOptions.map((opt) => (
                 <button key={opt.value} onClick={() => setAssetType(opt.value)}
                   className={`w-full text-left px-5 py-4 rounded-2xl border-2 transition-all text-sm ${
                     assetType === opt.value
-                      ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20"
-                      : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600"
+                      ? "border-blue-500 bg-blue-950/20"
+                      : "border-[#1e2d4a] hover:border-slate-300 dark:hover:border-slate-600"
                   }`}>
                   <div className="font-semibold text-white">{opt.label}</div>
                   <div className="text-xs text-slate-400 mt-0.5">LTCG if held &gt; {opt.longTermMin}</div>
@@ -47,36 +47,36 @@ function CapitalGainsCalculator() {
           {/* Purchase price */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Purchase Price</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <label className="text-sm font-semibold text-slate-300">Purchase Price</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(purchasePrice)}
               </span>
             </div>
             <input type="range" min={1000} max={100000000} step={1000} value={purchasePrice}
               onChange={(e) => setPurchasePrice(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={purchasePrice} onChange={(e) => setPurchasePrice(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Sale price */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Sale Price</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <label className="text-sm font-semibold text-slate-300">Sale Price</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(salePrice)}
               </span>
             </div>
             <input type="range" min={1000} max={100000000} step={1000} value={salePrice}
               onChange={(e) => setSalePrice(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={salePrice} onChange={(e) => setSalePrice(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Holding period */}
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Holding Period</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{holdingYears} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Holding Period</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{holdingYears} Years</span>
             </div>
             <input type="range" min={0} max={30} step={1} value={holdingYears}
               onChange={(e) => setHoldingYears(Number(e.target.value))} className="w-full" />
@@ -98,7 +98,7 @@ function CapitalGainsCalculator() {
             {result.gainType}
           </p>
           <p className={`text-4xl font-black ${result.gain >= 0
-            ? (result.isLongTerm ? "text-emerald-700 dark:text-emerald-400" : "text-amber-700 dark:text-amber-400")
+            ? (result.isLongTerm ? "text-emerald-700 text-emerald-400" : "text-amber-700 text-amber-400")
             : "text-rose-700 dark:text-rose-400"}`}>
             {result.gain >= 0 ? "+" : ""}{formatCurrency(result.gain)}
           </p>
@@ -120,7 +120,7 @@ function CapitalGainsCalculator() {
               { label: "Income Tax on Gain", value: formatCurrency(result.tax) },
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess) },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+              <div key={r.label} className="flex items-center justify-between py-3 border-b border-[#1e2d4a] last:border-0">
                 <span className="text-sm text-slate-500">{r.label}</span>
                 <span className="text-sm font-semibold text-white">{r.value}</span>
               </div>
@@ -130,11 +130,11 @@ function CapitalGainsCalculator() {
           <div className="grid grid-cols-2 gap-3">
             <div className="p-5 bg-amber-50 dark:bg-amber-950/20 rounded-2xl border border-amber-100 dark:border-amber-900/50">
               <p className="text-xs font-semibold text-amber-500 uppercase tracking-wider mb-2">Total Tax Payable</p>
-              <p className="text-2xl font-black text-amber-700 dark:text-amber-400">{formatCurrency(result.totalTax)}</p>
+              <p className="text-2xl font-black text-amber-700 text-amber-400">{formatCurrency(result.totalTax)}</p>
             </div>
             <div className="p-5 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
               <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Net Profit After Tax</p>
-              <p className="text-2xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.netProfit)}</p>
+              <p className="text-2xl font-black text-emerald-700 text-emerald-400">{formatCurrency(result.netProfit)}</p>
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ function CapitalGainsCalculator() {
               { label: "Debt / Property LTCG (> 24–36 months)", rate: "20% with indexation" },
               { label: "Debt STCG", rate: "As per income slab" },
             ].map((item) => (
-              <div key={item.label} className="flex justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+              <div key={item.label} className="flex justify-between py-3 border-b border-[#1e2d4a] last:border-0">
                 <span>{item.label}</span>
                 <span className="font-semibold text-white">{item.rate}</span>
               </div>

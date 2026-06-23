@@ -78,19 +78,19 @@ function LoanPrepaymentCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Loan Amount</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(principal)}</span>
+              <label className="text-sm font-semibold text-slate-300">Loan Amount</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(principal)}</span>
             </div>
             <input type="range" min={100000} max={20000000} step={100000} value={principal}
               onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+              <label className="text-sm font-semibold text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={5} max={20} step={0.1} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -98,8 +98,8 @@ function LoanPrepaymentCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Original Tenure</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{tenureYears} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Original Tenure</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{tenureYears} Years</span>
             </div>
             <input type="range" min={1} max={30} step={1} value={tenureYears}
               onChange={(e) => setTenureYears(Number(e.target.value))} className="w-full" />
@@ -111,8 +111,8 @@ function LoanPrepaymentCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Prepayment After (Months)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">Month {prepayMonth}</span>
+              <label className="text-sm font-semibold text-slate-300">Prepayment After (Months)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">Month {prepayMonth}</span>
             </div>
             <input type="range" min={1} max={tenureYears * 12 - 1} step={1} value={prepayMonth}
               onChange={(e) => setPrepayMonth(Number(e.target.value))} className="w-full" />
@@ -123,13 +123,13 @@ function LoanPrepaymentCalculator() {
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Prepayment Amount</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(prepayAmount)}</span>
+              <label className="text-sm font-semibold text-slate-300">Prepayment Amount</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(prepayAmount)}</span>
             </div>
             <input type="range" min={10000} max={principal * 0.5} step={10000} value={prepayAmount}
               onChange={(e) => setPrepayAmount(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={prepayAmount} onChange={(e) => setPrepayAmount(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
         </div>
       </div>
@@ -138,8 +138,8 @@ function LoanPrepaymentCalculator() {
         {/* Savings hero */}
         <div className="bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 border-emerald-200 dark:border-emerald-800/50">
           <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-3">Interest You Save</p>
-          <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.interestSaved)}</p>
-          <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-2">
+          <p className="text-4xl font-black text-emerald-700 text-emerald-400">{formatCurrency(result.interestSaved)}</p>
+          <p className="text-sm text-emerald-400 mt-2">
             Loan closes {yearsSaved > 0 ? `${yearsSaved} yr${yearsSaved > 1 ? "s" : ""}` : ""}{remainingMonths > 0 ? ` ${remainingMonths} mo` : ""} earlier
           </p>
         </div>
@@ -152,16 +152,16 @@ function LoanPrepaymentCalculator() {
               { label: "Loan Tenure", before: `${tenureYears} Years`, after: `${Math.floor(result.newTenureMonths / 12)} Yr ${result.newTenureMonths % 12} Mo` },
               { label: "Total Interest", before: formatCurrency(result.totalInterestWithout), after: formatCurrency(result.totalInterestWith) },
             ].map((r) => (
-              <div key={r.label} className="py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+              <div key={r.label} className="py-3 border-b border-[#1e2d4a] last:border-0">
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">{r.label}</p>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                  <div className="p-3 bg-[#162038] rounded-xl">
                     <p className="text-xs text-slate-400 mb-1">Without Prepayment</p>
                     <p className="font-bold text-white text-sm">{r.before}</p>
                   </div>
                   <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl">
                     <p className="text-xs text-emerald-500 mb-1">With Prepayment</p>
-                    <p className="font-bold text-emerald-700 dark:text-emerald-400 text-sm">{r.after}</p>
+                    <p className="font-bold text-emerald-700 text-emerald-400 text-sm">{r.after}</p>
                   </div>
                 </div>
               </div>
@@ -169,9 +169,9 @@ function LoanPrepaymentCalculator() {
           </div>
         </div>
 
-        <div className="bg-blue-50 dark:bg-blue-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-blue-200 dark:border-blue-800/40">
-          <h3 className="font-bold text-blue-900 dark:text-blue-400 text-sm mb-2">When to Prepay?</h3>
-          <p className="text-xs text-blue-800 dark:text-blue-300 leading-relaxed">
+        <div className="bg-blue-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-blue-200 dark:border-blue-800/40">
+          <h3 className="font-bold text-blue-900 text-blue-400 text-sm mb-2">When to Prepay?</h3>
+          <p className="text-xs text-blue-800 text-blue-400 leading-relaxed">
             Prepaying early in the loan tenure saves the most interest since interest is front-loaded. A prepayment in year 2–5 of a 20-year loan saves significantly more than the same amount paid in year 15. Check if your loan has prepayment penalties (most floating rate home loans are penalty-free after 2019 RBI guidelines).
           </p>
         </div>

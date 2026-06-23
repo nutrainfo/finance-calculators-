@@ -26,19 +26,19 @@ function StepUpSIPCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Initial Monthly SIP</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(monthly)}</span>
+              <label className="text-sm font-semibold text-slate-300">Initial Monthly SIP</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(monthly)}</span>
             </div>
             <input type="range" min={500} max={100000} step={500} value={monthly}
               onChange={(e) => setMonthly(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={monthly} onChange={(e) => setMonthly(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Annual Step-Up</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{stepUp}% / year</span>
+              <label className="text-sm font-semibold text-slate-300">Annual Step-Up</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{stepUp}% / year</span>
             </div>
             <input type="range" min={0} max={25} step={1} value={stepUp}
               onChange={(e) => setStepUp(Number(e.target.value))} className="w-full" />
@@ -49,8 +49,8 @@ function StepUpSIPCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Expected Annual Return</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}% p.a.</span>
+              <label className="text-sm font-semibold text-slate-300">Expected Annual Return</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}% p.a.</span>
             </div>
             <input type="range" min={1} max={30} step={0.5} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -58,8 +58,8 @@ function StepUpSIPCalculator() {
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Investment Duration</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Investment Duration</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{years} Years</span>
             </div>
             <input type="range" min={1} max={40} step={1} value={years}
               onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
@@ -71,11 +71,11 @@ function StepUpSIPCalculator() {
 
         {/* Extra wealth vs flat SIP */}
         <div className="bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-emerald-200 dark:border-emerald-800/40">
-          <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">
+          <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2">
             Extra Wealth vs Flat SIP
           </p>
-          <p className="text-3xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(extraWealth)}</p>
-          <p className="text-xs text-emerald-600 dark:text-emerald-500 mt-2">
+          <p className="text-3xl font-black text-emerald-700 text-emerald-400">{formatCurrency(extraWealth)}</p>
+          <p className="text-xs text-emerald-600 text-emerald-400 mt-2">
             By increasing your SIP by {stepUp}% each year, you generate this much extra corpus compared to a flat ₹{monthly.toLocaleString("en-IN")}/month SIP.
           </p>
         </div>
@@ -90,16 +90,16 @@ function StepUpSIPCalculator() {
               { label: "Total Invested", value: formatCurrency(result.totalInvested) },
               { label: "Estimated Returns", value: formatCurrency(result.totalReturns), accent: true },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
-                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>{r.value}</span>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
           </div>
 
-          <div className="p-6 bg-blue-50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/50 mb-4">
+          <div className="p-6 bg-blue-950/20 rounded-2xl border border-blue-900/50 mb-4">
             <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">Total Maturity Value</p>
-            <p className="text-4xl font-black text-blue-700 dark:text-blue-400">{formatCurrency(result.maturityValue)}</p>
+            <p className="text-4xl font-black text-blue-400">{formatCurrency(result.maturityValue)}</p>
           </div>
 
           <div className="space-y-4">
@@ -115,7 +115,7 @@ function StepUpSIPCalculator() {
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-slate-500">Returns</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">({returnsPct}%)</span>
+                <span className="font-semibold text-emerald-400">({returnsPct}%)</span>
               </div>
               <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${returnsPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }} />
@@ -128,7 +128,7 @@ function StepUpSIPCalculator() {
           <h3 className="text-base font-bold text-white mb-6">Year-wise SIP Amount Growth</h3>
           <div className="overflow-x-auto max-h-64">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-800/60 sticky top-0">
+              <thead className="bg-[#162038]/60 sticky top-0">
                 <tr>
                   {["Year", "Monthly SIP", "Annual Investment"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">{h}</th>
@@ -137,9 +137,9 @@ function StepUpSIPCalculator() {
               </thead>
               <tbody>
                 {result.yearlyBreakdown.map((row) => (
-                  <tr key={row.year} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                  <tr key={row.year} className="border-t border-[#1e2d4a] hover:bg-[#162038]">
                     <td className="px-4 py-3 font-semibold text-[slate-300]">Year {row.year}</td>
-                    <td className="px-4 py-3 text-blue-600 dark:text-blue-400 font-medium">{formatCurrency(row.monthlyAmount)}</td>
+                    <td className="px-4 py-3 text-blue-400 font-medium">{formatCurrency(row.monthlyAmount)}</td>
                     <td className="px-4 py-3 text-slate-500">{formatCurrency(row.invested)}</td>
                   </tr>
                 ))}

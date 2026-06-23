@@ -43,19 +43,19 @@ function SeniorCitizenFDCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Principal Amount</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(principal)}</span>
+              <label className="text-sm font-semibold text-slate-300">Principal Amount</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(principal)}</span>
             </div>
             <input type="range" min={10000} max={10000000} step={10000} value={principal}
               onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+              <label className="text-sm font-semibold text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={4} max={10} step={0.05} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -66,22 +66,22 @@ function SeniorCitizenFDCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Duration</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Duration</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{years} Years</span>
             </div>
             <input type="range" min={1} max={10} step={1} value={years}
               onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-slate-600 dark:text-slate-300 block mb-4">Compounding Frequency</label>
+            <label className="text-sm font-semibold text-slate-300 block mb-4">Compounding Frequency</label>
             <div className="grid grid-cols-2 gap-2">
               {compoundingOptions.map((opt) => (
                 <button key={opt.value} onClick={() => setCompounding(opt.value)}
                   className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
                     compounding === opt.value
-                      ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
-                      : "bg-[#162038] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      ? "bg-slate-900 dark:bg-white text-white text-slate-300"
+                      : "bg-[#162038] text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}>
                   {opt.label}
                 </button>
@@ -91,9 +91,9 @@ function SeniorCitizenFDCalculator() {
         </div>
 
         <div className="bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-emerald-200 dark:border-emerald-800/40">
-          <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">Senior Citizen Benefit</p>
-          <p className="text-2xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(seniorBenefit)}</p>
-          <p className="text-xs text-emerald-600 dark:text-emerald-500 mt-1">
+          <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2">Senior Citizen Benefit</p>
+          <p className="text-2xl font-black text-emerald-700 text-emerald-400">{formatCurrency(seniorBenefit)}</p>
+          <p className="text-xs text-emerald-600 text-emerald-400 mt-1">
             Extra earned over regular FD (assuming 0.5% higher rate for senior citizens)
           </p>
         </div>
@@ -108,26 +108,26 @@ function SeniorCitizenFDCalculator() {
               { label: "Total Interest Earned", value: formatCurrency(result.totalInterest), accent: true },
               { label: "Effective Annual Rate", value: `${result.effectiveRate}% p.a.` },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
-                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>{r.value}</span>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
           </div>
           <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
             <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Maturity Value</p>
-            <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.maturityValue)}</p>
+            <p className="text-4xl font-black text-emerald-700 text-emerald-400">{formatCurrency(result.maturityValue)}</p>
           </div>
         </div>
 
         {/* Bank rates comparison */}
         <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl border border-[#1e2d4a] overflow-hidden">
-          <div className="px-6 sm:px-8 py-5 border-b border-slate-100 dark:border-slate-800">
+          <div className="px-6 sm:px-8 py-5 border-b border-[#1e2d4a]">
             <h3 className="text-base font-bold text-white">Senior Citizen FD Rates — June 2025</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-800/60">
+              <thead className="bg-[#162038]/60">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Bank</th>
                   <th className="px-4 py-3 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">Regular</th>
@@ -136,16 +136,16 @@ function SeniorCitizenFDCalculator() {
               </thead>
               <tbody>
                 {seniorRates.map((b) => (
-                  <tr key={b.bank} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                  <tr key={b.bank} className="border-t border-[#1e2d4a] hover:bg-[#162038]">
                     <td className="px-6 py-3 font-medium text-[slate-300]">{b.bank}</td>
                     <td className="px-4 py-3 text-right text-slate-500">{b.regular}%</td>
-                    <td className="px-6 py-3 text-right font-bold text-emerald-600 dark:text-emerald-400">{b.senior}%</td>
+                    <td className="px-6 py-3 text-right font-bold text-emerald-400">{b.senior}%</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-slate-800/40 text-xs text-slate-400">
+          <div className="px-6 sm:px-8 py-4 bg-[#162038]/40 text-xs text-slate-400">
             Rates are indicative for 1–3 year deposits. Verify directly with banks before investing. TDS at 10% applies if interest exceeds ₹50,000/year for senior citizens.
           </div>
         </div>

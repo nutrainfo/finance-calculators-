@@ -12,7 +12,7 @@ export default function Page() {
         { label: "Calculator", href: "/calculators/compound-interest-calculator" },
       ]}
     >
-      <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+      <div className="text-center py-16 bg-white bg-[#162038] rounded-2xl border border-[#1e2d4a]">
         <div className="text-6xl mb-4">🚧</div>
         <h2 className="text-2xl font-bold text-white mb-3">Coming Soon</h2>
         <p className="text-slate-500 mb-6 max-w-md mx-auto">

@@ -66,7 +66,7 @@ export default function CalculatorsPage() {
   const totalTools = categories.reduce((s, c) => s + c.tools.length, 0);
 
   return (
-    <div className="min-h-screen bg-[#060c18] pt-14">
+    <div className="min-h-screen bg-[#060c18] pt-16">
       {/* Page header */}
       <div className="bg-[#0d1526] border-b border-[#1e2d4a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">

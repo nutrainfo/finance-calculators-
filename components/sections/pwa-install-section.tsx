@@ -105,7 +105,7 @@ export default function PWAInstallSection() {
             {/* CTA */}
             {isInstalled || installSuccess ? (
               <div
-                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl"
+                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-6"
                 style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}
               >
                 <CheckCircle className="w-5 h-5 text-emerald-400" />
@@ -117,27 +117,30 @@ export default function PWAInstallSection() {
             ) : deferredPrompt ? (
               <button
                 onClick={handleInstall}
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold text-base transition-all duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold text-base transition-all duration-200 hover:-translate-y-0.5 mb-6"
                 style={{
-                  background: "linear-gradient(135deg, #1d4ed8, #2563eb)",
-                  boxShadow: "0 0 40px rgba(37,99,235,0.4)",
+                  background: "linear-gradient(135deg, #f59e0b, #d97706)",
+                  boxShadow: "0 0 40px rgba(245,158,11,0.3)",
                 }}
               >
                 <Download className="w-5 h-5" />
                 Install Free App
               </button>
-            ) : (
-              <div className="space-y-3">
-                <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">
-                  Manual Installation
+            ) : null}
+
+            {/* Manual install steps — always visible */}
+            {!isInstalled && !installSuccess && (
+              <div className="space-y-2.5">
+                <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-3">
+                  How to Install
                 </p>
                 {platforms.map((p) => (
                   <div
                     key={p.name}
-                    className="flex items-start gap-4 p-4 rounded-xl"
+                    className="flex items-start gap-3 p-4 rounded-xl"
                     style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
                   >
-                    <div className="w-2 h-2 rounded-full bg-blue-400 mt-1.5 flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-amber-400 mt-1.5 flex-shrink-0" />
                     <div>
                       <p className="text-white text-sm font-semibold">{p.name}</p>
                       <p className="text-slate-500 text-xs mt-0.5">{p.instructions}</p>

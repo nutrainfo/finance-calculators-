@@ -32,7 +32,7 @@ export default function CalculatorLayout({ title, description, breadcrumb, child
   };
 
   return (
-    <div className="min-h-screen bg-[#060c18] pt-14">
+    <div className="min-h-screen bg-[#060c18] pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

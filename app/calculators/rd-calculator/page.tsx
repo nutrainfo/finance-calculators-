@@ -22,21 +22,21 @@ function RDCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Monthly Deposit</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <label className="text-sm font-semibold text-slate-300">Monthly Deposit</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(monthly)}
               </span>
             </div>
             <input type="range" min={100} max={100000} step={100} value={monthly}
               onChange={(e) => setMonthly(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={monthly} onChange={(e) => setMonthly(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+              <label className="text-sm font-semibold text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={4} max={10} step={0.1} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -47,8 +47,8 @@ function RDCalculator() {
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Duration</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{years} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Duration</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{years} Years</span>
             </div>
             <input type="range" min={1} max={10} step={1} value={years}
               onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
@@ -59,9 +59,9 @@ function RDCalculator() {
         </div>
 
         {/* Info note */}
-        <div className="bg-blue-50 dark:bg-blue-950/20 rounded-3xl p-6 border border-blue-200 dark:border-blue-800/40">
-          <h3 className="font-bold text-blue-900 dark:text-blue-400 text-sm mb-2">RD vs SIP</h3>
-          <p className="text-xs text-blue-800 dark:text-blue-300 leading-relaxed">
+        <div className="bg-blue-950/20 rounded-3xl p-6 border border-blue-200 dark:border-blue-800/40">
+          <h3 className="font-bold text-blue-900 text-blue-400 text-sm mb-2">RD vs SIP</h3>
+          <p className="text-xs text-blue-800 text-blue-400 leading-relaxed">
             RD is bank-guaranteed (up to ₹5L DICGC insurance) with fixed returns. SIP in mutual funds carries market risk but can deliver 10–15% returns long-term vs RD&apos;s 6–7%. Choose RD for short-term goals and SIP for long-term wealth creation.
           </p>
         </div>
@@ -77,9 +77,9 @@ function RDCalculator() {
               { label: "Total Deposited", value: formatCurrency(result.totalInvested) },
               { label: "Interest Earned", value: formatCurrency(result.totalInterest), accent: true },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
-                <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>
+                <span className={`text-sm font-bold ${r.accent ? "text-emerald-400" : "text-white"}`}>
                   {r.value}
                 </span>
               </div>
@@ -88,7 +88,7 @@ function RDCalculator() {
 
           <div className="p-6 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
             <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wider mb-2">Maturity Amount</p>
-            <p className="text-4xl font-black text-emerald-700 dark:text-emerald-400">{formatCurrency(result.maturityValue)}</p>
+            <p className="text-4xl font-black text-emerald-700 text-emerald-400">{formatCurrency(result.maturityValue)}</p>
           </div>
         </div>
 
@@ -111,7 +111,7 @@ function RDCalculator() {
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-slate-500">Interest Earned</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                <span className="font-semibold text-emerald-400">
                   {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
                 </span>
               </div>
@@ -125,7 +125,7 @@ function RDCalculator() {
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-slate-500">Return on Investment</span>
-              <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+              <span className="text-lg font-bold text-emerald-400">
                 {((result.totalInterest / result.totalInvested) * 100).toFixed(2)}%
               </span>
             </div>

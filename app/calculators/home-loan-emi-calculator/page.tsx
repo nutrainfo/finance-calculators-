@@ -26,22 +26,22 @@ function EMICalculator() {
           {/* Loan Amount */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Loan Amount</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <label className="text-sm font-semibold text-slate-300">Loan Amount</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(principal)}
               </span>
             </div>
             <input type="range" min={100000} max={100000000} step={100000} value={principal}
               onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           {/* Rate */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+              <label className="text-sm font-semibold text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={5} max={20} step={0.1} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -53,8 +53,8 @@ function EMICalculator() {
           {/* Tenure */}
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Loan Tenure</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{tenureYears} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Loan Tenure</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{tenureYears} Years</span>
             </div>
             <input type="range" min={1} max={30} step={1} value={tenureYears}
               onChange={(e) => setTenureYears(Number(e.target.value))} className="w-full" />
@@ -82,7 +82,7 @@ function EMICalculator() {
               { label: "Total Interest Payable", value: formatCurrency(result.totalInterest), accent: true },
               { label: "Total Amount Payable", value: formatCurrency(result.totalAmount) },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-rose-600 dark:text-rose-400" : "text-white"}`}>
                   {r.value}
@@ -92,9 +92,9 @@ function EMICalculator() {
           </div>
 
           {/* Monthly EMI hero */}
-          <div className="p-6 bg-blue-50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/50">
+          <div className="p-6 bg-blue-950/20 rounded-2xl border border-blue-900/50">
             <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">Monthly EMI</p>
-            <p className="text-4xl font-black text-blue-700 dark:text-blue-400">{formatCurrency(result.emi)}</p>
+            <p className="text-4xl font-black text-blue-400">{formatCurrency(result.emi)}</p>
           </div>
         </div>
 
@@ -147,15 +147,15 @@ function EMICalculator() {
         <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
           <button
             onClick={() => setShowSchedule(!showSchedule)}
-            className="w-full px-8 py-5 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-sm"
+            className="w-full px-8 py-5 text-left font-semibold text-white flex justify-between items-center hover:bg-[#162038] dark:hover:bg-slate-800/50 transition-colors text-sm"
           >
             <span>Amortization Schedule (First 24 Months)</span>
-            <span className="text-blue-600 dark:text-blue-400 text-xs">{showSchedule ? "Hide" : "Show"}</span>
+            <span className="text-blue-400 text-xs">{showSchedule ? "Hide" : "Show"}</span>
           </button>
           {showSchedule && (
-            <div className="overflow-x-auto border-t border-slate-100 dark:border-slate-800 max-h-80">
+            <div className="overflow-x-auto border-t border-[#1e2d4a] max-h-80">
               <table className="w-full text-sm">
-                <thead className="bg-slate-50 dark:bg-slate-800/60 sticky top-0">
+                <thead className="bg-[#162038]/60 sticky top-0">
                   <tr>
                     {["Month", "EMI", "Principal", "Interest", "Balance"].map((h) => (
                       <th key={h} className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">{h}</th>
@@ -164,10 +164,10 @@ function EMICalculator() {
                 </thead>
                 <tbody>
                   {result.schedule.slice(0, 24).map((row) => (
-                    <tr key={row.month} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <tr key={row.month} className="border-t border-[#1e2d4a] hover:bg-[#162038] transition-colors">
                       <td className="px-6 py-3 text-[slate-300] font-medium">Month {row.month}</td>
                       <td className="px-6 py-3 text-slate-500">{formatCurrency(row.emi)}</td>
-                      <td className="px-6 py-3 text-blue-600 dark:text-blue-400">{formatCurrency(row.principal)}</td>
+                      <td className="px-6 py-3 text-blue-400">{formatCurrency(row.principal)}</td>
                       <td className="px-6 py-3 text-rose-600 dark:text-rose-400">{formatCurrency(row.interest)}</td>
                       <td className="px-6 py-3 font-semibold text-white">{formatCurrency(row.balance)}</td>
                     </tr>

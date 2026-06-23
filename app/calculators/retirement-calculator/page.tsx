@@ -41,8 +41,8 @@ function RetirementCalculator() {
           {inputs.map((inp) => (
             <div key={inp.label}>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">{inp.label}</label>
-                <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+                <label className="text-sm font-semibold text-slate-300">{inp.label}</label>
+                <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                   {inp.isAmt ? formatCurrency(inp.value) : `${inp.value}${inp.suffix || ""}`}
                 </span>
               </div>
@@ -63,12 +63,12 @@ function RetirementCalculator() {
           <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${result.isOnTrack ? "text-emerald-500" : "text-rose-500"}`}>
             {result.isOnTrack ? "On Track" : "Shortfall Detected"}
           </p>
-          <p className={`text-2xl font-black mb-2 ${result.isOnTrack ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400"}`}>
+          <p className={`text-2xl font-black mb-2 ${result.isOnTrack ? "text-emerald-700 text-emerald-400" : "text-rose-700 dark:text-rose-400"}`}>
             {result.isOnTrack
               ? `Surplus of ${formatCurrency(result.surplus)}`
               : `Shortfall of ${formatCurrency(result.shortfall)}`}
           </p>
-          <p className={`text-sm ${result.isOnTrack ? "text-emerald-600 dark:text-emerald-300" : "text-rose-600 dark:text-rose-300"}`}>
+          <p className={`text-sm ${result.isOnTrack ? "text-emerald-600 text-emerald-400" : "text-rose-600 dark:text-rose-300"}`}>
             {result.isOnTrack
               ? "You will exceed your retirement corpus target."
               : "Increase your monthly savings to meet your retirement goals."}
@@ -84,14 +84,14 @@ function RetirementCalculator() {
               { label: "Corpus You'll Build", value: formatCurrency(result.totalCorpus) },
               { label: "Future Monthly Expense", value: formatCurrency(result.futureMonthlyExpense) },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
+              <div key={r.label} className="flex items-center justify-between py-4 border-b border-[#1e2d4a]">
                 <span className="text-sm text-slate-500">{r.label}</span>
                 <span className="text-sm font-bold text-white">{r.value}</span>
               </div>
             ))}
           </div>
 
-          <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-xs text-slate-500 leading-relaxed">
+          <div className="p-4 bg-[#162038] rounded-2xl text-xs text-slate-500 leading-relaxed">
             <strong className="text-[slate-300]">Years to retirement:</strong> {retirementAge - currentAge} &nbsp;|&nbsp;
             <strong className="text-[slate-300]">Retirement duration:</strong> {lifeExpectancy - retirementAge} years &nbsp;|&nbsp;
             Rule: 25× annual expenses minimum corpus
@@ -111,7 +111,7 @@ function RetirementCalculator() {
                 <div key={item.label}>
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-slate-500">{item.label}</span>
-                    <span className={`font-bold ${item.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" : "text-blue-600 dark:text-blue-400"}`}>
+                    <span className={`font-bold ${item.color === "emerald" ? "text-emerald-400" : "text-blue-400"}`}>
                       {formatCurrency(item.value)}
                     </span>
                   </div>

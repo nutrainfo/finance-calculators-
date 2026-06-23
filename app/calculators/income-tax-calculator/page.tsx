@@ -25,7 +25,7 @@ function IncomeTaxCalculator() {
           <h2 className="text-lg font-bold text-white mb-6">Income Details (FY 2024-25)</h2>
 
           {/* Regime toggle */}
-          <div className="flex rounded-2xl border border-slate-200 dark:border-slate-700 p-1 mb-8 bg-slate-50 dark:bg-slate-800">
+          <div className="flex rounded-2xl border border-[#1e2d4a] p-1 mb-8 bg-[#162038]">
             {(["new", "old"] as const).map((r) => (
               <button
                 key={r}
@@ -47,7 +47,7 @@ function IncomeTaxCalculator() {
               <label className="text-sm font-semibold text-[slate-300]">
                 Annual Gross Income
               </label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">
                 {formatCurrency(income)}
               </span>
             </div>
@@ -64,14 +64,14 @@ function IncomeTaxCalculator() {
               type="number"
               value={income}
               onChange={(e) => setIncome(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter annual income"
             />
           </div>
 
           {/* Old regime deductions */}
           {regime === "old" && (
-            <div className="space-y-5 p-5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <div className="space-y-5 p-5 bg-[#162038]/60 rounded-2xl border border-[#1e2d4a]">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Deductions (Old Regime)</p>
 
               <div>
@@ -83,7 +83,7 @@ function IncomeTaxCalculator() {
                   value={sec80c}
                   max={150000}
                   onChange={(e) => setSec80c(Math.min(150000, Number(e.target.value)))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -95,7 +95,7 @@ function IncomeTaxCalculator() {
                   type="number"
                   value={hra}
                   onChange={(e) => setHra(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -107,7 +107,7 @@ function IncomeTaxCalculator() {
                   type="number"
                   value={other}
                   onChange={(e) => setOther(Number(e.target.value))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-white dark:bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -129,7 +129,7 @@ function IncomeTaxCalculator() {
               { label: "Income Tax", value: formatCurrency(result.tax), dim: true },
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess), dim: true },
             ].map((row) => (
-              <div key={row.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+              <div key={row.label} className="flex items-center justify-between py-3 border-b border-[#1e2d4a] last:border-0">
                 <span className="text-sm text-slate-500">{row.label}</span>
                 <span className="text-sm font-semibold text-white">{row.value}</span>
               </div>
@@ -138,20 +138,20 @@ function IncomeTaxCalculator() {
 
           {/* Total tax */}
           <div className="mt-4 p-5 bg-amber-50 dark:bg-amber-950/20 rounded-2xl border border-amber-200 dark:border-amber-800/50">
-            <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-semibold text-amber-600 text-amber-400 uppercase tracking-wider mb-1">
               Total Tax Payable
             </p>
-            <p className="text-3xl font-black text-amber-700 dark:text-amber-400">
+            <p className="text-3xl font-black text-amber-700 text-amber-400">
               {formatCurrency(result.totalTax)}
             </p>
           </div>
 
           {/* Monthly in-hand */}
           <div className="mt-3 p-5 bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800/50">
-            <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
+            <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">
               Monthly In-Hand
             </p>
-            <p className="text-3xl font-black text-emerald-700 dark:text-emerald-400">
+            <p className="text-3xl font-black text-emerald-700 text-emerald-400">
               {formatCurrency(result.inHandMonthly)}
             </p>
           </div>
@@ -179,7 +179,7 @@ function IncomeTaxCalculator() {
             <div className={`p-5 rounded-2xl border-2 transition-colors ${
               regime === "new"
                 ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
-                : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
+                : "border-[#1e2d4a] bg-[#162038]"
             }`}>
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">New Regime</p>
               <p className="text-2xl font-black text-white">{formatCurrency(newResult.totalTax)}</p>
@@ -188,7 +188,7 @@ function IncomeTaxCalculator() {
             <div className={`p-5 rounded-2xl border-2 transition-colors ${
               regime === "old"
                 ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
-                : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
+                : "border-[#1e2d4a] bg-[#162038]"
             }`}>
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Old Regime</p>
               <p className="text-2xl font-black text-white">{formatCurrency(oldResult.totalTax)}</p>
@@ -198,7 +198,7 @@ function IncomeTaxCalculator() {
 
           <div className={`p-4 rounded-2xl text-sm font-semibold text-center ${
             saving >= 0
-              ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
+              ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 text-emerald-400"
               : "bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400"
           }`}>
             {saving >= 0
@@ -210,12 +210,12 @@ function IncomeTaxCalculator() {
         {/* Tax slab breakdown */}
         {result.slabs.length > 0 && (
           <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
-            <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
+            <div className="px-8 py-5 border-b border-[#1e2d4a]">
               <h3 className="text-base font-bold text-white">Tax Slab Breakdown</h3>
             </div>
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/60">
+                <tr className="bg-[#162038]/60">
                   <th className="px-8 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Income Range</th>
                   <th className="px-6 py-4 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">Rate</th>
                   <th className="px-8 py-4 text-right text-xs font-semibold text-slate-400 uppercase tracking-wider">Tax</th>
@@ -223,10 +223,10 @@ function IncomeTaxCalculator() {
               </thead>
               <tbody>
                 {result.slabs.map((slab, i) => (
-                  <tr key={i} className="border-t border-slate-100 dark:border-slate-800">
+                  <tr key={i} className="border-t border-[#1e2d4a]">
                     <td className="px-8 py-4 text-[slate-300] font-medium">{slab.range}</td>
                     <td className="px-6 py-4 text-right text-slate-500">{slab.rate}</td>
-                    <td className="px-8 py-4 text-right font-bold text-amber-600 dark:text-amber-400">{formatCurrency(slab.tax)}</td>
+                    <td className="px-8 py-4 text-right font-bold text-amber-600 text-amber-400">{formatCurrency(slab.tax)}</td>
                   </tr>
                 ))}
               </tbody>

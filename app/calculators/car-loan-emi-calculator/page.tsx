@@ -25,31 +25,31 @@ function CarLoanCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Car Price (On-Road)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(carPrice)}</span>
+              <label className="text-sm font-semibold text-slate-300">Car Price (On-Road)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(carPrice)}</span>
             </div>
             <input type="range" min={200000} max={10000000} step={50000} value={carPrice}
               onChange={(e) => { setCarPrice(Number(e.target.value)); setDownPayment(Math.round(Number(e.target.value) * 0.2)); }}
               className="w-full mb-3" />
             <input type="number" value={carPrice} onChange={(e) => setCarPrice(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Down Payment ({downPaymentPct}%)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(downPayment)}</span>
+              <label className="text-sm font-semibold text-slate-300">Down Payment ({downPaymentPct}%)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(downPayment)}</span>
             </div>
             <input type="range" min={0} max={carPrice * 0.8} step={10000} value={downPayment}
               onChange={(e) => setDownPayment(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={downPayment} onChange={(e) => setDownPayment(Math.min(Number(e.target.value), carPrice))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Interest Rate (% p.a.)</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{rate}%</span>
+              <label className="text-sm font-semibold text-slate-300">Interest Rate (% p.a.)</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{rate}%</span>
             </div>
             <input type="range" min={7} max={18} step={0.1} value={rate}
               onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
@@ -60,8 +60,8 @@ function CarLoanCalculator() {
 
           <div>
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Loan Tenure</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{tenureYears} Years</span>
+              <label className="text-sm font-semibold text-slate-300">Loan Tenure</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{tenureYears} Years</span>
             </div>
             <input type="range" min={1} max={7} step={1} value={tenureYears}
               onChange={(e) => setTenureYears(Number(e.target.value))} className="w-full" />
@@ -89,16 +89,16 @@ function CarLoanCalculator() {
               { label: "Total Interest Payable", value: formatCurrency(result.totalInterest), accent: true },
               { label: "Total Cost of Car", value: formatCurrency(downPayment + result.totalAmount) },
             ].map((r) => (
-              <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+              <div key={r.label} className="flex items-center justify-between py-3 border-b border-[#1e2d4a] last:border-0">
                 <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-rose-600 dark:text-rose-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
           </div>
 
-          <div className="p-6 bg-blue-50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/50">
+          <div className="p-6 bg-blue-950/20 rounded-2xl border border-blue-900/50">
             <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">Monthly EMI</p>
-            <p className="text-4xl font-black text-blue-700 dark:text-blue-400">{formatCurrency(result.emi)}</p>
+            <p className="text-4xl font-black text-blue-400">{formatCurrency(result.emi)}</p>
           </div>
         </div>
 
@@ -127,8 +127,8 @@ function CarLoanCalculator() {
         </div>
 
         <div className="bg-amber-50 dark:bg-amber-950/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-amber-200 dark:border-amber-800/40">
-          <h3 className="font-bold text-amber-900 dark:text-amber-400 text-sm mb-2">Car Loan Tips</h3>
-          <ul className="text-xs text-amber-800 dark:text-amber-300 space-y-2 leading-relaxed">
+          <h3 className="font-bold text-amber-900 text-amber-400 text-sm mb-2">Car Loan Tips</h3>
+          <ul className="text-xs text-amber-800 text-amber-400 space-y-2 leading-relaxed">
             <li>Higher down payment (20%+) significantly reduces EMI and total interest</li>
             <li>New car loans have lower rates (8–9%) than used car loans (10–14%)</li>
             <li>Maintain CIBIL score above 750 to negotiate better rates</li>

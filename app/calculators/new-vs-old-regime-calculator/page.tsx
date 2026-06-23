@@ -35,16 +35,16 @@ function RegimeComparisonCalculator() {
 
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-slate-600 dark:text-slate-300">Annual Gross Income</label>
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">{formatCurrency(income)}</span>
+              <label className="text-sm font-semibold text-slate-300">Annual Gross Income</label>
+              <span className="text-sm font-bold text-blue-400 bg-[#162038] px-3 py-1 rounded-lg">{formatCurrency(income)}</span>
             </div>
             <input type="range" min={300000} max={10000000} step={50000} value={income}
               onChange={(e) => setIncome(Number(e.target.value))} className="w-full mb-3" />
             <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              className="w-full px-4 py-3 rounded-xl border border-[#1e2d4a] bg-[#162038] text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
 
-          <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-5 mb-4">
+          <div className="p-4 bg-[#162038]/60 rounded-2xl border border-[#1e2d4a] space-y-5 mb-4">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Old Regime Deductions</p>
             {[
               { label: "Section 80C (max ₹1.5L)", value: sec80c, set: setSec80c, max: 150000 },
@@ -64,9 +64,9 @@ function RegimeComparisonCalculator() {
             ))}
           </div>
 
-          <div className="flex justify-between items-center p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl">
-            <span className="text-sm text-blue-700 dark:text-blue-400 font-medium">Total Old Regime Deductions</span>
-            <span className="text-sm font-black text-blue-700 dark:text-blue-400">{formatCurrency(totalOldDeductions + 50000)}</span>
+          <div className="flex justify-between items-center p-4 bg-blue-950/20 rounded-xl">
+            <span className="text-sm text-blue-400 font-medium">Total Old Regime Deductions</span>
+            <span className="text-sm font-black text-blue-400">{formatCurrency(totalOldDeductions + 50000)}</span>
           </div>
         </div>
       </div>
@@ -75,11 +75,11 @@ function RegimeComparisonCalculator() {
         {/* Winner banner */}
         <div className={`rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 ${saving >= 0
           ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800/50"
-          : "bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900/50"}`}>
+          : "bg-blue-950/20 border-blue-200 dark:border-blue-900/50"}`}>
           <p className={`text-xs font-semibold uppercase tracking-wider mb-3 ${saving >= 0 ? "text-emerald-500" : "text-blue-500"}`}>
             Better for You
           </p>
-          <p className={`text-3xl font-black mb-2 ${saving >= 0 ? "text-emerald-700 dark:text-emerald-400" : "text-blue-700 dark:text-blue-400"}`}>
+          <p className={`text-3xl font-black mb-2 ${saving >= 0 ? "text-emerald-700 text-emerald-400" : "text-blue-400"}`}>
             {betterRegime}
           </p>
           <p className="text-sm text-slate-500">
@@ -110,13 +110,13 @@ function RegimeComparisonCalculator() {
                   ? r.color === "blue"
                     ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
                     : "border-violet-500 bg-violet-50 dark:bg-violet-950/30"
-                  : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"
+                  : "border-[#1e2d4a] bg-[#162038]"
               }`}>
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{r.label}</p>
                 <p className="text-2xl font-black text-white mb-1">{formatCurrency(r.result.totalTax)}</p>
                 <p className="text-xs text-slate-400">Effective: {r.result.effectiveRate}%</p>
                 <p className={`text-xs font-semibold mt-2 ${
-                  r.color === "blue" ? "text-blue-600 dark:text-blue-400" : "text-violet-600 dark:text-violet-400"
+                  r.color === "blue" ? "text-blue-400" : "text-violet-400"
                 }`}>
                   In-hand: {formatCurrency(r.result.inHandMonthly)}/mo
                 </p>
@@ -133,17 +133,17 @@ function RegimeComparisonCalculator() {
             ].map((r) => (
               <div key={r.label} className="flex items-center text-xs">
                 <span className="w-36 shrink-0 text-slate-400 font-medium">{r.label}</span>
-                <span className="flex-1 text-center font-semibold text-blue-600 dark:text-blue-400">{r.new}</span>
-                <span className="flex-1 text-center font-semibold text-violet-600 dark:text-violet-400">{r.old}</span>
+                <span className="flex-1 text-center font-semibold text-blue-400">{r.new}</span>
+                <span className="flex-1 text-center font-semibold text-violet-400">{r.old}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-slate-50 dark:bg-slate-800/60 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700">
+        <div className="bg-[#162038]/60 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-[#1e2d4a]">
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Break-Even Point</p>
           <p className="text-sm text-slate-500 leading-relaxed">
-            At your income level, you need total deductions above approximately <strong className="text-slate-800 dark:text-slate-200">{formatCurrency(Math.max(0, breakEvenDeduction))}</strong> for the Old Regime to be better. Your current deductions: {formatCurrency(totalOldDeductions)}.
+            At your income level, you need total deductions above approximately <strong className="text-slate-800 text-slate-300">{formatCurrency(Math.max(0, breakEvenDeduction))}</strong> for the Old Regime to be better. Your current deductions: {formatCurrency(totalOldDeductions)}.
           </p>
         </div>
       </div>

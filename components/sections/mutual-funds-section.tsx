@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ExternalLink, Search, TrendingUp, Shield, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { ExternalLink, TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
 
 interface Fund {
   name: string;
@@ -13,7 +13,6 @@ interface Fund {
   minSIP: number;
   growwSlug: string;
   zerodhaQuery: string;
-  nav?: number;
   aum?: string;
   expenseRatio?: string;
 }
@@ -62,12 +61,71 @@ const FUNDS: Fund[] = [
 
 const CATEGORIES = ["All", "Large Cap", "Flexi Cap", "Mid Cap", "Small Cap", "ELSS", "Hybrid", "Index Fund", "Debt"];
 
-const RISK_COLORS: Record<string, string> = {
-  "Low": "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400",
-  "Moderate": "bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-400",
-  "High": "bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-400",
-  "Very High": "bg-rose-100 text-rose-800 dark:bg-rose-950/40 dark:text-rose-400",
+const RISK_CONFIG: Record<string, { pill: string; dot: string }> = {
+  "Low":       { pill: "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60", dot: "bg-emerald-500" },
+  "Moderate":  { pill: "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-800/60", dot: "bg-blue-500" },
+  "High":      { pill: "bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800/60", dot: "bg-amber-500" },
+  "Very High": { pill: "bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800/60", dot: "bg-rose-500" },
 };
+
+function FundCard({ fund }: { fund: Fund }) {
+  const risk = RISK_CONFIG[fund.riskLevel];
+  return (
+    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg hover:shadow-slate-100 dark:hover:shadow-slate-900/50 transition-all duration-200">
+      {/* Top row: name + risk */}
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <div className="min-w-0">
+          <p className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-0.5">{fund.name}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{fund.amc} · {fund.category}</p>
+        </div>
+        <span className={`flex-shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${risk.pill}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${risk.dot}`} />
+          {fund.riskLevel}
+        </span>
+      </div>
+
+      {/* Metrics row */}
+      <div className="grid grid-cols-3 gap-3 mb-4 py-3 border-y border-slate-100 dark:border-slate-800">
+        <div>
+          <p className="text-xs text-slate-400 mb-0.5">AUM</p>
+          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.aum ?? "—"}</p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-400 mb-0.5">Exp. Ratio</p>
+          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.expenseRatio ?? "—"}</p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-400 mb-0.5">Min SIP</p>
+          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">₹{fund.minSIP}/mo</p>
+        </div>
+      </div>
+
+      {/* Action buttons */}
+      <div className="grid grid-cols-2 gap-2">
+        <a
+          href={`https://groww.in/mutual-funds/${fund.growwSlug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all hover:-translate-y-0.5"
+          style={{ background: "rgba(0,208,156,0.08)", color: "#00a07a", border: "1px solid rgba(0,208,156,0.2)" }}
+        >
+          Groww
+          <ExternalLink className="w-3 h-3" />
+        </a>
+        <a
+          href={`https://coin.zerodha.com/search?q=${fund.zerodhaQuery}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all hover:-translate-y-0.5"
+          style={{ background: "rgba(56,126,209,0.08)", color: "#387ed1", border: "1px solid rgba(56,126,209,0.2)" }}
+        >
+          Zerodha
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function MutualFundsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -80,49 +138,68 @@ export default function MutualFundsSection() {
     };
     const matchCat = activeCategory === "All"
       || f.category === activeCategory
-      || (catMap[activeCategory] && catMap[activeCategory].includes(f.category));
-    const matchSearch = f.name.toLowerCase().includes(searchQuery.toLowerCase()) || f.amc.toLowerCase().includes(searchQuery.toLowerCase());
+      || (catMap[activeCategory]?.includes(f.category));
+    const q = searchQuery.toLowerCase();
+    const matchSearch = f.name.toLowerCase().includes(q) || f.amc.toLowerCase().includes(q);
     return matchCat && matchSearch;
   });
 
   return (
-    <section className="py-28 bg-slate-50 dark:bg-slate-950">
+    <section className="min-h-screen bg-slate-50 dark:bg-slate-950 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
-        <div className="max-w-2xl mb-16">
+        {/* Page header */}
+        <div className="mb-10 sm:mb-14">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400 mb-4">
             Direct Plans · Zero Commission
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-5 leading-tight tracking-tight">
-            Top Mutual Funds in India
-          </h2>
-          <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
-            30+ curated funds across equity, hybrid, and debt categories. Invest directly via Groww or Zerodha Coin with zero commission.
-          </p>
-          <p className="mt-4 text-xs text-slate-400 leading-relaxed">
-            Mutual fund investments are subject to market risks. Past performance is not indicative of future returns. Calculate Future is not a SEBI-registered investment adviser. Read all scheme documents carefully before investing.
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+            Top Mutual Funds<br className="hidden sm:block" /> in India
+          </h1>
+          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
+            30+ curated funds across equity, hybrid, and debt. Invest directly via Groww or Zerodha with zero commission.
           </p>
         </div>
 
-        {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <input
-            type="text"
-            placeholder="Search by fund name or AMC..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="sm:w-80 px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-slate-400"
-          />
-          <div className="flex gap-2 flex-wrap">
+        {/* Stats strip */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10 sm:mb-12">
+          {[
+            { icon: TrendingUp, label: "Equity Funds", value: "20+", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/30" },
+            { icon: Shield, label: "Debt & Hybrid", value: "10+", color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+            { icon: TrendingUp, label: "Fund Categories", value: "8", color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30" },
+            { icon: Shield, label: "Commission", value: "Zero", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/30" },
+          ].map((s) => (
+            <div key={s.label} className={`${s.bg} rounded-2xl p-4 border border-slate-200/60 dark:border-slate-800`}>
+              <p className={`text-2xl font-black ${s.color} mb-0.5`}>{s.value}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Search + Filter */}
+        <div className="mb-8 space-y-4">
+          {/* Search */}
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search by fund name or AMC..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full sm:w-96 pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-slate-400"
+            />
+          </div>
+
+          {/* Category pills — horizontal scroll on mobile */}
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
                   activeCategory === cat
-                    ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
-                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300"
+                    ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm"
+                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 {cat}
@@ -131,98 +208,129 @@ export default function MutualFundsSection() {
           </div>
         </div>
 
-        {/* Fund table */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800">
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Fund Name</th>
-                  <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">Category</th>
-                  <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">AUM</th>
-                  <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Exp. Ratio</th>
-                  <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Risk</th>
-                  <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden sm:table-cell">Min SIP</th>
-                  <th className="text-right px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Invest</th>
+        {/* Result count */}
+        <p className="text-xs text-slate-400 mb-5 font-medium">
+          {filtered.length} fund{filtered.length !== 1 ? "s" : ""} {activeCategory !== "All" ? `in ${activeCategory}` : ""}
+          {searchQuery ? ` matching "${searchQuery}"` : ""}
+        </p>
+
+        {/* Card grid — mobile & tablet */}
+        <div className="lg:hidden">
+          {filtered.length === 0 ? (
+            <div className="text-center py-20 text-slate-400">No funds match your search.</div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {filtered.map((fund) => (
+                <FundCard key={fund.name} fund={fund} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Table — desktop only */}
+        <div className="hidden lg:block bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider w-[35%]">Fund</th>
+                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Category</th>
+                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">AUM</th>
+                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Exp. Ratio</th>
+                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Risk</th>
+                <th className="text-left px-4 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Min SIP</th>
+                <th className="text-right px-6 py-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Invest</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="px-6 py-20 text-center text-slate-400">
+                    No funds match your search.
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {filtered.map((fund, i) => (
-                  <tr
-                    key={fund.name}
-                    className={`border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors ${i === 0 ? "" : ""}`}
-                  >
+              ) : filtered.map((fund) => {
+                const risk = RISK_CONFIG[fund.riskLevel];
+                return (
+                  <tr key={fund.name} className="border-b border-slate-50 dark:border-slate-800/70 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="font-semibold text-slate-900 dark:text-white text-sm leading-tight">{fund.name}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{fund.amc} · {fund.subCategory}</div>
-                    </td>
-                    <td className="px-4 py-4 hidden md:table-cell">
-                      <span className="text-xs font-medium text-slate-600 dark:text-slate-400">{fund.category}</span>
-                    </td>
-                    <td className="px-4 py-4 hidden lg:table-cell">
-                      <span className="text-xs text-slate-600 dark:text-slate-400">{fund.aum ?? "—"}</span>
-                    </td>
-                    <td className="px-4 py-4 hidden lg:table-cell">
-                      <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{fund.expenseRatio ?? "—"}</span>
+                      <p className="font-semibold text-slate-900 dark:text-white text-sm leading-tight">{fund.name}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{fund.amc} · Direct Growth</p>
                     </td>
                     <td className="px-4 py-4">
-                      <span className={`inline-block px-2 py-0.5 rounded-md text-xs font-semibold ${RISK_COLORS[fund.riskLevel]}`}>
+                      <span className="text-xs font-medium text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">
+                        {fund.category}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 text-xs text-slate-600 dark:text-slate-400 font-medium">{fund.aum ?? "—"}</td>
+                    <td className="px-4 py-4 text-xs font-semibold text-slate-700 dark:text-slate-300">{fund.expenseRatio ?? "—"}</td>
+                    <td className="px-4 py-4">
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${risk.pill}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${risk.dot}`} />
                         {fund.riskLevel}
                       </span>
                     </td>
-                    <td className="px-4 py-4 hidden sm:table-cell">
-                      <span className="text-xs text-slate-600 dark:text-slate-400">₹{fund.minSIP}/mo</span>
-                    </td>
+                    <td className="px-4 py-4 text-xs font-medium text-slate-600 dark:text-slate-400">₹{fund.minSIP}/mo</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
                         <a
                           href={`https://groww.in/mutual-funds/${fund.growwSlug}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#00d09c]/10 hover:bg-[#00d09c]/20 text-[#00a07a] dark:text-[#00d09c] text-xs font-semibold rounded-lg border border-[#00d09c]/20 transition-colors"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:-translate-y-0.5"
+                          style={{ background: "rgba(0,208,156,0.08)", color: "#00a07a", border: "1px solid rgba(0,208,156,0.2)" }}
                         >
-                          Groww
-                          <ExternalLink className="w-3 h-3" />
+                          Groww <ExternalLink className="w-3 h-3" />
                         </a>
                         <a
                           href={`https://coin.zerodha.com/search?q=${fund.zerodhaQuery}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#387ed1]/10 hover:bg-[#387ed1]/20 text-[#387ed1] text-xs font-semibold rounded-lg border border-[#387ed1]/20 transition-colors"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:-translate-y-0.5"
+                          style={{ background: "rgba(56,126,209,0.08)", color: "#387ed1", border: "1px solid rgba(56,126,209,0.2)" }}
                         >
-                          Zerodha
-                          <ExternalLink className="w-3 h-3" />
+                          Zerodha <ExternalLink className="w-3 h-3" />
                         </a>
                       </div>
                     </td>
                   </tr>
-                ))}
-                {filtered.length === 0 && (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-16 text-center text-slate-400 text-sm">
-                      No funds match your search.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* SIP CTA */}
+        <div className="mt-8 grid sm:grid-cols-2 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div>
+              <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">Calculate SIP Returns</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Project how a monthly SIP could grow over time.</p>
+            </div>
+            <Link
+              href="/calculators/sip-calculator"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5"
+            >
+              SIP Calculator <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div>
+              <p className="font-bold text-slate-900 dark:text-white text-sm mb-1">New vs Old Tax Regime</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">ELSS funds help you save tax under Section 80C.</p>
+            </div>
+            <Link
+              href="/calculators/new-vs-old-regime-calculator"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5"
+            >
+              Tax Calculator <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
 
-        {/* SIP calculator CTA */}
-        <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
-          <div>
-            <p className="font-bold text-slate-900 dark:text-white mb-1">Calculate SIP returns before investing</p>
-            <p className="text-sm text-slate-500">Project how a monthly SIP in any fund could grow over time.</p>
-          </div>
-          <Link
-            href="/calculators/sip-calculator"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold rounded-xl transition-all hover:-translate-y-0.5"
-          >
-            Open SIP Calculator
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        {/* Disclaimer */}
+        <p className="mt-8 text-xs text-slate-400 dark:text-slate-500 leading-relaxed max-w-3xl">
+          Mutual fund investments are subject to market risks. Past performance is not indicative of future returns. Calculate Future is not a SEBI-registered investment adviser. Read all scheme documents carefully before investing.
+        </p>
       </div>
     </section>
   );

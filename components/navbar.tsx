@@ -147,19 +147,19 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 max-h-[80vh] overflow-y-auto">
-          <div className="px-4 py-4 space-y-4">
+          <div className="px-4 py-5 space-y-5">
             {calculatorGroups.map((group) => (
               <div key={group.label}>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">
                   {group.label}
                 </p>
-                <div className="grid grid-cols-2 gap-1">
+                <div className="grid grid-cols-1 gap-0.5">
                   {group.items.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                      className="flex items-center px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-colors"
                     >
                       {item.label}
                     </Link>

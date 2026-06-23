@@ -385,15 +385,16 @@ export default function InterestRateDashboard() {
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col gap-4 mb-8">
-          <div className="flex flex-wrap gap-2">
+        <div className="space-y-3 mb-8">
+          {/* Bank type filter — horizontal scroll on mobile */}
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             {(["all", "public", "private", "sfb"] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setSelectedType(t)}
-                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                   selectedType === t
-                    ? "bg-emerald-700 text-white shadow-lg shadow-emerald-500/20"
+                    ? "bg-emerald-700 text-white shadow-sm"
                     : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-300"
                 }`}
               >
@@ -401,15 +402,17 @@ export default function InterestRateDashboard() {
               </button>
             ))}
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex gap-2 flex-wrap">
+
+          {/* Tenure + refresh row — horizontal scroll on mobile */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               {tenures.map((t) => (
                 <button
                   key={t}
                   onClick={() => setSelectedTenure(t)}
-                  className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                  className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                     selectedTenure === t
-                      ? "bg-blue-800 text-white shadow-lg shadow-blue-500/20"
+                      ? "bg-blue-800 text-white shadow-sm"
                       : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300"
                   }`}
                 >
@@ -417,22 +420,20 @@ export default function InterestRateDashboard() {
                 </button>
               ))}
             </div>
-            <div className="flex items-center gap-3">
-              {lastFetched && (
-                <span className="text-xs text-slate-500">
-                  Updated: {lastFetched.toLocaleTimeString("en-IN")}
-                </span>
-              )}
-              <button
-                onClick={fetchRates}
-                disabled={loading}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm hover:border-blue-300 transition-all"
-              >
-                <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
-                Refresh
-              </button>
-            </div>
+            <button
+              onClick={fetchRates}
+              disabled={loading}
+              className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm hover:border-blue-300 transition-all"
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+              <span className="hidden sm:inline">Refresh</span>
+            </button>
           </div>
+          {lastFetched && (
+            <p className="text-xs text-slate-400 text-right">
+              Updated: {lastFetched.toLocaleTimeString("en-IN")}
+            </p>
+          )}
         </div>
 
         {/* Rate Table */}

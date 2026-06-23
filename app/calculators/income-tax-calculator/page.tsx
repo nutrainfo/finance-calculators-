@@ -21,7 +21,7 @@ function IncomeTaxCalculator() {
 
       {/* Left — Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Income Details (FY 2024-25)</h2>
 
           {/* Regime toggle */}
@@ -44,7 +44,7 @@ function IncomeTaxCalculator() {
           {/* Gross income slider */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
-              <label className="text-sm font-semibold text-[#b7bdc6]">
+              <label className="text-sm font-semibold text-[slate-300]">
                 Annual Gross Income
               </label>
               <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
@@ -75,7 +75,7 @@ function IncomeTaxCalculator() {
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Deductions (Old Regime)</p>
 
               <div>
-                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
+                <label className="text-sm font-semibold text-[slate-300] block mb-2">
                   Section 80C <span className="font-normal text-slate-400">(Max ₹1.5L)</span>
                 </label>
                 <input
@@ -88,7 +88,7 @@ function IncomeTaxCalculator() {
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
+                <label className="text-sm font-semibold text-[slate-300] block mb-2">
                   HRA Exemption
                 </label>
                 <input
@@ -100,7 +100,7 @@ function IncomeTaxCalculator() {
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-[#b7bdc6] block mb-2">
+                <label className="text-sm font-semibold text-[slate-300] block mb-2">
                   Other Deductions
                 </label>
                 <input
@@ -119,7 +119,7 @@ function IncomeTaxCalculator() {
       <div className="space-y-6">
 
         {/* Key metrics */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4">
@@ -130,7 +130,7 @@ function IncomeTaxCalculator() {
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess), dim: true },
             ].map((row) => (
               <div key={row.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-[#707a8a]">{row.label}</span>
+                <span className="text-sm text-slate-500">{row.label}</span>
                 <span className="text-sm font-semibold text-white">{row.value}</span>
               </div>
             ))}
@@ -159,10 +159,10 @@ function IncomeTaxCalculator() {
           {/* Effective rate bar */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-[#707a8a]">Effective Tax Rate</span>
+              <span className="text-sm text-slate-500">Effective Tax Rate</span>
               <span className="text-lg font-bold text-white">{result.effectiveRate}%</span>
             </div>
-            <div className="h-2 bg-[#252b33] rounded-full overflow-hidden">
+            <div className="h-2 bg-[#162038] rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-amber-400 to-rose-500 rounded-full transition-all duration-500"
                 style={{ width: `${Math.min(result.effectiveRate * 3, 100)}%` }}
@@ -172,7 +172,7 @@ function IncomeTaxCalculator() {
         </div>
 
         {/* Regime comparison */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-5">New vs Old Regime</h3>
 
           <div className="grid grid-cols-2 gap-4 mb-4">
@@ -209,7 +209,7 @@ function IncomeTaxCalculator() {
 
         {/* Tax slab breakdown */}
         {result.slabs.length > 0 && (
-          <div className="bg-[#1a1e24] rounded-3xl border border-[#2a303a] overflow-hidden">
+          <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
             <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
               <h3 className="text-base font-bold text-white">Tax Slab Breakdown</h3>
             </div>
@@ -224,7 +224,7 @@ function IncomeTaxCalculator() {
               <tbody>
                 {result.slabs.map((slab, i) => (
                   <tr key={i} className="border-t border-slate-100 dark:border-slate-800">
-                    <td className="px-8 py-4 text-[#b7bdc6] font-medium">{slab.range}</td>
+                    <td className="px-8 py-4 text-[slate-300] font-medium">{slab.range}</td>
                     <td className="px-6 py-4 text-right text-slate-500">{slab.rate}</td>
                     <td className="px-8 py-4 text-right font-bold text-amber-600 dark:text-amber-400">{formatCurrency(slab.tax)}</td>
                   </tr>

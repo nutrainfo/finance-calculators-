@@ -9,6 +9,7 @@ const articles = [
     readTime: "5 min read",
     category: "Investing",
     Icon: TrendingUp,
+    color: "#3b82f6",
   },
   {
     title: "FD vs Mutual Funds: Which is Better?",
@@ -16,6 +17,7 @@ const articles = [
     readTime: "8 min read",
     category: "Comparison",
     Icon: BarChart2,
+    color: "#10b981",
   },
   {
     title: "Understanding the Power of Compounding",
@@ -23,6 +25,7 @@ const articles = [
     readTime: "6 min read",
     category: "Basics",
     Icon: TrendingUp,
+    color: "#8b5cf6",
   },
   {
     title: "New Tax Regime vs Old Tax Regime FY25",
@@ -30,6 +33,7 @@ const articles = [
     readTime: "10 min read",
     category: "Tax",
     Icon: Receipt,
+    color: "#f59e0b",
   },
   {
     title: "How to Plan for Early Retirement (FIRE)",
@@ -37,6 +41,7 @@ const articles = [
     readTime: "12 min read",
     category: "Retirement",
     Icon: Flame,
+    color: "#f43f5e",
   },
   {
     title: "EMI vs Prepayment: When to Prepay Your Loan",
@@ -44,6 +49,7 @@ const articles = [
     readTime: "7 min read",
     category: "Loans",
     Icon: Home,
+    color: "#06b6d4",
   },
 ];
 
@@ -58,18 +64,18 @@ const glossaryTerms = [
 
 export default function FinancialEducation() {
   return (
-    <section className="py-20 bg-[#0b0e11]">
+    <section className="py-20" style={{ background: "linear-gradient(180deg, #060c18 0%, #091220 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Articles */}
+        {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-amber-400 text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0d1526] border border-[#1e2d4a] text-amber-400 text-xs font-semibold mb-4">
             <BookOpen className="w-3.5 h-3.5" />
             Learn Finance
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">
             Financial Education Center
           </h2>
-          <p className="text-[#707a8a]">
+          <p className="text-slate-500">
             Master personal finance with our expert guides and articles
           </p>
         </div>
@@ -80,23 +86,29 @@ export default function FinancialEducation() {
             return (
               <article
                 key={article.title}
-                className="bg-[#1a1e24] rounded-2xl p-5 border border-[#2a303a] hover:border-[#3a4150] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30 transition-all duration-200 cursor-pointer group"
+                className="bg-[#0d1526] rounded-2xl p-5 border border-[#1e2d4a] hover:border-[#2d4466] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30 transition-all duration-200 cursor-pointer group"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-blue-600/15 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-4 h-4 text-blue-400" />
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: `${article.color}15`, border: `1px solid ${article.color}25` }}
+                  >
+                    <Icon className="w-4 h-4" style={{ color: article.color }} />
                   </div>
                   <div>
-                    <span className="inline-block px-2 py-0.5 bg-blue-600/15 text-blue-400 text-xs font-semibold rounded-md mb-2">
+                    <span
+                      className="inline-block px-2 py-0.5 text-xs font-semibold rounded-md mb-2"
+                      style={{ background: `${article.color}15`, color: article.color }}
+                    >
                       {article.category}
                     </span>
-                    <h3 className="font-bold text-white text-sm mb-1.5 leading-snug group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-bold text-white text-sm mb-1.5 leading-snug group-hover:text-amber-400 transition-colors">
                       {article.title}
                     </h3>
-                    <p className="text-xs text-[#707a8a] leading-relaxed mb-3">
+                    <p className="text-xs text-slate-500 leading-relaxed mb-3">
                       {article.description}
                     </p>
-                    <span className="text-xs text-[#4a5568]">{article.readTime}</span>
+                    <span className="text-xs text-slate-600">{article.readTime}</span>
                   </div>
                 </div>
               </article>
@@ -113,12 +125,12 @@ export default function FinancialEducation() {
             {glossaryTerms.map((item) => (
               <div
                 key={item.term}
-                className="bg-[#1a1e24] rounded-xl p-4 border border-[#2a303a]"
+                className="bg-[#0d1526] rounded-xl p-4 border border-[#1e2d4a]"
               >
-                <div className="font-bold text-blue-400 text-sm mb-1">
+                <div className="font-bold text-amber-400 text-sm mb-1">
                   {item.term}
                 </div>
-                <div className="text-xs text-[#707a8a] leading-relaxed">
+                <div className="text-xs text-slate-500 leading-relaxed">
                   {item.definition}
                 </div>
               </div>

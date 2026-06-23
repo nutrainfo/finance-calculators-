@@ -35,7 +35,7 @@ function RetirementCalculator() {
     <div className="grid lg:grid-cols-2 gap-10">
 
       {/* Inputs */}
-      <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+      <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
         <h2 className="text-lg font-bold text-white mb-8">Retirement Details</h2>
         <div className="space-y-6">
           {inputs.map((inp) => (
@@ -76,7 +76,7 @@ function RetirementCalculator() {
         </div>
 
         {/* Key metrics */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Corpus Summary</h2>
           <div className="space-y-4 mb-6">
             {[
@@ -85,21 +85,21 @@ function RetirementCalculator() {
               { label: "Future Monthly Expense", value: formatCurrency(result.futureMonthlyExpense) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className="text-sm font-bold text-white">{r.value}</span>
               </div>
             ))}
           </div>
 
-          <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-xs text-[#707a8a] leading-relaxed">
-            <strong className="text-[#b7bdc6]">Years to retirement:</strong> {retirementAge - currentAge} &nbsp;|&nbsp;
-            <strong className="text-[#b7bdc6]">Retirement duration:</strong> {lifeExpectancy - retirementAge} years &nbsp;|&nbsp;
+          <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-xs text-slate-500 leading-relaxed">
+            <strong className="text-[slate-300]">Years to retirement:</strong> {retirementAge - currentAge} &nbsp;|&nbsp;
+            <strong className="text-[slate-300]">Retirement duration:</strong> {lifeExpectancy - retirementAge} years &nbsp;|&nbsp;
             Rule: 25× annual expenses minimum corpus
           </div>
         </div>
 
         {/* Corpus breakdown bars */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Corpus Breakdown</h3>
           <div className="space-y-5">
             {[
@@ -110,12 +110,12 @@ function RetirementCalculator() {
               return (
                 <div key={item.label}>
                   <div className="flex justify-between text-sm mb-2">
-                    <span className="text-[#707a8a]">{item.label}</span>
+                    <span className="text-slate-500">{item.label}</span>
                     <span className={`font-bold ${item.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" : "text-blue-600 dark:text-blue-400"}`}>
                       {formatCurrency(item.value)}
                     </span>
                   </div>
-                  <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+                  <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                     <div className="h-full rounded-full transition-all duration-500"
                       style={{
                         width: `${pct}%`,

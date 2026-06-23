@@ -61,7 +61,7 @@ function FIRECalculator() {
 
   return (
     <div className="grid lg:grid-cols-2 gap-10">
-      <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+      <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
         <h2 className="text-lg font-bold text-white mb-8">FIRE Parameters</h2>
         <div className="space-y-6">
           {[
@@ -98,14 +98,14 @@ function FIRECalculator() {
           <p className={`text-4xl font-black mb-2 ${result.isAlreadyFIRE ? "text-emerald-700 dark:text-emerald-400" : "text-blue-700 dark:text-blue-400"}`}>
             {formatCurrency(result.fireNumber)}
           </p>
-          <p className="text-sm text-[#707a8a]">
+          <p className="text-sm text-slate-500">
             {result.isAlreadyFIRE
               ? "Your current savings already exceed your FIRE target."
               : `Annual expenses ÷ ${swr}% SWR = corpus you need to retire`}
           </p>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">FIRE Timeline</h2>
 
           <div className="space-y-4 mb-6">
@@ -116,7 +116,7 @@ function FIRECalculator() {
               { label: "Current Progress", value: `${result.progress}%` },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-blue-600 dark:text-blue-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
@@ -128,7 +128,7 @@ function FIRECalculator() {
               <span>{formatCurrency(currentSavings)} saved</span>
               <span>{formatCurrency(result.fireNumber)} goal</span>
             </div>
-            <div className="h-3 bg-[#252b33] rounded-full overflow-hidden">
+            <div className="h-3 bg-[#162038] rounded-full overflow-hidden">
               <div className="h-full rounded-full transition-all duration-700"
                 style={{ width: `${result.progress}%`, background: "linear-gradient(90deg, #1d4ed8, #059669)" }} />
             </div>
@@ -138,7 +138,7 @@ function FIRECalculator() {
 
         <div className="bg-slate-50 dark:bg-slate-800/60 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700">
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">What is the FIRE Number?</p>
-          <p className="text-sm text-[#707a8a] leading-relaxed">
+          <p className="text-sm text-slate-500 leading-relaxed">
             Your FIRE number is the corpus you need to retire early and live off investment returns. Using a {swr}% safe withdrawal rate means you can withdraw {swr}% annually from your corpus indefinitely — historically, this sustains a 30–50 year retirement with high probability.
           </p>
         </div>

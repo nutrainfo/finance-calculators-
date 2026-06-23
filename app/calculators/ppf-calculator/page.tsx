@@ -17,7 +17,7 @@ function PPFCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">PPF Details</h2>
 
           {/* Rate display */}
@@ -67,7 +67,7 @@ function PPFCalculator() {
 
       {/* Results */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -76,7 +76,7 @@ function PPFCalculator() {
               { label: "Interest Earned (Tax-Free)", value: formatCurrency(result.totalInterest), accent: true },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>
                   {r.value}
                 </span>
@@ -93,20 +93,20 @@ function PPFCalculator() {
           <div className="mt-6 space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Principal</span>
+                <span className="text-slate-500">Principal</span>
                 <span className="font-semibold text-white">({principalPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
               </div>
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Tax-Free Interest</span>
+                <span className="text-slate-500">Tax-Free Interest</span>
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">({interestPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }} />
               </div>
@@ -115,13 +115,13 @@ function PPFCalculator() {
         </div>
 
         {/* Growth chart */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">PPF Growth Projection</h3>
           <GrowthAreaChart data={result.yearlyBreakdown} dataKey="balance" investedKey={undefined} />
         </div>
 
         {/* Year-wise table */}
-        <div className="bg-[#1a1e24] rounded-3xl border border-[#2a303a] overflow-hidden">
+        <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
           <div className="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
             <h3 className="text-base font-bold text-white">Year-wise Balance</h3>
           </div>
@@ -137,7 +137,7 @@ function PPFCalculator() {
               <tbody>
                 {result.yearlyBreakdown.map((row) => (
                   <tr key={row.year} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
-                    <td className="px-8 py-4 font-semibold text-[#b7bdc6]">Year {row.year}</td>
+                    <td className="px-8 py-4 font-semibold text-[slate-300]">Year {row.year}</td>
                     <td className="px-6 py-4 text-right text-emerald-600 dark:text-emerald-400">{formatCurrency(row.interest)}</td>
                     <td className="px-8 py-4 text-right font-bold text-blue-600 dark:text-blue-400">{formatCurrency(row.balance)}</td>
                   </tr>

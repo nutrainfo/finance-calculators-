@@ -1,223 +1,158 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { ArrowRight, TrendingUp, Landmark, CreditCard, Receipt } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const Scene3D = dynamic(() => import("@/components/hero-3d"), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0" />,
-});
+const quickLinks = [
+  { icon: TrendingUp, label: "SIP Calculator", sub: "Plan MF returns", href: "/calculators/sip-calculator", color: "#3b82f6" },
+  { icon: Landmark, label: "FD Calculator", sub: "Bank deposit yield", href: "/calculators/fd-calculator", color: "#10b981" },
+  { icon: CreditCard, label: "EMI Calculator", sub: "Loan repayment", href: "/calculators/home-loan-emi-calculator", color: "#8b5cf6" },
+  { icon: Receipt, label: "Income Tax", sub: "FY 2024-25", href: "/calculators/income-tax-calculator", color: "#f59e0b" },
+];
 
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
-}
+const stats = [
+  { value: "30+", label: "Calculators" },
+  { value: "20+", label: "Banks Tracked" },
+  { value: "100%", label: "Free Forever" },
+  { value: "₹0", label: "Commission" },
+];
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-    if (typeof window !== "undefined") {
-      if (window.matchMedia("(display-mode: standalone)").matches) {
-        setIsInstalled(true);
-      }
-      const handler = (e: Event) => {
-        e.preventDefault();
-        setInstallPrompt(e as BeforeInstallPromptEvent);
-      };
-      window.addEventListener("beforeinstallprompt", handler);
-      window.addEventListener("appinstalled", () => setIsInstalled(true));
-      return () => window.removeEventListener("beforeinstallprompt", handler);
-    }
-  }, []);
-
-  const handleInstall = async () => {
-    if (!installPrompt) return;
-    await installPrompt.prompt();
-    const { outcome } = await installPrompt.userChoice;
-    if (outcome === "accepted") setIsInstalled(true);
-    setInstallPrompt(null);
-  };
-
-  const scrollDown = () => {
-    sectionRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => { setMounted(true); }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "#0b0e11" }}
+      style={{ background: "linear-gradient(160deg, #060c18 0%, #091222 45%, #0a1628 70%, #060c18 100%)" }}
     >
-      {/* 3D Canvas */}
-      <div className="absolute inset-0 z-0">
-        {mounted && <Scene3D />}
-      </div>
-
-      {/* Radial glow behind orb */}
+      {/* Gold radial glow top-right */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(29,78,216,0.18) 0%, transparent 70%)",
-        }}
+        className="absolute top-0 right-0 w-[700px] h-[500px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at top right, rgba(245,158,11,0.08) 0%, transparent 65%)" }}
+      />
+      {/* Blue glow bottom-left */}
+      <div
+        className="absolute bottom-0 left-0 w-[600px] h-[400px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at bottom left, rgba(59,130,246,0.07) 0%, transparent 65%)" }}
       />
 
-      {/* Edge vignette */}
+      {/* Grid overlay */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
-          background:
-            "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(3,6,15,0.85) 100%)",
-        }}
-      />
-
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 z-[2] pointer-events-none opacity-[0.35]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px)`,
-          backgroundSize: "100px 100px",
+          backgroundImage: "linear-gradient(rgba(245,158,11,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.5) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-10 lg:px-8 flex flex-col items-center text-center pt-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
 
-        {/* Overline */}
-        <p
-          className={`text-xs font-semibold tracking-[0.25em] uppercase mb-8 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-          style={{ color: "rgba(96,165,250,0.7)" }}
+        {/* Overline badge */}
+        <div
+          className={`flex justify-center mb-8 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
-          India&apos;s Financial Intelligence Platform
-        </p>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/8">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <span className="text-xs font-semibold tracking-widest uppercase text-amber-400">
+              India&apos;s Financial Intelligence Platform
+            </span>
+          </div>
+        </div>
 
         {/* Headline */}
         <h1
-          className={`font-black text-white leading-[1.02] tracking-tight mb-8 transition-all duration-1000 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-          style={{ fontSize: "clamp(2.8rem, 7.5vw, 5.5rem)" }}
+          className={`text-center font-black text-white leading-[1.0] tracking-tight mb-6 transition-all duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
         >
-          Calculate Your{" "}
+          Plan Your Wealth.<br />
           <span
             style={{
-              background: "linear-gradient(90deg, #60a5fa 0%, #34d399 100%)",
+              background: "linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}
           >
-            Wealth
-          </span>
-          {" "}with{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Precision
+            Calculate Your Future.
           </span>
         </h1>
 
-        {/* Subheading */}
+        {/* Sub */}
         <p
-          className={`text-slate-400 max-w-xl mx-auto leading-relaxed mb-12 transition-all duration-1000 delay-200 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-          style={{ fontSize: "clamp(1rem, 2vw, 1.15rem)" }}
+          className={`text-center text-slate-400 max-w-xl mx-auto leading-relaxed mb-10 transition-all duration-700 delay-150 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          style={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
         >
-          30+ financial calculators — SIP, FD, EMI, Income Tax, Mutual Funds.
-          Live bank interest rates. Built for India. Completely free.
+          30+ precision financial calculators — SIP, FD, EMI, Income Tax, Mutual Funds, Retirement.
+          Built for India. Completely free.
         </p>
 
-        {/* CTAs */}
+        {/* CTA row */}
         <div
-          className={`flex flex-col sm:flex-row items-center gap-4 mb-16 transition-all duration-1000 delay-300 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-3 mb-16 transition-all duration-700 delay-200 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <Link
             href="/calculators"
-            className="group inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl text-base font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-blue-500/40 hover:shadow-2xl"
-            style={{
-              background: "linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)",
-              boxShadow: "0 0 40px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.1)",
-            }}
+            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-bold text-black bg-amber-500 hover:bg-amber-400 transition-all duration-200 hover:-translate-y-0.5 shadow-xl shadow-amber-600/25"
           >
-            <span>Start Calculating</span>
+            Start Calculating
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-
           <Link
             href="/mutual-funds"
-            className="inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              backdropFilter: "blur(12px)",
-            }}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-slate-300 hover:text-white border border-[#1e2d4a] hover:border-[#2d4466] bg-[#0d1526]/60 hover:bg-[#0d1526] transition-all duration-200 hover:-translate-y-0.5 backdrop-blur-sm"
           >
             Explore Mutual Funds
           </Link>
+        </div>
 
-          {!isInstalled && (
-            <button
-              onClick={handleInstall}
-              className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
-              style={{
-                color: "#34d399",
-                background: "rgba(52,211,153,0.06)",
-                border: "1px solid rgba(52,211,153,0.18)",
-              }}
-            >
-              <Download className="w-4 h-4" />
-              Install App
-            </button>
-          )}
+        {/* Quick access calculator tiles */}
+        <div
+          className={`grid grid-cols-2 lg:grid-cols-4 gap-3 mb-14 transition-all duration-700 delay-300 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
+          {quickLinks.map((q) => {
+            const Icon = q.icon;
+            return (
+              <Link
+                key={q.href}
+                href={q.href}
+                className="group flex items-center gap-3 p-4 rounded-xl border border-[#1e2d4a] bg-[#0d1526]/70 hover:border-[#2d4466] hover:bg-[#0d1526] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40"
+              >
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: `${q.color}18`, border: `1px solid ${q.color}30` }}
+                >
+                  <Icon className="w-4 h-4" style={{ color: q.color }} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-white truncate">{q.label}</p>
+                  <p className="text-[10px] text-slate-500 truncate">{q.sub}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Stat strip */}
         <div
-          className={`flex flex-wrap items-center justify-center gap-x-10 gap-y-4 transition-all duration-1000 delay-500 ${mounted ? "opacity-100" : "opacity-0"}`}
+          className={`flex flex-wrap items-center justify-center gap-x-10 gap-y-4 transition-all duration-700 delay-400 ${mounted ? "opacity-100" : "opacity-0"}`}
         >
-          {[
-            { value: "30+", label: "Calculators" },
-            { value: "20+", label: "Banks Compared" },
-            { value: "100%", label: "Free Forever" },
-            { value: "0", label: "Registration Required" },
-          ].map((s, i) => (
-            <div key={s.label} className="flex items-baseline gap-1.5">
-              {i > 0 && (
-                <span className="mr-8 hidden sm:block w-px h-5 bg-white/10" />
-              )}
-              <span className="text-2xl font-black text-white">{s.value}</span>
-              <span className="text-xs font-medium" style={{ color: "rgba(148,163,184,0.6)" }}>
-                {s.label}
-              </span>
+          {stats.map((s, i) => (
+            <div key={s.label} className="flex items-baseline gap-2">
+              {i > 0 && <span className="mr-8 hidden sm:block w-px h-5 bg-[#1e2d4a]" />}
+              <span className="text-2xl font-black text-amber-400">{s.value}</span>
+              <span className="text-xs font-medium text-slate-500">{s.label}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollDown}
-        aria-label="Scroll down"
-        className={`absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-all duration-1000 delay-700 hover:opacity-60 ${mounted ? "opacity-30" : "opacity-0"}`}
-        style={{ color: "#94a3b8" }}
-      >
-        <span className="text-[9px] tracking-[0.2em] uppercase">Scroll</span>
-        <ChevronDown className="w-4 h-4 animate-bounce" />
-      </button>
-
-      {/* Bottom fade to canvas */}
+      {/* Bottom fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to top, #0b0e11 0%, transparent 100%)" }}
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+        style={{ background: "linear-gradient(to top, #060c18 0%, transparent 100%)" }}
       />
     </section>
   );

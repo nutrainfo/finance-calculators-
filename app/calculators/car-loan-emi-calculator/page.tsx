@@ -20,7 +20,7 @@ function CarLoanCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Car Loan Details</h2>
 
           <div className="mb-8">
@@ -71,14 +71,14 @@ function CarLoanCalculator() {
           </div>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Loan vs Interest Split</h3>
           <InvestmentPieChart invested={result.principal} returns={result.totalInterest} />
         </div>
       </div>
 
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -90,7 +90,7 @@ function CarLoanCalculator() {
               { label: "Total Cost of Car", value: formatCurrency(downPayment + result.totalAmount) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-rose-600 dark:text-rose-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
@@ -102,24 +102,24 @@ function CarLoanCalculator() {
           </div>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Cost Breakdown</h3>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Loan Principal</span>
+                <span className="text-slate-500">Loan Principal</span>
                 <span className="font-semibold text-white">({principalPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
               </div>
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Total Interest</span>
+                <span className="text-slate-500">Total Interest</span>
                 <span className="font-semibold text-rose-600 dark:text-rose-400">({interestPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #e11d48, #f43f5e)" }} />
               </div>
             </div>

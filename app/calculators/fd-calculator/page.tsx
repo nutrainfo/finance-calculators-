@@ -27,7 +27,7 @@ function FDCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">FD Details</h2>
 
           {/* Principal */}
@@ -83,7 +83,7 @@ function FDCalculator() {
                   className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
                     compounding === opt.value
                       ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
-                      : "bg-[#252b33] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      : "bg-[#162038] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}
                 >
                   {opt.label}
@@ -106,7 +106,7 @@ function FDCalculator() {
 
       {/* Results */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -116,7 +116,7 @@ function FDCalculator() {
               { label: "Effective Annual Rate", value: `${result.effectiveRate}% p.a.` },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>
                   {r.value}
                 </span>
@@ -132,18 +132,18 @@ function FDCalculator() {
         </div>
 
         {/* Breakdown bars */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Principal vs Interest</h3>
 
           <div className="space-y-5">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Principal</span>
+                <span className="text-slate-500">Principal</span>
                 <span className="font-semibold text-white">
                   {formatCurrency(result.principal)} <span className="text-slate-400 font-normal">({principalPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }}
@@ -152,12 +152,12 @@ function FDCalculator() {
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Interest Earned</span>
+                <span className="text-slate-500">Interest Earned</span>
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                   {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }}

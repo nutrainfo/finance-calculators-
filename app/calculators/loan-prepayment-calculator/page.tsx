@@ -73,7 +73,7 @@ function LoanPrepaymentCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Loan Details</h2>
 
           <div className="mb-8">
@@ -106,7 +106,7 @@ function LoanPrepaymentCalculator() {
           </div>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Prepayment Details</h2>
 
           <div className="mb-8">
@@ -144,7 +144,7 @@ function LoanPrepaymentCalculator() {
           </p>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Before vs After Prepayment</h2>
           <div className="space-y-4">
             {[

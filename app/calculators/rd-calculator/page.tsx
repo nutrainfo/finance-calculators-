@@ -17,7 +17,7 @@ function RDCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">RD Details</h2>
 
           <div className="mb-8">
@@ -69,7 +69,7 @@ function RDCalculator() {
 
       {/* Results */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -78,7 +78,7 @@ function RDCalculator() {
               { label: "Interest Earned", value: formatCurrency(result.totalInterest), accent: true },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>
                   {r.value}
                 </span>
@@ -93,29 +93,29 @@ function RDCalculator() {
         </div>
 
         {/* Breakdown */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Deposited vs Interest</h3>
           <div className="space-y-5">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Total Deposited</span>
+                <span className="text-slate-500">Total Deposited</span>
                 <span className="font-semibold text-white">
                   {formatCurrency(result.totalInvested)} <span className="text-slate-400 font-normal">({principalPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
               </div>
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Interest Earned</span>
+                <span className="text-slate-500">Interest Earned</span>
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                   {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }} />
               </div>
@@ -124,7 +124,7 @@ function RDCalculator() {
 
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-[#707a8a]">Return on Investment</span>
+              <span className="text-sm text-slate-500">Return on Investment</span>
               <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
                 {((result.totalInterest / result.totalInvested) * 100).toFixed(2)}%
               </span>

@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from "./theme-provider";
-import { Sun, Moon, Menu, X, TrendingUp, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, BarChart2 } from "lucide-react";
 
 const calculatorGroups = [
   {
@@ -46,33 +45,36 @@ const calculatorGroups = [
 ];
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-[#0b0e11] border-b border-[#2a303a] ${
-        scrolled ? "shadow-lg shadow-black/30" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#060c18]/95 backdrop-blur-xl border-b border-[#1e2d4a] shadow-xl shadow-black/40"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-white" />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center shadow-lg shadow-amber-600/20">
+              <BarChart2 className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-base text-white">
-              Calculate Future
-            </span>
+            <div>
+              <span className="font-black text-white text-sm tracking-tight">Calculate</span>
+              <span className="font-black text-amber-400 text-sm tracking-tight"> Future</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
@@ -84,17 +86,17 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveGroup(group.label)}
                 onMouseLeave={() => setActiveGroup(null)}
               >
-                <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all">
+                <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
                   {group.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeGroup === group.label ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 text-slate-500 transition-transform ${activeGroup === group.label ? "rotate-180" : ""}`} />
                 </button>
                 {activeGroup === group.label && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#1a1e24] rounded-xl shadow-2xl shadow-black/50 border border-[#2a303a] py-1.5 z-50">
+                  <div className="absolute top-full left-0 mt-2 w-52 bg-[#0d1526] rounded-xl shadow-2xl shadow-black/60 border border-[#1e2d4a] py-1.5 z-50">
                     {group.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="block px-4 py-2 text-sm text-[#b7bdc6] hover:text-white hover:bg-[#252b33] transition-colors"
+                        className="block px-4 py-2 text-sm text-slate-400 hover:text-white hover:bg-[#162038] transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -105,35 +107,28 @@ export default function Navbar() {
             ))}
             <Link
               href="/mutual-funds"
-              className="px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all"
+              className="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all"
             >
               Mutual Funds
             </Link>
             <Link
               href="/interest-rates"
-              className="px-3 py-2 rounded-lg text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] transition-all"
+              className="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all"
             >
               Live Rates
             </Link>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg text-[#707a8a] hover:text-white hover:bg-[#1a1e24] transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
+          {/* CTA + mobile toggle */}
+          <div className="flex items-center gap-2">
             <Link
               href="/calculators"
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold transition-all duration-200 shadow-lg shadow-amber-600/20"
             >
               All Calculators
             </Link>
             <button
-              className="lg:hidden p-2 rounded-lg text-[#707a8a] hover:text-white hover:bg-[#1a1e24] transition-colors"
+              className="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -144,20 +139,20 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#0b0e11] border-t border-[#2a303a] max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden bg-[#060c18] border-t border-[#1e2d4a] max-h-[80vh] overflow-y-auto">
           <div className="px-4 py-5 space-y-5">
             {calculatorGroups.map((group) => (
               <div key={group.label}>
-                <p className="text-xs font-bold text-[#707a8a] uppercase tracking-widest mb-2 px-1">
+                <p className="text-[10px] font-bold text-amber-500 uppercase tracking-widest mb-2 px-1">
                   {group.label}
                 </p>
-                <div className="grid grid-cols-1 gap-0.5">
+                <div className="space-y-0.5">
                   {group.items.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center px-3 py-2.5 text-sm font-medium text-[#b7bdc6] hover:text-white hover:bg-[#1a1e24] rounded-lg transition-colors"
+                      className="block px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-[#0d1526] rounded-lg transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -165,20 +160,14 @@ export default function Navbar() {
                 </div>
               </div>
             ))}
-            <Link
-              href="/mutual-funds"
-              onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-semibold text-blue-400 hover:text-blue-300"
-            >
-              Mutual Funds
-            </Link>
-            <Link
-              href="/interest-rates"
-              onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-semibold text-blue-400 hover:text-blue-300"
-            >
-              Live Interest Rates
-            </Link>
+            <div className="pt-2 border-t border-[#1e2d4a] space-y-1">
+              <Link href="/mutual-funds" onClick={() => setMobileOpen(false)}
+                className="block px-3 py-2 text-sm font-semibold text-amber-400">Mutual Funds</Link>
+              <Link href="/interest-rates" onClick={() => setMobileOpen(false)}
+                className="block px-3 py-2 text-sm font-semibold text-amber-400">Live Interest Rates</Link>
+              <Link href="/calculators" onClick={() => setMobileOpen(false)}
+                className="block mt-3 px-4 py-3 text-center text-sm font-bold bg-amber-500 text-black rounded-xl">All Calculators</Link>
+            </div>
           </div>
         </div>
       )}

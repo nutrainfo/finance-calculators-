@@ -21,7 +21,7 @@ function StepUpSIPCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Investment Parameters</h2>
 
           <div className="mb-8">
@@ -82,7 +82,7 @@ function StepUpSIPCalculator() {
       </div>
 
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -91,7 +91,7 @@ function StepUpSIPCalculator() {
               { label: "Estimated Returns", value: formatCurrency(result.totalReturns), accent: true },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-emerald-600 dark:text-emerald-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
@@ -105,26 +105,26 @@ function StepUpSIPCalculator() {
           <div className="space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Amount Invested</span>
+                <span className="text-slate-500">Amount Invested</span>
                 <span className="font-semibold text-white">({principalPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
               </div>
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Returns</span>
+                <span className="text-slate-500">Returns</span>
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">({returnsPct}%)</span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${returnsPct}%`, background: "linear-gradient(90deg, #059669, #10b981)" }} />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Year-wise SIP Amount Growth</h3>
           <div className="overflow-x-auto max-h-64">
             <table className="w-full text-sm">
@@ -138,9 +138,9 @@ function StepUpSIPCalculator() {
               <tbody>
                 {result.yearlyBreakdown.map((row) => (
                   <tr key={row.year} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                    <td className="px-4 py-3 font-semibold text-[#b7bdc6]">Year {row.year}</td>
+                    <td className="px-4 py-3 font-semibold text-[slate-300]">Year {row.year}</td>
                     <td className="px-4 py-3 text-blue-600 dark:text-blue-400 font-medium">{formatCurrency(row.monthlyAmount)}</td>
-                    <td className="px-4 py-3 text-[#707a8a]">{formatCurrency(row.invested)}</td>
+                    <td className="px-4 py-3 text-slate-500">{formatCurrency(row.invested)}</td>
                   </tr>
                 ))}
               </tbody>

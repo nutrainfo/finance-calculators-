@@ -20,7 +20,7 @@ function EMICalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Loan Details</h2>
 
           {/* Loan Amount */}
@@ -65,7 +65,7 @@ function EMICalculator() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Principal vs Interest</h3>
           <InvestmentPieChart invested={result.principal} returns={result.totalInterest} />
         </div>
@@ -73,7 +73,7 @@ function EMICalculator() {
 
       {/* Results */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -83,7 +83,7 @@ function EMICalculator() {
               { label: "Total Amount Payable", value: formatCurrency(result.totalAmount) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-4 border-b border-slate-100 dark:border-slate-800">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-rose-600 dark:text-rose-400" : "text-white"}`}>
                   {r.value}
                 </span>
@@ -99,29 +99,29 @@ function EMICalculator() {
         </div>
 
         {/* Breakdown bars */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-6">Loan Breakdown</h3>
           <div className="space-y-5">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Principal</span>
+                <span className="text-slate-500">Principal</span>
                 <span className="font-semibold text-white">
                   {formatCurrency(result.principal)} <span className="text-slate-400 font-normal">({principalPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #1d4ed8, #3b82f6)" }} />
               </div>
             </div>
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-[#707a8a]">Total Interest</span>
+                <span className="text-slate-500">Total Interest</span>
                 <span className="font-semibold text-rose-600 dark:text-rose-400">
                   {formatCurrency(result.totalInterest)} <span className="text-slate-400 font-normal">({interestPct}%)</span>
                 </span>
               </div>
-              <div className="h-2.5 bg-[#252b33] rounded-full overflow-hidden">
+              <div className="h-2.5 bg-[#162038] rounded-full overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${interestPct}%`, background: "linear-gradient(90deg, #e11d48, #f43f5e)" }} />
               </div>
@@ -144,7 +144,7 @@ function EMICalculator() {
         </div>
 
         {/* Amortization toggle */}
-        <div className="bg-[#1a1e24] rounded-3xl border border-[#2a303a] overflow-hidden">
+        <div className="bg-[#0d1526] rounded-3xl border border-[#1e2d4a] overflow-hidden">
           <button
             onClick={() => setShowSchedule(!showSchedule)}
             className="w-full px-8 py-5 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-sm"
@@ -165,7 +165,7 @@ function EMICalculator() {
                 <tbody>
                   {result.schedule.slice(0, 24).map((row) => (
                     <tr key={row.month} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
-                      <td className="px-6 py-3 text-[#b7bdc6] font-medium">Month {row.month}</td>
+                      <td className="px-6 py-3 text-[slate-300] font-medium">Month {row.month}</td>
                       <td className="px-6 py-3 text-slate-500">{formatCurrency(row.emi)}</td>
                       <td className="px-6 py-3 text-blue-600 dark:text-blue-400">{formatCurrency(row.principal)}</td>
                       <td className="px-6 py-3 text-rose-600 dark:text-rose-400">{formatCurrency(row.interest)}</td>

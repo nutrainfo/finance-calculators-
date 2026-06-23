@@ -65,8 +65,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0b0e11" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0e11" },
+    { media: "(prefers-color-scheme: light)", color: "#060c18" },
+    { media: "(prefers-color-scheme: dark)", color: "#060c18" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0b0e11] text-[#e2e8f0]`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#060c18] text-[#e2e8f0]`}>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { TrendingUp, Mail } from "lucide-react";
+import { BarChart2, Mail } from "lucide-react";
 
 const Twitter = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -49,28 +49,31 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0b0e11] text-[#707a8a] border-t border-[#2a303a] pt-14 pb-8">
+    <footer className="bg-[#060c18] text-slate-500 border-t border-[#1e2d4a] pt-14 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-4 h-4 text-white" />
+            <Link href="/" className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center shadow-lg shadow-amber-600/20">
+                <BarChart2 className="w-4 h-4 text-white" />
               </div>
-              <span className="font-bold text-base text-white">Calculate Future</span>
+              <div>
+                <span className="font-black text-white text-sm tracking-tight">Calculate</span>
+                <span className="font-black text-amber-400 text-sm tracking-tight"> Future</span>
+              </div>
             </Link>
-            <p className="text-sm text-[#707a8a] mb-4 leading-relaxed">
+            <p className="text-sm text-slate-500 mb-4 leading-relaxed">
               India&apos;s most comprehensive financial calculator platform. Plan, calculate, and secure your financial future.
             </p>
             <div className="flex gap-2">
-              <a href="#" className="w-8 h-8 bg-[#1a1e24] rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+              <a href="#" className="w-8 h-8 bg-[#0d1526] rounded-lg flex items-center justify-center hover:bg-amber-500 hover:text-black text-slate-500 transition-colors">
                 <Twitter className="w-3.5 h-3.5" />
               </a>
-              <a href="#" className="w-8 h-8 bg-[#1a1e24] rounded-lg flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors">
+              <a href="#" className="w-8 h-8 bg-[#0d1526] rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white text-slate-500 transition-colors">
                 <Linkedin className="w-3.5 h-3.5" />
               </a>
-              <a href="mailto:hello@calculatefuture.in" className="w-8 h-8 bg-[#1a1e24] rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-colors">
+              <a href="mailto:hello@calculatefuture.in" className="w-8 h-8 bg-[#0d1526] rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white text-slate-500 transition-colors">
                 <Mail className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -87,7 +90,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-[#707a8a] hover:text-white transition-colors"
+                      className="text-sm text-slate-500 hover:text-amber-400 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -99,11 +102,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-[#2a303a] pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#707a8a]">
+        <div className="border-t border-[#1e2d4a] pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-slate-600">
             © 2025 Calculate Future. All rights reserved. Made in India.
           </p>
-          <div className="flex gap-6 text-sm text-[#707a8a]">
+          <div className="flex gap-6 text-sm text-slate-600">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
@@ -111,18 +114,18 @@ export default function Footer() {
         </div>
 
         {/* Legal Disclaimer */}
-        <div className="mt-6 border-t border-[#2a303a] pt-5 space-y-3 text-xs text-[#4a5568] leading-relaxed">
+        <div className="mt-6 border-t border-[#1e2d4a] pt-5 space-y-3 text-xs text-slate-700 leading-relaxed">
           <p>
-            <strong className="text-[#707a8a]">Regulatory Notice:</strong> Calculate Future is not a registered investment adviser, broker-dealer, or financial planner under SEBI (Investment Advisers) Regulations, 2013. We do not provide personalised investment advice. All information on this platform is for general educational and informational purposes only and does not constitute financial, tax, legal, or investment advice.
+            <strong className="text-slate-500">Regulatory Notice:</strong> Calculate Future is not a registered investment adviser, broker-dealer, or financial planner under SEBI (Investment Advisers) Regulations, 2013. We do not provide personalised investment advice. All information on this platform is for general educational and informational purposes only and does not constitute financial, tax, legal, or investment advice.
           </p>
           <p>
-            <strong className="text-[#707a8a]">Mutual Fund Disclaimer:</strong> Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. The fund data displayed is sourced from publicly available information; Calculate Future does not guarantee its accuracy or completeness. We are not affiliated with AMFI, Groww, Zerodha, or any asset management company.
+            <strong className="text-slate-500">Mutual Fund Disclaimer:</strong> Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. The fund data displayed is sourced from publicly available information; Calculate Future does not guarantee its accuracy or completeness. We are not affiliated with AMFI, Groww, Zerodha, or any asset management company.
           </p>
           <p>
-            <strong className="text-[#707a8a]">Calculator Accuracy:</strong> All calculators use standard industry formulas (SEBI-prescribed SIP formula, RBI reducing-balance EMI method, Income Tax Act FY 2024-25 slabs). Results are illustrative and may differ from actual outcomes due to market fluctuations, bank policy changes, and other factors. Always verify computations with the respective financial institution before transacting.
+            <strong className="text-slate-500">Calculator Accuracy:</strong> All calculators use standard industry formulas (SEBI-prescribed SIP formula, RBI reducing-balance EMI method, Income Tax Act FY 2024-25 slabs). Results are illustrative and may differ from actual outcomes due to market fluctuations, bank policy changes, and other factors. Always verify computations with the respective financial institution before transacting.
           </p>
           <p>
-            <strong className="text-[#707a8a]">Bank Rate Data:</strong> Interest rates shown are indicative based on publicly available data as of June 2025 and may change without notice. Verify current rates from official bank websites before opening any deposit account.
+            <strong className="text-slate-500">Bank Rate Data:</strong> Interest rates shown are indicative based on publicly available data as of June 2025 and may change without notice. Verify current rates from official bank websites before opening any deposit account.
           </p>
         </div>
       </div>

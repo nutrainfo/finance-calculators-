@@ -54,13 +54,13 @@ export default function PWAInstallSection() {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden" style={{ background: "#0b0e11" }}>
+    <section className="py-20 relative overflow-hidden" style={{ background: "#060c18" }}>
       {/* Background glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(5,150,105,0.1) 0%, transparent 60%)",
+            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(245,158,11,0.07) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(5,150,105,0.08) 0%, transparent 60%)",
         }}
       />
 
@@ -69,7 +69,7 @@ export default function PWAInstallSection() {
 
           {/* Left — content */}
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-400/70 mb-6">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-amber-500 mb-6">
               Available on All Platforms
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-6">

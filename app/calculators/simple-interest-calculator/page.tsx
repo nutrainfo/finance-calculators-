@@ -15,7 +15,7 @@ export default function Page() {
       <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
         <div className="text-6xl mb-4">🚧</div>
         <h2 className="text-2xl font-bold text-white mb-3">Coming Soon</h2>
-        <p className="text-[#707a8a] mb-6 max-w-md mx-auto">
+        <p className="text-slate-500 mb-6 max-w-md mx-auto">
           This calculator is being built with the same accuracy and quality as all our other tools.
         </p>
         <Link href="/calculators" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all">

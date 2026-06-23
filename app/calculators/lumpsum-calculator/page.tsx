@@ -23,7 +23,7 @@ function LumpsumCalculator() {
           ].map((inp) => (
             <div key={inp.label} className="mb-6">
               <div className="flex justify-between mb-2">
-                <label className="text-sm font-medium text-[#b7bdc6]">{inp.label}</label>
+                <label className="text-sm font-medium text-[slate-300]">{inp.label}</label>
                 <span className="text-sm font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-3 py-1 rounded-lg">
                   {inp.isAmt ? formatCurrency(inp.value) : `${inp.value}${inp.suffix || ""}`}
                 </span>

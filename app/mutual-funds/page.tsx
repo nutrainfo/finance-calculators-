@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function MutualFundsPage() {
   return (
-    <main className="bg-[#0b0e11] min-h-screen pt-14">
+    <main className="bg-[#060c18] min-h-screen pt-14">
       <MutualFundsSection />
     </main>
   );

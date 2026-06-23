@@ -17,7 +17,7 @@ function SWPCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">SWP Parameters</h2>
 
           <div className="mb-8">
@@ -59,11 +59,11 @@ function SWPCalculator() {
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Withdrawal Rate Analysis</p>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-[#707a8a]">Annual withdrawal</span>
+              <span className="text-slate-500">Annual withdrawal</span>
               <span className="font-semibold text-white">{formatCurrency(withdrawal * 12)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#707a8a]">Withdrawal rate</span>
+              <span className="text-slate-500">Withdrawal rate</span>
               <span className={`font-semibold ${(withdrawal * 12 / corpus) * 100 <= 4 ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}>
                 {((withdrawal * 12 / corpus) * 100).toFixed(2)}%
               </span>
@@ -85,14 +85,14 @@ function SWPCalculator() {
           <p className={`text-4xl font-black mb-2 ${isCorpusSustainable ? "text-emerald-700 dark:text-emerald-400" : "text-amber-700 dark:text-amber-400"}`}>
             {isCorpusSustainable ? "50+ Years" : `${yearsToDeplete} Yrs ${monthsLeft} Mo`}
           </p>
-          <p className="text-sm text-[#707a8a]">
+          <p className="text-sm text-slate-500">
             {isCorpusSustainable
               ? "At this withdrawal rate, your corpus grows faster than withdrawals."
               : `Total withdrawal: ${formatCurrency(result.totalWithdrawn)}`}
           </p>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Summary</h2>
           <div className="space-y-4 mb-6">
             {[
@@ -102,14 +102,14 @@ function SWPCalculator() {
               { label: "Remaining Balance", value: formatCurrency(result.finalBalance) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className={`text-sm font-bold ${r.accent ? "text-blue-600 dark:text-blue-400" : "text-white"}`}>{r.value}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl border border-[#2a303a] overflow-hidden">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl border border-[#1e2d4a] overflow-hidden">
           <div className="px-6 sm:px-8 py-5 border-b border-slate-100 dark:border-slate-800">
             <h3 className="text-base font-bold text-white">First 24 Months</h3>
           </div>
@@ -125,7 +125,7 @@ function SWPCalculator() {
               <tbody>
                 {result.schedule.slice(0, 24).map((row) => (
                   <tr key={row.month} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                    <td className="px-6 py-3 font-medium text-[#b7bdc6]">Month {row.month}</td>
+                    <td className="px-6 py-3 font-medium text-[slate-300]">Month {row.month}</td>
                     <td className="px-6 py-3 text-blue-600 dark:text-blue-400">{formatCurrency(row.withdrawal)}</td>
                     <td className="px-6 py-3 font-semibold text-white">{formatCurrency(row.balance)}</td>
                   </tr>

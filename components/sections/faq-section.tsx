@@ -52,20 +52,20 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-20 bg-[#0b0e11]">
+    <section className="py-20 bg-[#060c18]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1a1e24] border border-[#2a303a] text-[#707a8a] text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0d1526] border border-[#1e2d4a] text-slate-400 text-xs font-semibold mb-4">
             Frequently Asked
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">
             Common Questions
           </h2>
-          <p className="text-[#707a8a]">
+          <p className="text-slate-500">
             Everything you need to know about Calculate Future
           </p>
         </div>
@@ -74,22 +74,22 @@ export default function FAQSection() {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="bg-[#1a1e24] border border-[#2a303a] rounded-xl overflow-hidden"
+              className="bg-[#0d1526] border border-[#1e2d4a] rounded-xl overflow-hidden"
             >
               <button
-                className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-[#252b33] transition-colors"
+                className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-[#162038] transition-colors"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
                 <span className="font-semibold text-white text-sm">{faq.question}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#707a8a] flex-shrink-0 transition-transform duration-200 ${
+                  className={`w-4 h-4 text-slate-500 flex-shrink-0 transition-transform duration-200 ${
                     open === i ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {open === i && (
-                <div className="px-5 pb-4 text-[#707a8a] leading-relaxed text-sm border-t border-[#2a303a] pt-3">
+                <div className="px-5 pb-4 text-slate-500 leading-relaxed text-sm border-t border-[#1e2d4a] pt-3">
                   {faq.answer}
                 </div>
               )}

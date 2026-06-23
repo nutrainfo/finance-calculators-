@@ -23,7 +23,7 @@ function CapitalGainsCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Asset Details</h2>
 
           {/* Asset type */}
@@ -102,11 +102,11 @@ function CapitalGainsCalculator() {
             : "text-rose-700 dark:text-rose-400"}`}>
             {result.gain >= 0 ? "+" : ""}{formatCurrency(result.gain)}
           </p>
-          <p className="text-sm text-[#707a8a] mt-2">Total Capital Gain</p>
+          <p className="text-sm text-slate-500 mt-2">Total Capital Gain</p>
         </div>
 
         {/* Tax summary */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4 mb-6">
@@ -121,7 +121,7 @@ function CapitalGainsCalculator() {
               { label: "Health & Education Cess (4%)", value: formatCurrency(result.cess) },
             ].map((r) => (
               <div key={r.label} className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                <span className="text-sm text-[#707a8a]">{r.label}</span>
+                <span className="text-sm text-slate-500">{r.label}</span>
                 <span className="text-sm font-semibold text-white">{r.value}</span>
               </div>
             ))}
@@ -140,9 +140,9 @@ function CapitalGainsCalculator() {
         </div>
 
         {/* Rates reference */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h3 className="text-base font-bold text-white mb-5">Capital Gains Tax Rates — Budget 2024</h3>
-          <div className="space-y-3 text-sm text-[#707a8a]">
+          <div className="space-y-3 text-sm text-slate-500">
             {[
               { label: "Equity STCG (< 12 months)", rate: "20%" },
               { label: "Equity LTCG (> 12 months, above ₹1L)", rate: "12.5%" },

@@ -30,7 +30,7 @@ function RegimeComparisonCalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-10">
       <div className="space-y-6">
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-8">Your Income & Deductions</h2>
 
           <div className="mb-8">
@@ -55,8 +55,8 @@ function RegimeComparisonCalculator() {
             ].map((inp) => (
               <div key={inp.label}>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-xs font-semibold text-[#707a8a]">{inp.label}</label>
-                  <span className="text-xs font-bold text-[#b7bdc6]">{formatCurrency(inp.value)}</span>
+                  <label className="text-xs font-semibold text-slate-500">{inp.label}</label>
+                  <span className="text-xs font-bold text-[slate-300]">{formatCurrency(inp.value)}</span>
                 </div>
                 <input type="range" min={0} max={inp.max} step={1000} value={inp.value}
                   onChange={(e) => inp.set(Number(e.target.value))} className="w-full" />
@@ -82,13 +82,13 @@ function RegimeComparisonCalculator() {
           <p className={`text-3xl font-black mb-2 ${saving >= 0 ? "text-emerald-700 dark:text-emerald-400" : "text-blue-700 dark:text-blue-400"}`}>
             {betterRegime}
           </p>
-          <p className="text-sm text-[#707a8a]">
+          <p className="text-sm text-slate-500">
             Saves {formatCurrency(savings)} in taxes annually ({saving >= 0 ? "vs Old" : "vs New"} Regime)
           </p>
         </div>
 
         {/* Side by side comparison */}
-        <div className="bg-[#1a1e24] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2a303a]">
+        <div className="bg-[#0d1526] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#1e2d4a]">
           <h2 className="text-lg font-bold text-white mb-6">Regime Comparison</h2>
           <div className="grid grid-cols-2 gap-3 mb-6">
             {[
@@ -142,7 +142,7 @@ function RegimeComparisonCalculator() {
 
         <div className="bg-slate-50 dark:bg-slate-800/60 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700">
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Break-Even Point</p>
-          <p className="text-sm text-[#707a8a] leading-relaxed">
+          <p className="text-sm text-slate-500 leading-relaxed">
             At your income level, you need total deductions above approximately <strong className="text-slate-800 dark:text-slate-200">{formatCurrency(Math.max(0, breakEvenDeduction))}</strong> for the Old Regime to be better. Your current deductions: {formatCurrency(totalOldDeductions)}.
           </p>
         </div>

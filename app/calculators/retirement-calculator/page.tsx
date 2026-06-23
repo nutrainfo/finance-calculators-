@@ -35,7 +35,7 @@ function RetirementCalculator() {
     <div className="grid lg:grid-cols-2 gap-10">
 
       {/* Inputs */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Retirement Details</h2>
         <div className="space-y-6">
           {inputs.map((inp) => (
@@ -76,7 +76,7 @@ function RetirementCalculator() {
         </div>
 
         {/* Key metrics */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Corpus Summary</h2>
           <div className="space-y-4 mb-6">
             {[
@@ -99,7 +99,7 @@ function RetirementCalculator() {
         </div>
 
         {/* Corpus breakdown bars */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Corpus Breakdown</h3>
           <div className="space-y-5">
             {[

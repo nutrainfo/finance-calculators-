@@ -23,7 +23,7 @@ function CapitalGainsCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Asset Details</h2>
 
           {/* Asset type */}
@@ -106,7 +106,7 @@ function CapitalGainsCalculator() {
         </div>
 
         {/* Tax summary */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4 mb-6">
@@ -140,7 +140,7 @@ function CapitalGainsCalculator() {
         </div>
 
         {/* Rates reference */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-5">Capital Gains Tax Rates — Budget 2024</h3>
           <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
             {[

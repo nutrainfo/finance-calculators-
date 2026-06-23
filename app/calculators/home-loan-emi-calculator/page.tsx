@@ -20,7 +20,7 @@ function EMICalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Loan Details</h2>
 
           {/* Loan Amount */}
@@ -65,7 +65,7 @@ function EMICalculator() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Principal vs Interest</h3>
           <InvestmentPieChart invested={result.principal} returns={result.totalInterest} />
         </div>
@@ -73,7 +73,7 @@ function EMICalculator() {
 
       {/* Results */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -99,7 +99,7 @@ function EMICalculator() {
         </div>
 
         {/* Breakdown bars */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Loan Breakdown</h3>
           <div className="space-y-5">
             <div>

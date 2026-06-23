@@ -21,7 +21,7 @@ function IncomeTaxCalculator() {
 
       {/* Left — Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Income Details (FY 2024-25)</h2>
 
           {/* Regime toggle */}
@@ -119,7 +119,7 @@ function IncomeTaxCalculator() {
       <div className="space-y-6">
 
         {/* Key metrics */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Tax Summary</h2>
 
           <div className="space-y-4">
@@ -172,7 +172,7 @@ function IncomeTaxCalculator() {
         </div>
 
         {/* Regime comparison */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-5">New vs Old Regime</h3>
 
           <div className="grid grid-cols-2 gap-4 mb-4">

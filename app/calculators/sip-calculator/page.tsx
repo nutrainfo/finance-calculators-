@@ -51,7 +51,7 @@ function SIPCalculator() {
 
       {/* Inputs */}
       <div className="space-y-6">
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-8">Investment Parameters</h2>
 
           <Slider
@@ -95,7 +95,7 @@ function SIPCalculator() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Invested vs Returns</h3>
           <InvestmentPieChart invested={result.totalInvested} returns={result.totalReturns} />
         </div>
@@ -105,7 +105,7 @@ function SIPCalculator() {
       <div className="space-y-6">
 
         {/* Key metrics */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Results</h2>
 
           <div className="space-y-4 mb-6">
@@ -142,7 +142,7 @@ function SIPCalculator() {
         </div>
 
         {/* Growth chart */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-6">Year-wise Growth</h3>
           <GrowthAreaChart data={result.yearlyBreakdown} dataKey="value" investedKey="invested" />
         </div>
